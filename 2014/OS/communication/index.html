@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="en">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.4.0 -->
+    <script>window.materialVersion = "1.4.0"</script>
+
+    <!-- Title -->
+    
+    <title>
+        
+            进程间通信 | 
+        
+        Matrix Wall
+    </title>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="thinKnight">
+    <meta name="description" itemprop="description" content="进程经常需要与其他进程通信，所以我们就来讨论一些关于进程间通信(Inter Process Communication, IPC)的问题。">
+    <meta name="keywords" content="null,OS">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!--iOS -->
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Matrix Wall">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="thinknight.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="进程间通信 | Matrix Wall">
+    <meta property="og:image" content="/img/favicon.png" />
+    <meta property="og:description" content="进程经常需要与其他进程通信，所以我们就来讨论一些关于进程间通信(Inter Process Communication, IPC)的问题。">
+    <meta property="og:article:tag" content="OS"> 
+
+    
+        <meta property="article:published_time" content="Thu Oct 09 2014 19:02:38 GMT+0800" />
+        <meta property="article:modified_time" content="Tue Jun 27 2017 15:16:39 GMT+0800" />
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:title" content="进程间通信 | Matrix Wall">
+    <meta name="twitter:description" content="进程经常需要与其他进程通信，所以我们就来讨论一些关于进程间通信(Inter Process Communication, IPC)的问题。">
+    <meta name="twitter:image" content="/img/favicon.png">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="thinknight.github.io" />
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="thinknight.github.io/2014/OS/communication/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Matrix Wall",
+        "logo": "/img/favicon.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "thinKnight",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicon.png"
+        },
+        "description": "I will survive."
+    },
+    "headline": "进程间通信",
+    "url": "thinknight.github.io/2014/OS/communication/index.html",
+    "datePublished": "Thu Oct 09 2014 19:02:38 GMT+0800",
+    "dateModified": "Tue Jun 27 2017 15:16:39 GMT+0800",
+    "description": "进程经常需要与其他进程通信，所以我们就来讨论一些关于进程间通信(Inter Process Communication, IPC)的问题。",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "thinknight.github.io"
+    }
+}
+</script>
+
+
+    
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.en.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+materialVersion+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(data&&data.indexOf(versionString)===-1){lsloader.removeLS(key)}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload){cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}code=code.split(versionString)[1];if(/\.js?.+$/.test(versionNumber)){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload)}};lsloader.requestResource=function(name,path,cssonload){var that=this;if(/\.js?.+$/.test(path)){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else if(/\.css?.+$/.test(path)){this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
+
+    <!-- Import CSS & jQuery -->
+    
+        <style id="css/material.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/material.min.css","/css/material.min.css?fJTiM/K1J3dWIruo3pxtAw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        <style id="css/style.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/style.min.css","/css/style.min.css?oCSEO3ST+aEypEwttTDI9g==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        
+            <style id="/css/fontawesome.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("/css/fontawesome.min.css","/css/fontawesome.min.css?JpVQUwzBJ7aqWjWSWn3mzg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        
+        
+        <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+
+    <style>
+        @font-face {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 300;
+            src: url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-300.eot);
+            src: local('Roboto'),local('Roboto-Normal'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-300.eot?#iefix) format('embedded-opentype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-300.woff2) format('woff2'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-300.woff) format('woff'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-300.ttf) format('truetype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-300.svg#Roboto) format('svg')
+        }
+
+        @font-face {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: regular;
+            src: url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-regular.eot);
+            src: local('Roboto'),local('Roboto-Normal'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-regular.eot?#iefix) format('embedded-opentype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-regular.woff2) format('woff2'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-regular.woff) format('woff'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-regular.ttf) format('truetype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-regular.svg#Roboto) format('svg')
+        }
+
+        @font-face {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 500;
+            src: url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.eot);
+            src: local('Roboto'),local('Roboto-Normal'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.eot?#iefix) format('embedded-opentype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.woff2) format('woff2'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.woff) format('woff'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.ttf) format('truetype'),url(https://lib.baomitu.com/fonts/roboto/roboto-v15-latin-500.svg#Roboto) format('svg')
+        }
+
+        @font-face {
+            font-family: 'Material Icons';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://lib.baomitu.com/material-design-icons/3.0.1/iconfont/MaterialIcons-Regular.eot);
+            src: url(https://lib.baomitu.com/material-design-icons/3.0.1/iconfont/MaterialIcons-Regular.woff2) format('woff2'),url(https://lib.baomitu.com/material-design-icons/3.0.1/iconfont/MaterialIcons-Regular.woff) format('woff'),url(https://lib.baomitu.com/material-design-icons/3.0.1/iconfont/MaterialIcons-Regular.ttf) format('truetype')
+        }
+    </style>
+
+
+        <script>lsloader.load("js/jquery.min.js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==")</script>
+    
+    
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Analytics -->
+    
+
+    <!-- Custom Head -->
+    
+</head>
+
+
+    
+        <body id="scheme-Isolation" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+                    <!-- Isolation Header -->
+                    <header class="header">
+    <div class="header-wrapper">
+        <!-- Header Copyright -->
+        <div class="header-copyright">
+            <div class="header-site">
+                ©&nbsp;
+                <script type="text/javascript">
+                    var fd = new Date();
+                    document.write(fd.getFullYear());
+                </script>
+                &nbsp;Matrix Wall
+            </div>
+            <!--
+            I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+            It will not impact the appearance and can give developers a lot of support :)
+
+            很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+            它不会影响美观并可以给开发者很大的支持。 :)
+            -->
+            <div>
+                Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a>
+                <br>
+                Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a>
+            </div>
+        </div>
+
+        <!-- Header Title -->
+        <span class="header-title header-item">
+            <a href="/" title="Matrix Wall">
+                Matrix Wall
+            </a>
+        </span>
+
+        <p class="header-slogan header-item">
+        
+            
+                I will survive.
+            
+        
+        </p>
+
+        <!-- Header Nav -->
+        <nav class="header-nav header-item">
+            <span class="header-nav-item">
+                <a href="/" title="Home">
+                    <span>Home</span>
+                </a>
+            </span>
+
+            <!-- Pages  -->
+            
+                <span class="header-nav-item">
+                    <a href="/atom.xml" title="RSS">
+                        <span>RSS</span>
+                    </a>
+                </span>
+            
+                <span class="header-nav-item">
+                    <a href="/about" title="About">
+                        <span>About</span>
+                    </a>
+                </span>
+            
+            
+        </nav>
+
+        <!-- Header SNS -->
+        <div class="header-item header-sns_list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/thinKnight" target="_blank">
+            <i class="fa fa-github fa-lg" aria-hidden="true"></i>
+        </a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+    </div>
+</header>
+
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+
+                    <!-- Post TOC -->
+
+    
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+
+
+    <!-- Isolation Post Header -->
+    <!-- Post thumbnail -->
+    
+        <!-- Post Header Info -->
+        <div class="post-header_info without-thumbnail">
+            <!-- Author Avatar & Name -->
+            <img src="/img/avatar.png" class="avatar-img" width="44px" height="44px" alt="thinKnight's avatar">
+            <span class="name-span">thinKnight</span>
+        </div>
+
+        <!-- Null Thumbnail -->
+        <div class="post_thumbnail-null">
+    
+        </div>
+
+
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+
+    
+        <div class="post-content_wrapper">
+            <p class="post-title">
+                进程间通信
+            </p>
+            <p>进程经常需要与其他进程通信，所以我们就来讨论一些关于<strong>进程间通信</strong>(Inter Process Communication, IPC)的问题。<br><a id="more"></a></p>
+<h2 id="一、竞争状态-race-condition"><a href="#一、竞争状态-race-condition" class="headerlink" title="一、竞争状态(race condition)"></a>一、竞争状态(race condition)</h2><ul>
+<li>两个或多个进程对同一共享数据同时进行读写操作，而最后的结果是不可预测的，它取决于各个进程具体运行情况。</li>
+<li>在同一时刻，只允许一个进程访问该共享数据，即如果当前已有一个进程正在使用该数据，那么其他进程暂时不能访问。这就是<strong>互斥</strong>的概念。</li>
+</ul>
+<p>那么为了避免竞争状态，我们就需要<strong>互斥</strong>，也就是当一个进程在使用一个共享变量或文件时，其他进程不能做同样的操作。这样就引入了临界区的概念。</p>
+<h2 id="二、临界区"><a href="#二、临界区" class="headerlink" title="二、临界区"></a>二、临界区</h2><h3 id="临界区的定义："><a href="#临界区的定义：" class="headerlink" title="临界区的定义："></a>临界区的定义：</h3><blockquote>
+<p>每个进程中访问临界资源的那段代码称为临界区。<br>临界资源指的是一次只允许一个进程使用的资源称为临界资源，例如打印机、变量。  </p>
+</blockquote>
+<p>所以如果我们能通过适当的安排，使得两个进程不可能同时处于临界区中，就能避免竞争状态。  </p>
+<p>尽管这样的要求避免了竞争状态，但它还不能保证使用共享数据的并发进程能够正确和高效地进行协作。所以对于一个好的解决方案，需要满足一下4个：  </p>
+<ol>
+<li>任何两个进程都不能同时进入临界区;</li>
+<li>不应对CPU的速度和数量做任何假设;</li>
+<li>临界区外运行的进程不得阻塞其他进程;</li>
+<li>不得使进程无限期等待进入临界区。</li>
+</ol>
+<h2 id="三、同步机制应遵循的准则"><a href="#三、同步机制应遵循的准则" class="headerlink" title="三、同步机制应遵循的准则"></a>三、同步机制应遵循的准则</h2><h3 id="1-空闲让进"><a href="#1-空闲让进" class="headerlink" title="1.空闲让进"></a>1.空闲让进</h3><ul>
+<li>临界自愿处于空闲状态,允许进程进入临界区  </li>
+<li>临界区内仅有一个进程执行  </li>
+</ul>
+<h3 id="2-忙则等待"><a href="#2-忙则等待" class="headerlink" title="2.忙则等待"></a>2.忙则等待</h3><ul>
+<li>临界区有进程正在执行其中的代码,所有其他进程则不可以进入临界区  </li>
+</ul>
+<h3 id="3-有限等待"><a href="#3-有限等待" class="headerlink" title="3.有限等待"></a>3.有限等待</h3><ul>
+<li>对要求访问临界区的进程 应在保证在有限时间内进入自己的临界区,避免死等。  </li>
+</ul>
+<h3 id="4-让权等待"><a href="#4-让权等待" class="headerlink" title="4.让权等待"></a>4.让权等待</h3><ul>
+<li>当进程不能进入自己的临界区时,应立即释放处理机,避免忙等。  </li>
+</ul>
+<h2 id="四、实现互斥的方案"><a href="#四、实现互斥的方案" class="headerlink" title="四、实现互斥的方案"></a>四、实现互斥的方案</h2><h3 id="1-屏蔽中断"><a href="#1-屏蔽中断" class="headerlink" title="1.屏蔽中断"></a>1.屏蔽中断</h3><p>在单处理器系统中，最简单的方法是使每个进程在刚刚进入临界区后立即屏蔽所有中断，并在就要离开之前打开中断。<br>屏蔽中断后，<strong>时钟中断</strong>也会被屏蔽。<br>CPU只有在发生时钟中断或其他中断时才会进行进程切换，这样，在屏蔽中断后CPU就不会被切换到其他进程。  </p>
+<h3 id="2-锁变量"><a href="#2-锁变量" class="headerlink" title="2.锁变量"></a>2.锁变量</h3><p>假设有一个共享变量，初始值为0。当一个进程想进入临界区时，它就会首先测试这把锁。<br>如果锁的值为0，则该进程就将其设置为1并进入临界区。<br>如果锁的值已经为1，那么进程就一直等待直到锁的值为0.<br>所以0就表示临界区内没有进程，1表示已经有某个进程进入临界区。  </p>
+<h3 id="3-严格轮换法"><a href="#3-严格轮换法" class="headerlink" title="3.严格轮换法"></a>3.严格轮换法</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>(TRUE)&#123;</div><div class="line">	<span class="keyword">while</span>(turn != <span class="number">0</span>)</div><div class="line">			critical_region();	<span class="comment">/*循环*/</span></div><div class="line">	turn = <span class="number">1</span>;</div><div class="line">	noncritical_region();</div><div class="line">&#125;</div><div class="line">```  </div><div class="line"></div><div class="line">&gt;a)  </div><div class="line"></div><div class="line">```<span class="function">C</span></div><div class="line"><span class="title">while</span><span class="params">(TRUE)</span>&#123;</div><div class="line">	<span class="keyword">while</span>(turn != <span class="number">1</span>)</div><div class="line">			critical_region();	<span class="comment">/*循环*/</span></div><div class="line">	turn = <span class="number">0</span>;</div><div class="line">	noncritical_region();</div><div class="line">&#125;</div><div class="line"></div><div class="line">```  </div><div class="line"></div><div class="line">&gt;b)  </div><div class="line"></div><div class="line">### <span class="number">4.</span>Peterson解法</div><div class="line">在进入临界区前，各个进程使用其进程号<span class="number">0</span>或<span class="number">1</span>作为参数来调用enter_region。该调用在需要时将使进程等待，直到能安全地进入临界区。在完成对共享变量的操作后，进程将调用leave_region，表示操作已完成，若其他进程希望进入临界区，则现在就可以进入。  </div><div class="line"></div><div class="line">```C</div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> FALSE 0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> TRUE  1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> N     2                                                  <span class="comment">/*进程数量*/</span></span></div><div class="line">                                                                   </div><div class="line"><span class="keyword">int</span> turn;                                                        <span class="comment">/*现在轮到谁？*/</span></div><div class="line"><span class="keyword">int</span> interested[N];                                               <span class="comment">/*所有值初始化为0(FALSE)*/</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">enter_region</span><span class="params">(<span class="keyword">int</span> process)</span>                                   <span class="comment">/*进程是0或1*/</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> other;                                                   <span class="comment">/*其他进程号*/</span></div><div class="line">    </div><div class="line">    other = <span class="number">1</span> - process;                                         <span class="comment">/*另一方进程*/</span></div><div class="line">    interested[process] = TRUE;                                  <span class="comment">/*表明所感兴趣的*/</span></div><div class="line">    turn = process;                                              <span class="comment">/*设置标志*/</span></div><div class="line">    <span class="keyword">while</span>(turn == process &amp;&amp; interested[other] == TRUE);         <span class="comment">/*空语句*/</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">leave_region</span><span class="params">(<span class="keyword">int</span> process)</span>                                   <span class="comment">/*进程：谁离开？*/</span></span></div><div class="line">&#123;</div><div class="line">    interested[process] = FALSE;                                 <span class="comment">/*表示离开临界区*/</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="五、生产者-消费者问题"><a href="#五、生产者-消费者问题" class="headerlink" title="五、生产者-消费者问题"></a>五、生产者-消费者问题</h2><p>生产者-消费者问题又称为<strong>有界缓冲区问题</strong>。两个进程共享一个公共的固定大小的缓冲区。  </p>
+<p>其中一个是生产者，将消息放入缓冲区；另一个是消费者，从缓冲区中取出消息。  </p>
+<p>而问题在于<strong>当缓冲区已满，而此时生产者还想向其中放入一个新的数据项的情况</strong>。其解决方法是让生产者睡眠，待消费者从缓存区中取出一个或多个数据项时再唤醒它。</p>
+<p>当消费者试图从缓冲区中取数据而发现缓冲区为空时，消费者就睡眠，直到生产者向其中放入一些数据时再将其唤醒。  </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100                                      <span class="comment">/*缓冲区中的槽数目*/</span></span></div><div class="line"><span class="keyword">int</span> count = <span class="number">0</span>;                                     <span class="comment">/*缓冲区中的数据项数目*/</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">producer</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> item;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(TRUE)&#123;                                   <span class="comment">/*无限循环*/</span></div><div class="line">        item = produce_item();                     <span class="comment">/*产生下一新数据项*/</span></div><div class="line">        <span class="keyword">if</span>(count == N)  sleep();                   <span class="comment">/*如果缓冲区满了，就进入休眠状态*/</span></div><div class="line">        insert_item(item);                         <span class="comment">/*将新数据项放入缓冲区中*/</span></div><div class="line">        count = count + <span class="number">1</span>;                         <span class="comment">/*将缓冲区的数据项计数器增1*/</span></div><div class="line">        <span class="keyword">if</span>(count == <span class="number">1</span>）  wakeup(consumer);        </div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> consumer(<span class="keyword">void</span>)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> item;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(TRUE)&#123;                                   <span class="comment">/*无限循环*/</span></div><div class="line">        <span class="keyword">if</span>(count == <span class="number">0</span>)  sleep();                   <span class="comment">/*如果缓冲区空，则进入休眠状态*/</span></div><div class="line">        item = remove_item();                      <span class="comment">/*从缓冲区中取出一个数据项*/</span></div><div class="line">        count = count - <span class="number">1</span>;                         <span class="comment">/*将缓冲区的数据项计数器减1*/</span></div><div class="line">        <span class="keyword">if</span>(count == N - <span class="number">1</span>)  wakeup(producer);      <span class="comment">/*缓冲区满吗？*/</span></div><div class="line">        consume_item(item);                        <span class="comment">/*打印数据项*/</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">```  </div><div class="line">这里还是有可能会出现竞争状态，其原因是对count的访问未加限制。  </div><div class="line"></div><div class="line">我们来看这样一个情况：缓冲区为空，消费者刚刚读取count的值发现它为<span class="number">0</span>，此时调度程序决定暂停消费者而唤醒生产者。生产者向缓冲区中加入一个数据项，count加<span class="number">1</span>。现在count的值变成<span class="number">1</span>了，它推断由于count刚刚为<span class="number">0</span>，所以消费者一定在睡眠，于是生产者调用**wakeup**来唤醒消费者。  </div><div class="line"></div><div class="line">但此时消费者并没有睡眠，所以这个**wakeup**信号就会丢失，当消费者下次运行时，它将测试先前读到的count值，发现它为<span class="number">0</span>，于是睡眠。而生产者迟早会填满整个缓冲区，然后睡眠，这样一来，两个进程将永远睡眠下去。  </div><div class="line"></div><div class="line">所以现在问题的实质在于一个wakeup信号的丢失。虽然在这里我们可以加上一个**唤醒等待位**，但当问题中有三个或者更多进程时一个唤醒等待位就不够了，所以这并没有从本质上解决问题。  </div><div class="line"></div><div class="line">## 六、信号量</div><div class="line">E.W.Dijkstra提出一种方法，它使用一个整型变量来累计唤醒次数，供以后使用。  </div><div class="line"></div><div class="line">这个引入的新变量类型就叫做**信号量(semaphore)**。  </div><div class="line"></div><div class="line">一个信号量的取值可以为<span class="number">0</span>（表示没有保存下来的唤醒操作）或正值（表示有一个或多个唤醒操作）。  </div><div class="line"></div><div class="line">Dijkstra建议设立两种操作：down(P)和up(V)。  </div><div class="line">    </div><div class="line">    </div><div class="line">- down</div><div class="line">    如果信号量的值大于<span class="number">0</span>，则将其值减<span class="number">1</span>并继续；  </div><div class="line">    若该值为<span class="number">0</span>，则进程将睡眠。并将继续down操作。  </div><div class="line"></div><div class="line">- up</div><div class="line">    对信号量的值增<span class="number">1</span>。  </div><div class="line">    </div><div class="line">    </div><div class="line">### 用信号量解决生产者-消费者问题</div><div class="line">#### 该方案使用了三个信号量：</div><div class="line">- **full**   用来记录充满的缓冲槽数目；</div><div class="line">- **empty**  记录空的缓冲槽总数；</div><div class="line">- **mutex**  确保生产者和消费者不会同时访问缓冲区。  </div><div class="line"></div><div class="line">full的初值为<span class="number">0</span>，empty的初值为缓冲区中槽的数目，mutex初值为<span class="number">1</span>。供两个或多个进程使用的信号量，其初值为<span class="number">1</span>，保证同时只有一个进程可以进入临界区，称为二元信号量。如果每个进程在进入临界区前都执行一个down操作，并在刚刚退出时执行一个up操作，就能够实现互斥。  </div><div class="line"></div><div class="line">```C</div><div class="line">#define N <span class="number">100</span>                       <span class="comment">/*缓冲区中的槽数目*/</span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> semaphore;              <span class="comment">/*信号量是一种特殊的整型数据*/</span></div><div class="line">semaphore mutex = <span class="number">1</span>;                <span class="comment">/*控制对临界区的访问*/</span></div><div class="line">semaphore empty = N;                <span class="comment">/*计数缓冲区的空槽数目*/</span></div><div class="line">semaphore full  = <span class="number">0</span>;                <span class="comment">/*计数缓冲区的满槽数目*/</span></div><div class="line"></div><div class="line"><span class="keyword">void</span> producer(<span class="keyword">void</span>)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> item;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(TRUE)&#123;                    <span class="comment">/*TRUE是常量1*/</span></div><div class="line">        item = produce_item();      <span class="comment">/*产生放在缓冲区中的一些数据*/</span></div><div class="line">        down(&amp;empty);               <span class="comment">/*将空槽数目减1*/</span></div><div class="line">        down(&amp;mutex);               <span class="comment">/*进入临界区*/</span></div><div class="line">        insert_item(item);          <span class="comment">/*将新数据项放到缓冲区中*/</span></div><div class="line">        up(&amp;mutex);                 <span class="comment">/*离开临界区*/</span></div><div class="line">        up(&amp;full);                  <span class="comment">/*将满槽的数目加1*/</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> consumer(<span class="keyword">void</span>)</div><div class="line">&#123; </div><div class="line">    <span class="keyword">int</span> item;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(TRUE)&#123;                    <span class="comment">/*无限循环*/</span></div><div class="line">        down(&amp;full);                <span class="comment">/*将满槽数目减1*/</span></div><div class="line">        down(&amp;mutex);               <span class="comment">/*进入临界区*/</span></div><div class="line">        item = remove();            <span class="comment">/*从缓冲区中取出数据项*/</span></div><div class="line">        up(&amp;mutex);                 <span class="comment">/*离开临界区*/</span></div><div class="line">        up(&amp;empty);                 <span class="comment">/*将空槽数加1*/</span></div><div class="line">        consumer_item(item);        <span class="comment">/*处理数据项*/</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+        </div>
+    
+</div>
+
+
+                
+                    <!-- Paradox Post Info -->
+                    
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2014/OS/schedule/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Newer
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2014/OS/process-and-thread/" id="post_nav-older" class="next-content">
+            Older
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+
+    <script>lsloader.load("js/lazyload.min.js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==")</script>
+    <script>lsloader.load("js/js.min.js","/js/js.min.js?oAl/+lvaqTFV31JXTmbrNA==")</script>
+
+
+
+    <script>lsloader.load("js/nprogress.js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==")</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Window Load-->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Bing Background -->
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.4.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
