@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Matrix Wall</title>
-  <subtitle>You Only Live Once</subtitle>
+  <subtitle>I will survive.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="thinknight.github.io/"/>
-  <updated>2017-06-27T07:16:39.000Z</updated>
-  <id>thinknight.github.io/</id>
+  <link href="http://thinknight.github.io/"/>
+  <updated>2017-07-02T11:22:35.000Z</updated>
+  <id>http://thinknight.github.io/</id>
   
   <author>
     <name>thinKnight</name>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>Vim使用笔记</title>
-    <link href="thinknight.github.io/2015/Tool/vim/"/>
-    <id>thinknight.github.io/2015/Tool/vim/</id>
+    <link href="http://thinknight.github.io/2015/Tool/vim/"/>
+    <id>http://thinknight.github.io/2015/Tool/vim/</id>
     <published>2015-05-24T10:39:41.000Z</published>
-    <updated>2017-06-27T07:16:39.000Z</updated>
+    <updated>2017-07-02T11:22:35.000Z</updated>
     
     <content type="html"><![CDATA[<p>我的<code>Vim</code>常用命令<br><a id="more"></a></p>
 <h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><h2 id="移动光标"><a href="#移动光标" class="headerlink" title="移动光标"></a>移动光标</h2><ul>
@@ -130,18 +130,18 @@
     </summary>
     
     
-      <category term="tips" scheme="thinknight.github.io/tags/tips/"/>
+      <category term="tips" scheme="http://thinknight.github.io/tags/tips/"/>
     
   </entry>
   
   <entry>
     <title>Python网络爬虫（二）</title>
-    <link href="thinknight.github.io/2014/Python/python-crawler-2/"/>
-    <id>thinknight.github.io/2014/Python/python-crawler-2/</id>
+    <link href="http://thinknight.github.io/2014/Python/python-crawler-2/"/>
+    <id>http://thinknight.github.io/2014/Python/python-crawler-2/</id>
     <published>2014-10-23T10:51:36.000Z</published>
-    <updated>2017-07-01T22:13:45.000Z</updated>
+    <updated>2017-07-02T11:22:18.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="上文回顾"><a href="#上文回顾" class="headerlink" title="上文回顾"></a>上文回顾</h1><p>上次写到了<strong>遍历网站的全部页面</strong>和<strong>向百度提交搜索</strong>，但是其中还存在着许多的问题。  </p>
+    <content type="html"><![CDATA[<p>上次写到了<strong>遍历网站的全部页面</strong>和<strong>向百度提交搜索</strong>，但是其中还存在着许多的问题。<br><a id="more"></a></p>
 <h2 id="解析HTML"><a href="#解析HTML" class="headerlink" title="解析HTML"></a>解析HTML</h2><p>在上次的方法中，由于以前都是用简单的正则表达式来解析HTML，所以为了尝鲜我就使用了BeautifulSoup和SGMLParser两种方法。但是经过使用下来发现还是BeautifulSoup好那么一点，而且官方的<a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html#" target="_blank" rel="external">文档</a>也很详实，以后用起来也会更加方便。  </p>
 <p>当然了，这两者在解析的过程中都有自己的局限性，所以还得配合正则表达式使用。  </p>
 <h2 id="循环与递归"><a href="#循环与递归" class="headerlink" title="循环与递归"></a>循环与递归</h2><p>由于上次处理的只是遍历一个页面的URL，所以总的来说工作量比较小，然后我就用了<strong>递归</strong>这种最笨的方法。  </p>
@@ -157,73 +157,89 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;上文回顾&quot;&gt;&lt;a href=&quot;#上文回顾&quot; class=&quot;headerlink&quot; title=&quot;上文回顾&quot;&gt;&lt;/a&gt;上文回顾&lt;/h1&gt;&lt;p&gt;上次写到了&lt;strong&gt;遍历网站的全部页面&lt;/strong&gt;和&lt;strong&gt;向百度提交搜索&lt;/strong&gt;，但是其中还
+      &lt;p&gt;上次写到了&lt;strong&gt;遍历网站的全部页面&lt;/strong&gt;和&lt;strong&gt;向百度提交搜索&lt;/strong&gt;，但是其中还存在着许多的问题。&lt;br&gt;
     
     </summary>
     
     
-      <category term="Python" scheme="thinknight.github.io/tags/Python/"/>
+      <category term="Python" scheme="http://thinknight.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>词法分析器</title>
-    <link href="thinknight.github.io/2014/Compiler/Lexical-analyzer/"/>
-    <id>thinknight.github.io/2014/Compiler/Lexical-analyzer/</id>
+    <link href="http://thinknight.github.io/2014/Compiler/Lexical-analyzer/"/>
+    <id>http://thinknight.github.io/2014/Compiler/Lexical-analyzer/</id>
     <published>2014-10-19T11:30:27.000Z</published>
-    <updated>2017-06-27T07:16:39.000Z</updated>
+    <updated>2017-07-02T11:08:43.000Z</updated>
     
     <content type="html"><![CDATA[<p>一个词法分析器的demo。<br><a id="more"></a></p>
-<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">int</span> i, j;</div><div class="line"><span class="keyword">int</span> len;</div><div class="line"><span class="keyword">int</span> count;</div><div class="line"><span class="keyword">int</span> start_p;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">analyse</span><span class="params">(<span class="keyword">char</span> *tmp, <span class="keyword">int</span> start_p, FILE *fp_w)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">while</span>( <span class="built_in">isspace</span>(tmp[start_p]) )</div><div class="line">        start_p++;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>( <span class="built_in">isalpha</span>(tmp[start_p]) )</div><div class="line">    &#123;</div><div class="line">        count = <span class="number">0</span>;</div><div class="line">        <span class="keyword">char</span> tmp_str[<span class="number">1000</span>] = &#123;&#125;;</div><div class="line"></div><div class="line">        <span class="keyword">while</span>( <span class="built_in">isalpha</span>(tmp[start_p]) )</div><div class="line">        &#123;</div><div class="line">            tmp_str[count] = tmp[start_p]; </div><div class="line">            count++;</div><div class="line">            start_p++;</div><div class="line">        &#125;</div><div class="line">        start_p--;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( is_keyword(tmp_str, fp_w) )&#123;</div><div class="line">            ;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"&lt;0, %s&gt;\n"</span>, tmp_str);</div><div class="line">            <span class="built_in">fprintf</span>(fp_w, <span class="string">"&lt;0, %s&gt;\n"</span>, tmp_str);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( <span class="built_in">isdigit</span>(tmp[start_p]) )</div><div class="line">        &#123;</div><div class="line">            count = <span class="number">0</span>;</div><div class="line">            <span class="keyword">char</span> tmp_str[<span class="number">1000</span>] = &#123;&#125;;</div><div class="line"></div><div class="line">            <span class="keyword">while</span>( <span class="built_in">isdigit</span>(tmp[start_p]) )</div><div class="line">            &#123;</div><div class="line">                tmp_str[count] = tmp[start_p]; </div><div class="line">                count++;</div><div class="line">                start_p++;</div><div class="line">            &#125;</div><div class="line">            start_p--;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"&lt;1, %s&gt;\n"</span>, tmp_str);</div><div class="line">            <span class="built_in">fprintf</span>(fp_w, <span class="string">"&lt;1, %s&gt;\n"</span>, tmp_str);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">            <span class="keyword">if</span>( !<span class="built_in">isalpha</span>(tmp[start_p]) &amp;&amp; !<span class="built_in">isdigit</span>(tmp[start_p]) )</div><div class="line">            &#123;</div><div class="line">                count = <span class="number">0</span>;</div><div class="line">                <span class="keyword">char</span> tmp_str[<span class="number">1000</span>] = &#123;&#125;;</div><div class="line"></div><div class="line">                <span class="keyword">if</span>( !<span class="built_in">isalpha</span>(tmp[start_p+<span class="number">1</span>]) &amp;&amp; !<span class="built_in">isdigit</span>(tmp[start_p+<span class="number">1</span>]) )</div><div class="line">                &#123;</div><div class="line">                    tmp_str[count] = tmp[start_p];</div><div class="line">                    count++;	start_p++;</div><div class="line">                    tmp_str[count] = tmp[start_p];</div><div class="line">                    <span class="keyword">if</span>( is_symbol(tmp_str, fp_w) )&#123;</div><div class="line">                        ;</div><div class="line">                    &#125;<span class="keyword">else</span>&#123;</div><div class="line">                        count--;    start_p--;</div><div class="line">                        tmp_str[<span class="number">1</span>] = <span class="string">'\0'</span>;</div><div class="line">                        tmp_str[count] = tmp[start_p];</div><div class="line">                        is_symbol(tmp_str, fp_w);</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    tmp_str[count] = tmp[start_p]; </div><div class="line">                    is_symbol(tmp_str, fp_w);</div><div class="line">                &#125;	</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    len = <span class="built_in">strlen</span>(tmp);</div><div class="line">    <span class="keyword">if</span>( start_p == len )</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    <span class="keyword">else</span></div><div class="line">        analyse(tmp, start_p+<span class="number">1</span>, fp_w);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_keyword</span><span class="params">(<span class="keyword">char</span> *tmp, FILE *fp_w)</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">char</span> *keyword[] = &#123;</div><div class="line">        <span class="string">"main"</span>,   <span class="string">"void"</span>,    <span class="string">"int"</span>,    <span class="string">"float"</span>,  <span class="string">"char"</span>,     <span class="string">"double"</span>,   <span class="string">"for"</span>, </div><div class="line">        <span class="string">"if"</span>,     <span class="string">"else"</span>,    <span class="string">"while"</span>,  <span class="string">"do"</span>,     <span class="string">"break"</span>,    <span class="string">"switch"</span>,   <span class="string">"case"</span>,</div><div class="line">        <span class="string">"struct"</span>, <span class="string">"typedef"</span>, <span class="string">"char"</span>,   <span class="string">"return"</span>, <span class="string">"continue"</span>, <span class="string">"sizeof"</span></div><div class="line">    &#125;;</div><div class="line">    <span class="comment">//total number:20</span></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">20</span>; ++i)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>( <span class="built_in">strcmp</span>( tmp, keyword[i]) == <span class="number">0</span> )</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"&lt;%d, %s&gt;\n"</span>, i+<span class="number">2</span>, tmp);</div><div class="line">            <span class="built_in">fprintf</span>(fp_w, <span class="string">"&lt;%d, %s&gt;\n"</span>, i+<span class="number">2</span>, tmp);</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_symbol</span><span class="params">(<span class="keyword">char</span> *tmp, FILE *fp_w)</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">char</span> *symbol[] = &#123;</div><div class="line"></div><div class="line">        <span class="string">"+"</span>,  <span class="string">"-"</span>,  <span class="string">"*"</span>,  <span class="string">"/"</span>,  <span class="string">"&lt;"</span>,  <span class="string">"&gt;"</span>,  <span class="string">"="</span>,  <span class="string">"!"</span>,  <span class="string">"&amp;"</span>,  <span class="string">"|"</span>, </div><div class="line">        <span class="string">"\\"</span>, <span class="string">"#"</span>,  <span class="string">"\""</span>, <span class="string">"%"</span>,  <span class="string">"^"</span>,</div><div class="line"></div><div class="line">        <span class="string">"++"</span>, <span class="string">"+="</span>, <span class="string">"--"</span>, <span class="string">"-="</span>, <span class="string">"*="</span>, <span class="string">"/="</span>, <span class="string">"%="</span>, <span class="string">"&amp;="</span>, <span class="string">"^="</span>, <span class="string">"|="</span>, </div><div class="line">        <span class="string">"&lt;="</span>, <span class="string">"&gt;="</span>, <span class="string">"=="</span>, <span class="string">"!="</span>, <span class="string">"&amp;&amp;"</span>, <span class="string">"||"</span>, <span class="string">"&gt;&gt;"</span>, <span class="string">"&lt;&lt;"</span>, <span class="string">"?:"</span>, <span class="string">"-&gt;"</span>,</div><div class="line"></div><div class="line">        <span class="string">"&#123;"</span>,  <span class="string">"&#125;"</span>,  <span class="string">"("</span>,  <span class="string">")"</span>,  <span class="string">"["</span>,  <span class="string">"]"</span>,  <span class="string">","</span>,  <span class="string">";"</span>,  <span class="string">":"</span>,  <span class="string">"."</span></div><div class="line">    &#125;;</div><div class="line">    <span class="comment">//total number:45</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">45</span>; ++i)</div><div class="line">        <span class="keyword">if</span>( <span class="built_in">strcmp</span>( tmp, symbol[i]) == <span class="number">0</span> )</div><div class="line">        <span class="comment">// printf("Yes! No.%d: %s\n", i, tmp);</span></div><div class="line">        &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"&lt;%d, %s&gt;\n"</span>, <span class="number">22</span> + i, tmp);</div><div class="line">            <span class="built_in">fprintf</span>(fp_w, <span class="string">"&lt;%d, %s&gt;\n"</span>, <span class="number">22</span> + i, tmp);</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_blankline</span><span class="params">(<span class="keyword">char</span> *tmp)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(tmp);</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; ++i)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>( !<span class="built_in">isspace</span>(tmp[i]) )</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;	</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">delete_comments</span><span class="params">(<span class="keyword">char</span> *tmp)</span></span></div><div class="line">&#123;</div><div class="line">    len = <span class="built_in">strlen</span>(tmp);</div><div class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; len; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>(tmp[i] == <span class="string">'/'</span> &amp;&amp; tmp[i+<span class="number">1</span>] == <span class="string">'/'</span>)</div><div class="line">        &#123;</div><div class="line">			</div><div class="line">            tmp[i] = <span class="string">'\0'</span>;</div><div class="line">			</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> tmp[<span class="number">100</span>] = <span class="string">""</span>;</div><div class="line">    <span class="keyword">char</span> str[<span class="number">100</span>] = <span class="string">""</span>;</div><div class="line">    <span class="keyword">int</span> flag = <span class="number">0</span>;</div><div class="line"></div><div class="line">    FILE *fp, *fp_tmp;</div><div class="line">    fp = fopen(<span class="string">"test.c"</span>, <span class="string">"r"</span>);</div><div class="line">    fp_tmp = fopen(<span class="string">"tmp.c"</span>, <span class="string">"w"</span>);</div><div class="line">    <span class="keyword">while</span>(fgets(str, <span class="number">100</span>, fp) != <span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span>(str[i] == <span class="string">'/'</span> &amp;&amp; str[i+<span class="number">1</span>] == <span class="string">'/'</span>)</div><div class="line">            &#123;</div><div class="line">                str[i] = <span class="string">'\n'</span>;</div><div class="line">                str[i+<span class="number">1</span>] = <span class="string">'\0'</span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">if</span>(str[i] == <span class="string">'/'</span> &amp;&amp; str[i+<span class="number">1</span>] == <span class="string">'*'</span>)</div><div class="line">            &#123;</div><div class="line">                str[i] = <span class="string">'\0'</span>;</div><div class="line">                flag = <span class="number">1</span>;</div><div class="line">                <span class="built_in">fputs</span>(str, fp_tmp);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(str[i] == <span class="string">'*'</span> &amp;&amp; str[i+<span class="number">1</span>] == <span class="string">'/'</span>)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; <span class="number">100</span>; ++j)</div><div class="line">                &#123;</div><div class="line">                    str[j] = str[j+i+<span class="number">2</span>];</div><div class="line">                &#125;</div><div class="line">                str[j] = <span class="string">'\0'</span>;</div><div class="line">                flag = <span class="number">0</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>( flag == <span class="number">0</span> )</div><div class="line">            <span class="built_in">fputs</span>(str, fp_tmp);</div><div class="line">    &#125;</div><div class="line">    fcloseall();</div><div class="line"></div><div class="line">    FILE *fp_new;</div><div class="line">    FILE *fp_w;</div><div class="line">    fp_new = fopen(<span class="string">"tmp.c"</span>, <span class="string">"r"</span>);</div><div class="line">    fp_w   = fopen(<span class="string">"Lex_Result.txt"</span>, <span class="string">"w"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">while</span>(!feof(fp_new))&#123;</div><div class="line">        <span class="keyword">if</span>(fgets(tmp, <span class="number">100</span>, fp_new))</div><div class="line">            <span class="keyword">if</span>( is_blankline(tmp) == <span class="number">0</span>)</div><div class="line">                analyse(tmp, <span class="number">0</span>, fp_w);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    fcloseall();</div><div class="line">    remove(<span class="string">"tmp.c"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="目标程序"><a href="#目标程序" class="headerlink" title="目标程序"></a>目标程序</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt; //This is a simple target code</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"TEST BEGUN!"</span>);</div><div class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> b = <span class="number">1</span>;</div><div class="line">    <span class="comment">/*</span></div><div class="line">        You can not see me!</div><div class="line">    */</div><div class="line">    <span class="keyword">if</span>(a &lt;= b)</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"Yes"</span>);</div><div class="line"> </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="comment">//That's it!</span></div><div class="line">&#125;</div><div class="line">```  </div><div class="line"></div><div class="line">### 分析结果</div></pre></td></tr></table></figure>
-<p><33, #=""></33,></p>
-<p><0, include=""></0,></p>
-<p><26, <=""></26,></p>
-<p><0, stdio=""></0,></p>
-<p><66, .=""></66,></p>
-<p><0, h=""></0,></p>
-<p><27,>&gt;</27,></p>
-<p><4, int=""></4,></p>
-<p><2, main=""></2,></p>
-<p><59, (=""></59,></p>
-<p><60, )=""></60,></p>
-<p><57, {=""></57,></p>
-<p><0, printf=""></0,></p>
-<p><59, (=""></59,></p>
-<p>&lt;34, “&gt;</p>
-<p><0, test=""></0,></p>
-<p><0, begun=""></0,></p>
-<p><29, !=""></29,></p>
-<p>&lt;34, “&gt;</p>
-<p><60, )=""></60,></p>
-<p><64, ;=""></64,></p>
-<p><4, int=""></4,></p>
-<p><0, a=""></0,></p>
-<p><28, ==""></28,></p>
-<p><1, 0=""></1,></p>
-<p><64, ;=""></64,></p>
-<p><4, int=""></4,></p>
-<p><0, b=""></0,></p>
-<p><28, ==""></28,></p>
-<p><1, 1=""></1,></p>
-<p><64, ;=""></64,></p>
-<p><9, if=""></9,></p>
-<p><59, (=""></59,></p>
-<p><0, a=""></0,></p>
-<p><47, <=""></47,></p>
-<p><0, b=""></0,></p>
-<p><60, )=""></60,></p>
-<p><0, printf=""></0,></p>
-<p><59, (=""></59,></p>
-<p>&lt;34, “&gt;</p>
-<p><0, yes=""></0,></p>
-<p>&lt;34, “&gt;</p>
-<p><60, )=""></60,></p>
-<p><64, ;=""></64,></p>
-<p><19, return=""></19,></p>
-<p><1, 0=""></1,></p>
-<p><64, ;=""></64,></p>
-<p><58, }=""><br>```</58,></p>
+<h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">int</span> i, j;</div><div class="line"><span class="keyword">int</span> len;</div><div class="line"><span class="keyword">int</span> count;</div><div class="line"><span class="keyword">int</span> start_p;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">analyse</span><span class="params">(<span class="keyword">char</span> *tmp, <span class="keyword">int</span> start_p, FILE *fp_w)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">while</span>( <span class="built_in">isspace</span>(tmp[start_p]) )</div><div class="line">        start_p++;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>( <span class="built_in">isalpha</span>(tmp[start_p]) )</div><div class="line">    &#123;</div><div class="line">        count = <span class="number">0</span>;</div><div class="line">        <span class="keyword">char</span> tmp_str[<span class="number">1000</span>] = &#123;&#125;;</div><div class="line"></div><div class="line">        <span class="keyword">while</span>( <span class="built_in">isalpha</span>(tmp[start_p]) )</div><div class="line">        &#123;</div><div class="line">            tmp_str[count] = tmp[start_p]; </div><div class="line">            count++;</div><div class="line">            start_p++;</div><div class="line">        &#125;</div><div class="line">        start_p--;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( is_keyword(tmp_str, fp_w) )&#123;</div><div class="line">            ;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"&lt;0, %s&gt;\n"</span>, tmp_str);</div><div class="line">            <span class="built_in">fprintf</span>(fp_w, <span class="string">"&lt;0, %s&gt;\n"</span>, tmp_str);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( <span class="built_in">isdigit</span>(tmp[start_p]) )</div><div class="line">        &#123;</div><div class="line">            count = <span class="number">0</span>;</div><div class="line">            <span class="keyword">char</span> tmp_str[<span class="number">1000</span>] = &#123;&#125;;</div><div class="line"></div><div class="line">            <span class="keyword">while</span>( <span class="built_in">isdigit</span>(tmp[start_p]) )</div><div class="line">            &#123;</div><div class="line">                tmp_str[count] = tmp[start_p]; </div><div class="line">                count++;</div><div class="line">                start_p++;</div><div class="line">            &#125;</div><div class="line">            start_p--;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"&lt;1, %s&gt;\n"</span>, tmp_str);</div><div class="line">            <span class="built_in">fprintf</span>(fp_w, <span class="string">"&lt;1, %s&gt;\n"</span>, tmp_str);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">            <span class="keyword">if</span>( !<span class="built_in">isalpha</span>(tmp[start_p]) &amp;&amp; !<span class="built_in">isdigit</span>(tmp[start_p]) )</div><div class="line">            &#123;</div><div class="line">                count = <span class="number">0</span>;</div><div class="line">                <span class="keyword">char</span> tmp_str[<span class="number">1000</span>] = &#123;&#125;;</div><div class="line"></div><div class="line">                <span class="keyword">if</span>( !<span class="built_in">isalpha</span>(tmp[start_p+<span class="number">1</span>]) &amp;&amp; !<span class="built_in">isdigit</span>(tmp[start_p+<span class="number">1</span>]) )</div><div class="line">                &#123;</div><div class="line">                    tmp_str[count] = tmp[start_p];</div><div class="line">                    count++;	start_p++;</div><div class="line">                    tmp_str[count] = tmp[start_p];</div><div class="line">                    <span class="keyword">if</span>( is_symbol(tmp_str, fp_w) )&#123;</div><div class="line">                        ;</div><div class="line">                    &#125;<span class="keyword">else</span>&#123;</div><div class="line">                        count--;    start_p--;</div><div class="line">                        tmp_str[<span class="number">1</span>] = <span class="string">'\0'</span>;</div><div class="line">                        tmp_str[count] = tmp[start_p];</div><div class="line">                        is_symbol(tmp_str, fp_w);</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    tmp_str[count] = tmp[start_p]; </div><div class="line">                    is_symbol(tmp_str, fp_w);</div><div class="line">                &#125;	</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    len = <span class="built_in">strlen</span>(tmp);</div><div class="line">    <span class="keyword">if</span>( start_p == len )</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    <span class="keyword">else</span></div><div class="line">        analyse(tmp, start_p+<span class="number">1</span>, fp_w);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_keyword</span><span class="params">(<span class="keyword">char</span> *tmp, FILE *fp_w)</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">char</span> *keyword[] = &#123;</div><div class="line">        <span class="string">"main"</span>,   <span class="string">"void"</span>,    <span class="string">"int"</span>,    <span class="string">"float"</span>,  <span class="string">"char"</span>,     <span class="string">"double"</span>,   <span class="string">"for"</span>, </div><div class="line">        <span class="string">"if"</span>,     <span class="string">"else"</span>,    <span class="string">"while"</span>,  <span class="string">"do"</span>,     <span class="string">"break"</span>,    <span class="string">"switch"</span>,   <span class="string">"case"</span>,</div><div class="line">        <span class="string">"struct"</span>, <span class="string">"typedef"</span>, <span class="string">"char"</span>,   <span class="string">"return"</span>, <span class="string">"continue"</span>, <span class="string">"sizeof"</span></div><div class="line">    &#125;;</div><div class="line">    <span class="comment">//total number:20</span></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">20</span>; ++i)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>( <span class="built_in">strcmp</span>( tmp, keyword[i]) == <span class="number">0</span> )</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"&lt;%d, %s&gt;\n"</span>, i+<span class="number">2</span>, tmp);</div><div class="line">            <span class="built_in">fprintf</span>(fp_w, <span class="string">"&lt;%d, %s&gt;\n"</span>, i+<span class="number">2</span>, tmp);</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_symbol</span><span class="params">(<span class="keyword">char</span> *tmp, FILE *fp_w)</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">char</span> *symbol[] = &#123;</div><div class="line"></div><div class="line">        <span class="string">"+"</span>,  <span class="string">"-"</span>,  <span class="string">"*"</span>,  <span class="string">"/"</span>,  <span class="string">"&lt;"</span>,  <span class="string">"&gt;"</span>,  <span class="string">"="</span>,  <span class="string">"!"</span>,  <span class="string">"&amp;"</span>,  <span class="string">"|"</span>, </div><div class="line">        <span class="string">"\\"</span>, <span class="string">"#"</span>,  <span class="string">"\""</span>, <span class="string">"%"</span>,  <span class="string">"^"</span>,</div><div class="line"></div><div class="line">        <span class="string">"++"</span>, <span class="string">"+="</span>, <span class="string">"--"</span>, <span class="string">"-="</span>, <span class="string">"*="</span>, <span class="string">"/="</span>, <span class="string">"%="</span>, <span class="string">"&amp;="</span>, <span class="string">"^="</span>, <span class="string">"|="</span>, </div><div class="line">        <span class="string">"&lt;="</span>, <span class="string">"&gt;="</span>, <span class="string">"=="</span>, <span class="string">"!="</span>, <span class="string">"&amp;&amp;"</span>, <span class="string">"||"</span>, <span class="string">"&gt;&gt;"</span>, <span class="string">"&lt;&lt;"</span>, <span class="string">"?:"</span>, <span class="string">"-&gt;"</span>,</div><div class="line"></div><div class="line">        <span class="string">"&#123;"</span>,  <span class="string">"&#125;"</span>,  <span class="string">"("</span>,  <span class="string">")"</span>,  <span class="string">"["</span>,  <span class="string">"]"</span>,  <span class="string">","</span>,  <span class="string">";"</span>,  <span class="string">":"</span>,  <span class="string">"."</span></div><div class="line">    &#125;;</div><div class="line">    <span class="comment">//total number:45</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">45</span>; ++i)</div><div class="line">        <span class="keyword">if</span>( <span class="built_in">strcmp</span>( tmp, symbol[i]) == <span class="number">0</span> )</div><div class="line">        <span class="comment">// printf("Yes! No.%d: %s\n", i, tmp);</span></div><div class="line">        &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"&lt;%d, %s&gt;\n"</span>, <span class="number">22</span> + i, tmp);</div><div class="line">            <span class="built_in">fprintf</span>(fp_w, <span class="string">"&lt;%d, %s&gt;\n"</span>, <span class="number">22</span> + i, tmp);</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_blankline</span><span class="params">(<span class="keyword">char</span> *tmp)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(tmp);</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; ++i)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>( !<span class="built_in">isspace</span>(tmp[i]) )</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;	</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">delete_comments</span><span class="params">(<span class="keyword">char</span> *tmp)</span></span></div><div class="line">&#123;</div><div class="line">    len = <span class="built_in">strlen</span>(tmp);</div><div class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; len; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>(tmp[i] == <span class="string">'/'</span> &amp;&amp; tmp[i+<span class="number">1</span>] == <span class="string">'/'</span>)</div><div class="line">        &#123;</div><div class="line">			</div><div class="line">            tmp[i] = <span class="string">'\0'</span>;</div><div class="line">			</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> tmp[<span class="number">100</span>] = <span class="string">""</span>;</div><div class="line">    <span class="keyword">char</span> str[<span class="number">100</span>] = <span class="string">""</span>;</div><div class="line">    <span class="keyword">int</span> flag = <span class="number">0</span>;</div><div class="line"></div><div class="line">    FILE *fp, *fp_tmp;</div><div class="line">    fp = fopen(<span class="string">"test.c"</span>, <span class="string">"r"</span>);</div><div class="line">    fp_tmp = fopen(<span class="string">"tmp.c"</span>, <span class="string">"w"</span>);</div><div class="line">    <span class="keyword">while</span>(fgets(str, <span class="number">100</span>, fp) != <span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span>(str[i] == <span class="string">'/'</span> &amp;&amp; str[i+<span class="number">1</span>] == <span class="string">'/'</span>)</div><div class="line">            &#123;</div><div class="line">                str[i] = <span class="string">'\n'</span>;</div><div class="line">                str[i+<span class="number">1</span>] = <span class="string">'\0'</span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">if</span>(str[i] == <span class="string">'/'</span> &amp;&amp; str[i+<span class="number">1</span>] == <span class="string">'*'</span>)</div><div class="line">            &#123;</div><div class="line">                str[i] = <span class="string">'\0'</span>;</div><div class="line">                flag = <span class="number">1</span>;</div><div class="line">                <span class="built_in">fputs</span>(str, fp_tmp);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(str[i] == <span class="string">'*'</span> &amp;&amp; str[i+<span class="number">1</span>] == <span class="string">'/'</span>)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; <span class="number">100</span>; ++j)</div><div class="line">                &#123;</div><div class="line">                    str[j] = str[j+i+<span class="number">2</span>];</div><div class="line">                &#125;</div><div class="line">                str[j] = <span class="string">'\0'</span>;</div><div class="line">                flag = <span class="number">0</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>( flag == <span class="number">0</span> )</div><div class="line">            <span class="built_in">fputs</span>(str, fp_tmp);</div><div class="line">    &#125;</div><div class="line">    fcloseall();</div><div class="line"></div><div class="line">    FILE *fp_new;</div><div class="line">    FILE *fp_w;</div><div class="line">    fp_new = fopen(<span class="string">"tmp.c"</span>, <span class="string">"r"</span>);</div><div class="line">    fp_w   = fopen(<span class="string">"Lex_Result.txt"</span>, <span class="string">"w"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">while</span>(!feof(fp_new))&#123;</div><div class="line">        <span class="keyword">if</span>(fgets(tmp, <span class="number">100</span>, fp_new))</div><div class="line">            <span class="keyword">if</span>( is_blankline(tmp) == <span class="number">0</span>)</div><div class="line">                analyse(tmp, <span class="number">0</span>, fp_w);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    fcloseall();</div><div class="line">    remove(<span class="string">"tmp.c"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><h2 id="目标程序"><a href="#目标程序" class="headerlink" title="目标程序"></a>目标程序</h2><pre><code class="C"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt; //This is a simple target code</span></span>
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+    <span class="built_in">printf</span>(<span class="string">"TEST BEGUN!"</span>);
+    <span class="keyword">int</span> a = <span class="number">0</span>;
+    <span class="keyword">int</span> b = <span class="number">1</span>;
+    <span class="comment">/*
+        You can not see me!
+    */</span>
+    <span class="keyword">if</span>(a &lt;= b)
+        <span class="built_in">printf</span>(<span class="string">"Yes"</span>);
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+    <span class="comment">//That's it!</span>
+}
+</code></pre>
+<h2 id="分析结果"><a href="#分析结果" class="headerlink" title="分析结果"></a>分析结果</h2><pre><code class="C">&lt;33, #&gt;
+&lt;0, include&gt;
+&lt;26, &lt;&gt;
+&lt;0, stdio&gt;
+&lt;66, .&gt;
+&lt;0, h&gt;
+&lt;27, &gt;&gt;
+&lt;4, int&gt;
+&lt;2, main&gt;
+&lt;59, (&gt;
+&lt;60, )&gt;
+&lt;57, {&gt;
+&lt;0, printf&gt;
+&lt;59, (&gt;
+&lt;34, "&gt;
+&lt;0, TEST&gt;
+&lt;0, BEGUN&gt;
+&lt;29, !&gt;
+&lt;34, "&gt;
+&lt;60, )&gt;
+&lt;64, ;&gt;
+&lt;4, int&gt;
+&lt;0, a&gt;
+&lt;28, =&gt;
+&lt;1, 0&gt;
+&lt;64, ;&gt;
+&lt;4, int&gt;
+&lt;0, b&gt;
+&lt;28, =&gt;
+&lt;1, 1&gt;
+&lt;64, ;&gt;
+&lt;9, if&gt;
+&lt;59, (&gt;
+&lt;0, a&gt;
+&lt;47, &lt;=&gt;
+&lt;0, b&gt;
+&lt;60, )&gt;
+&lt;0, printf&gt;
+&lt;59, (&gt;
+&lt;34, "&gt;
+&lt;0, Yes&gt;
+&lt;34, "&gt;
+&lt;60, )&gt;
+&lt;64, ;&gt;
+&lt;19, return&gt;
+&lt;1, 0&gt;
+&lt;64, ;&gt;
+&lt;58, }&gt;
+</code></pre>
 ]]></content>
     
     <summary type="html">
@@ -233,18 +249,19 @@
     </summary>
     
     
-      <category term="Compile" scheme="thinknight.github.io/tags/Compile/"/>
+      <category term="Compile" scheme="http://thinknight.github.io/tags/Compile/"/>
     
   </entry>
   
   <entry>
     <title>Python网络爬虫（一）</title>
-    <link href="thinknight.github.io/2014/Python/python-crawler-1/"/>
-    <id>thinknight.github.io/2014/Python/python-crawler-1/</id>
+    <link href="http://thinknight.github.io/2014/Python/python-crawler-1/"/>
+    <id>http://thinknight.github.io/2014/Python/python-crawler-1/</id>
     <published>2014-10-13T13:48:33.000Z</published>
-    <updated>2017-07-01T22:06:48.000Z</updated>
+    <updated>2017-07-02T11:21:47.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="一、遍历网站的全部页面"><a href="#一、遍历网站的全部页面" class="headerlink" title="一、遍历网站的全部页面"></a>一、遍历网站的全部页面</h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>要遍历一个网站的全部页面,要做的就是先打开目标网站的源码,从中提取所有的URL,然后再逐个遍历,并保存已处理过的URL。  </p>
+    <content type="html"><![CDATA[<p>从零开始写爬虫<br><a id="more"></a></p>
+<h2 id="一、遍历网站的全部页面"><a href="#一、遍历网站的全部页面" class="headerlink" title="一、遍历网站的全部页面"></a>一、遍历网站的全部页面</h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>要遍历一个网站的全部页面,要做的就是先打开目标网站的源码,从中提取所有的URL,然后再逐个遍历,并保存已处理过的URL。  </p>
 <h4 id="1-提取URL"><a href="#1-提取URL" class="headerlink" title="1.提取URL"></a>1.提取URL</h4><p>从一堆HTML中提取可用的URL是一件轻松的事,处理的方法也有很多。  </p>
 <ul>
 <li>正则表达式提取  </li>
@@ -261,19 +278,19 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;一、遍历网站的全部页面&quot;&gt;&lt;a href=&quot;#一、遍历网站的全部页面&quot; class=&quot;headerlink&quot; title=&quot;一、遍历网站的全部页面&quot;&gt;&lt;/a&gt;一、遍历网站的全部页面&lt;/h2&gt;&lt;h3 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;head
+      &lt;p&gt;从零开始写爬虫&lt;br&gt;
     
     </summary>
     
     
-      <category term="Python" scheme="thinknight.github.io/tags/Python/"/>
+      <category term="Python" scheme="http://thinknight.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>关于进程的问题</title>
-    <link href="thinknight.github.io/2014/OS/process-qa/"/>
-    <id>thinknight.github.io/2014/OS/process-qa/</id>
+    <link href="http://thinknight.github.io/2014/OS/process-qa/"/>
+    <id>http://thinknight.github.io/2014/OS/process-qa/</id>
     <published>2014-10-10T10:04:58.000Z</published>
     <updated>2017-06-27T07:16:39.000Z</updated>
     
@@ -399,14 +416,14 @@ seamphore s[N];                         <span class="comment">/*每个哲学家�
     </summary>
     
     
-      <category term="OS" scheme="thinknight.github.io/tags/OS/"/>
+      <category term="OS" scheme="http://thinknight.github.io/tags/OS/"/>
     
   </entry>
   
   <entry>
     <title>进程间调度</title>
-    <link href="thinknight.github.io/2014/OS/schedule/"/>
-    <id>thinknight.github.io/2014/OS/schedule/</id>
+    <link href="http://thinknight.github.io/2014/OS/schedule/"/>
+    <id>http://thinknight.github.io/2014/OS/schedule/</id>
     <published>2014-10-10T08:48:52.000Z</published>
     <updated>2017-06-27T07:16:39.000Z</updated>
     
@@ -492,14 +509,14 @@ seamphore s[N];                         <span class="comment">/*每个哲学家�
     </summary>
     
     
-      <category term="OS" scheme="thinknight.github.io/tags/OS/"/>
+      <category term="OS" scheme="http://thinknight.github.io/tags/OS/"/>
     
   </entry>
   
   <entry>
     <title>进程间通信</title>
-    <link href="thinknight.github.io/2014/OS/communication/"/>
-    <id>thinknight.github.io/2014/OS/communication/</id>
+    <link href="http://thinknight.github.io/2014/OS/communication/"/>
+    <id>http://thinknight.github.io/2014/OS/communication/</id>
     <published>2014-10-09T11:02:38.000Z</published>
     <updated>2017-06-27T07:16:39.000Z</updated>
     
@@ -551,14 +568,14 @@ seamphore s[N];                         <span class="comment">/*每个哲学家�
     </summary>
     
     
-      <category term="OS" scheme="thinknight.github.io/tags/OS/"/>
+      <category term="OS" scheme="http://thinknight.github.io/tags/OS/"/>
     
   </entry>
   
   <entry>
     <title>进程与线程</title>
-    <link href="thinknight.github.io/2014/OS/process-and-thread/"/>
-    <id>thinknight.github.io/2014/OS/process-and-thread/</id>
+    <link href="http://thinknight.github.io/2014/OS/process-and-thread/"/>
+    <id>http://thinknight.github.io/2014/OS/process-and-thread/</id>
     <published>2014-10-08T13:17:31.000Z</published>
     <updated>2017-06-27T07:16:39.000Z</updated>
     
@@ -703,14 +720,14 @@ seamphore s[N];                         <span class="comment">/*每个哲学家�
     </summary>
     
     
-      <category term="OS" scheme="thinknight.github.io/tags/OS/"/>
+      <category term="OS" scheme="http://thinknight.github.io/tags/OS/"/>
     
   </entry>
   
   <entry>
     <title>豆瓣爬虫</title>
-    <link href="thinknight.github.io/2014/Python/douban-crawler/"/>
-    <id>thinknight.github.io/2014/Python/douban-crawler/</id>
+    <link href="http://thinknight.github.io/2014/Python/douban-crawler/"/>
+    <id>http://thinknight.github.io/2014/Python/douban-crawler/</id>
     <published>2014-08-28T07:08:40.000Z</published>
     <updated>2017-06-27T07:16:39.000Z</updated>
     
@@ -746,18 +763,19 @@ seamphore s[N];                         <span class="comment">/*每个哲学家�
     </summary>
     
     
-      <category term="Python" scheme="thinknight.github.io/tags/Python/"/>
+      <category term="Python" scheme="http://thinknight.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>操作系统名词概念解释</title>
-    <link href="thinknight.github.io/2014/OS/os-1/"/>
-    <id>thinknight.github.io/2014/OS/os-1/</id>
+    <link href="http://thinknight.github.io/2014/OS/os-1/"/>
+    <id>http://thinknight.github.io/2014/OS/os-1/</id>
     <published>2014-06-21T14:07:20.000Z</published>
-    <updated>2017-07-01T22:14:40.000Z</updated>
+    <updated>2017-07-02T11:20:36.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="系统吞吐量"><a href="#系统吞吐量" class="headerlink" title="系统吞吐量"></a>系统吞吐量</h2><ul>
+    <content type="html"><![CDATA[<p>简单解释一些容易混淆的学术性名词。<br><a id="more"></a></p>
+<h2 id="系统吞吐量"><a href="#系统吞吐量" class="headerlink" title="系统吞吐量"></a>系统吞吐量</h2><ul>
 <li>指系统在单位时间内所完成的总工作量    </li>
 </ul>
 <h2 id="作业的周转时间"><a href="#作业的周转时间" class="headerlink" title="作业的周转时间"></a>作业的周转时间</h2><ul>
@@ -798,27 +816,23 @@ seamphore s[N];                         <span class="comment">/*每个哲学家�
 <blockquote>
 <p>CPU利用率 = 1 - p^n</p>
 </blockquote>
-<hr>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;系统吞吐量&quot;&gt;&lt;a href=&quot;#系统吞吐量&quot; class=&quot;headerlink&quot; title=&quot;系统吞吐量&quot;&gt;&lt;/a&gt;系统吞吐量&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;指系统在单位时间内所完成的总工作量    &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;作业的周转时间&quot;&gt;&lt;a
+      &lt;p&gt;简单解释一些容易混淆的学术性名词。&lt;br&gt;
     
     </summary>
     
     
-      <category term="OS" scheme="thinknight.github.io/tags/OS/"/>
+      <category term="OS" scheme="http://thinknight.github.io/tags/OS/"/>
     
   </entry>
   
   <entry>
     <title>简单分治</title>
-    <link href="thinknight.github.io/2014/Algorithm/divide-and-conquer/"/>
-    <id>thinknight.github.io/2014/Algorithm/divide-and-conquer/</id>
+    <link href="http://thinknight.github.io/2014/Algorithm/divide-and-conquer/"/>
+    <id>http://thinknight.github.io/2014/Algorithm/divide-and-conquer/</id>
     <published>2014-03-24T09:54:45.000Z</published>
     <updated>2017-06-27T07:16:39.000Z</updated>
     
@@ -882,14 +896,14 @@ return 0;
     </summary>
     
     
-      <category term="Algorithm" scheme="thinknight.github.io/tags/Algorithm/"/>
+      <category term="Algorithm" scheme="http://thinknight.github.io/tags/Algorithm/"/>
     
   </entry>
   
   <entry>
     <title>排序算法（二）</title>
-    <link href="thinknight.github.io/2014/Algorithm/sort2/"/>
-    <id>thinknight.github.io/2014/Algorithm/sort2/</id>
+    <link href="http://thinknight.github.io/2014/Algorithm/sort2/"/>
+    <id>http://thinknight.github.io/2014/Algorithm/sort2/</id>
     <published>2014-03-04T14:20:39.000Z</published>
     <updated>2017-06-27T07:16:39.000Z</updated>
     
@@ -1065,14 +1079,14 @@ return 0;
     </summary>
     
     
-      <category term="Algorithm" scheme="thinknight.github.io/tags/Algorithm/"/>
+      <category term="Algorithm" scheme="http://thinknight.github.io/tags/Algorithm/"/>
     
   </entry>
   
   <entry>
     <title>排序算法（一）</title>
-    <link href="thinknight.github.io/2014/Algorithm/sort/"/>
-    <id>thinknight.github.io/2014/Algorithm/sort/</id>
+    <link href="http://thinknight.github.io/2014/Algorithm/sort/"/>
+    <id>http://thinknight.github.io/2014/Algorithm/sort/</id>
     <published>2014-03-02T13:27:12.000Z</published>
     <updated>2017-06-27T07:16:39.000Z</updated>
     
@@ -1166,14 +1180,14 @@ return 0;
     </summary>
     
     
-      <category term="Algorithm" scheme="thinknight.github.io/tags/Algorithm/"/>
+      <category term="Algorithm" scheme="http://thinknight.github.io/tags/Algorithm/"/>
     
   </entry>
   
   <entry>
     <title>Post Test</title>
-    <link href="thinknight.github.io/2014/Hexo/post-test/"/>
-    <id>thinknight.github.io/2014/Hexo/post-test/</id>
+    <link href="http://thinknight.github.io/2014/Hexo/post-test/"/>
+    <id>http://thinknight.github.io/2014/Hexo/post-test/</id>
     <published>2014-02-22T03:40:20.000Z</published>
     <updated>2017-06-27T07:16:39.000Z</updated>
     
@@ -1194,14 +1208,14 @@ return 0;
     </summary>
     
     
-      <category term="Article" scheme="thinknight.github.io/tags/Article/"/>
+      <category term="Article" scheme="http://thinknight.github.io/tags/Article/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="thinknight.github.io/2014/Hexo/hello-world/"/>
-    <id>thinknight.github.io/2014/Hexo/hello-world/</id>
+    <link href="http://thinknight.github.io/2014/Hexo/hello-world/"/>
+    <id>http://thinknight.github.io/2014/Hexo/hello-world/</id>
     <published>2014-02-19T13:17:20.000Z</published>
     <updated>2017-06-27T07:16:39.000Z</updated>
     
@@ -1232,7 +1246,7 @@ else:
     </summary>
     
     
-      <category term="Article" scheme="thinknight.github.io/tags/Article/"/>
+      <category term="Article" scheme="http://thinknight.github.io/tags/Article/"/>
     
   </entry>
   

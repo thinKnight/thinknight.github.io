@@ -2,133 +2,133 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>thinknight.github.io/2014/OS/os-1/</loc>
+    <loc>http://thinknight.github.io/2015/Tool/vim/</loc>
     
-    <lastmod>2017-07-01T22:14:40.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>thinknight.github.io/2014/Python/python-crawler-2/</loc>
-    
-    <lastmod>2017-07-01T22:13:45.000Z</lastmod>
+    <lastmod>2017-07-02T11:22:35.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>thinknight.github.io/2014/Python/python-crawler-1/</loc>
+    <loc>http://thinknight.github.io/2014/Python/python-crawler-2/</loc>
     
-    <lastmod>2017-07-01T22:06:48.000Z</lastmod>
+    <lastmod>2017-07-02T11:22:18.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>thinknight.github.io/2014/OS/process-and-thread/</loc>
+    <loc>http://thinknight.github.io/2014/Python/python-crawler-1/</loc>
+    
+    <lastmod>2017-07-02T11:21:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://thinknight.github.io/2014/OS/os-1/</loc>
+    
+    <lastmod>2017-07-02T11:20:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://thinknight.github.io/2014/Compiler/Lexical-analyzer/</loc>
+    
+    <lastmod>2017-07-02T11:08:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://thinknight.github.io/2014/Hexo/post-test/</loc>
     
     <lastmod>2017-06-27T07:16:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>thinknight.github.io/2014/Hexo/post-test/</loc>
+    <loc>http://thinknight.github.io/2014/Hexo/hello-world/</loc>
     
     <lastmod>2017-06-27T07:16:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>thinknight.github.io/2014/Python/douban-crawler/</loc>
+    <loc>http://thinknight.github.io/2014/OS/communication/</loc>
     
     <lastmod>2017-06-27T07:16:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>thinknight.github.io/2014/Algorithm/divide-and-conquer/</loc>
+    <loc>http://thinknight.github.io/2014/OS/process-and-thread/</loc>
     
     <lastmod>2017-06-27T07:16:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>thinknight.github.io/2014/Algorithm/sort2/</loc>
+    <loc>http://thinknight.github.io/2014/OS/process-qa/</loc>
     
     <lastmod>2017-06-27T07:16:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>thinknight.github.io/2014/Hexo/hello-world/</loc>
+    <loc>http://thinknight.github.io/2014/Python/douban-crawler/</loc>
     
     <lastmod>2017-06-27T07:16:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>thinknight.github.io/2014/Algorithm/sort/</loc>
+    <loc>http://thinknight.github.io/2014/Algorithm/divide-and-conquer/</loc>
     
     <lastmod>2017-06-27T07:16:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>thinknight.github.io/2014/OS/communication/</loc>
+    <loc>http://thinknight.github.io/2014/Algorithm/sort/</loc>
     
     <lastmod>2017-06-27T07:16:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>thinknight.github.io/2014/OS/process-qa/</loc>
+    <loc>http://thinknight.github.io/2014/Algorithm/sort2/</loc>
     
     <lastmod>2017-06-27T07:16:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>thinknight.github.io/2014/OS/schedule/</loc>
+    <loc>http://thinknight.github.io/2014/OS/schedule/</loc>
     
     <lastmod>2017-06-27T07:16:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>thinknight.github.io/2014/Compiler/Lexical-analyzer/</loc>
+    <loc>http://thinknight.github.io/about/index-1.html</loc>
     
     <lastmod>2017-06-27T07:16:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>thinknight.github.io/2015/Tool/vim/</loc>
+    <loc>http://thinknight.github.io/about/index.html</loc>
     
     <lastmod>2017-06-27T07:16:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>thinknight.github.io/about/index-1.html</loc>
+    <loc>http://thinknight.github.io/categories/index.html</loc>
     
     <lastmod>2017-06-27T07:16:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>thinknight.github.io/about/index.html</loc>
-    
-    <lastmod>2017-06-27T07:16:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>thinknight.github.io/categories/index.html</loc>
-    
-    <lastmod>2017-06-27T07:16:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>thinknight.github.io/tags/index.html</loc>
+    <loc>http://thinknight.github.io/tags/index.html</loc>
     
     <lastmod>2017-06-27T07:16:39.000Z</lastmod>
     
