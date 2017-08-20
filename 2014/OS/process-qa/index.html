@@ -155,7 +155,7 @@
 
 
 
-</head>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"><script src="/js/prism.js"></script></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
@@ -379,7 +379,7 @@
 <hr>
 <p>使用一个数组state跟踪每一个哲学家是在进餐，思考还是饥饿状态（正在试图拿叉子），一个哲学家只有在两个邻居都没有进餐时才允许进入进餐状态。  </p>
 <p>第i个哲学家由宏LEFT和RIGHT定义。比如i为2，则LEFT为1，RIGHT为3。  </p>
-<pre><code class="C"><span class="meta">#<span class="meta-keyword">define</span> N           5                   <span class="comment">/*哲学家数目*/</span></span>
+<pre class=" language-C"><span class="meta">#<span class="meta-keyword">define</span> N           5                   <span class="comment"><code class="language-C"><span class="meta">#<span class="meta-keyword">define</span> N           5                   <span class="comment">/*哲学家数目*/</span></span>
 <span class="meta">#<span class="meta-keyword">define</span> LEFT        (i + N - 1) % N     <span class="comment">/*i的左邻居编号*/</span></span>
 <span class="meta">#<span class="meta-keyword">define</span> RIGHT       (i + 1) % N         <span class="comment">/*i的右邻居编号*/</span></span>
 <span class="meta">#<span class="meta-keyword">define</span> THINKING    0                   <span class="comment">/*哲学家在思考*/</span></span>
@@ -398,27 +398,27 @@ seamphore s[N];                         <span class="comment">/*每个哲学家�
 
 <span class="function"><span class="keyword">void</span> <span class="title">take_forks</span><span class="params">(<span class="keyword">int</span> i)</span>                  <span class="comment">/*i：哲学家编号，从0到N-1*/</span>
 </span>{    
-    down(&amp;mutex);                   <span class="comment">/*进入临界区*/</span>
+    down(&mutex);                   <span class="comment">/*进入临界区*/</span>
     state[i] = HUNGRY;              <span class="comment">/*记录哲学家i处于饥饿的状态*/</span>
     test(i);                        <span class="comment">/*尝试获取2把叉子*/</span>
-    up(&amp;mutex);                     <span class="comment">/*离开临界区*/</span>
-    down(&amp;s[i]);                    <span class="comment">/*如果得不到需要的叉子则阻塞*/</span>
+    up(&mutex);                     <span class="comment">/*离开临界区*/</span>
+    down(&s[i]);                    <span class="comment">/*如果得不到需要的叉子则阻塞*/</span>
 }    
 
 <span class="function"><span class="keyword">void</span> <span class="title">put_forks</span><span class="params">(i)</span>                       <span class="comment">/*i：哲学家编号，从0到N-1*/</span>
 </span>{
-    down(&amp;mutex);                   <span class="comment">/*进入临界区*/</span>
+    down(&mutex);                   <span class="comment">/*进入临界区*/</span>
     state[i] = THINKING;            <span class="comment">/*哲学家已就餐完毕*/</span>
     test(LEFT);                     <span class="comment">/*检查左边的邻居现在可以吃吗*/</span>
     test(RIGHT);                    <span class="comment">/*检查右边的邻居现在可以吃吗*/</span>
-    up(&amp;mutex);                     <span class="comment">/*离开临界区*/</span>
+    up(&mutex);                     <span class="comment">/*离开临界区*/</span>
 }
 
 <span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(i)</span>                            <span class="comment">/*i：哲学家编号，从0到N-1*/</span>
 </span>{
-    <span class="keyword">if</span>(state[i] == HUNGRY &amp;&amp; state[LEFT] != EATING &amp;&amp; state[RIGHT] != EATING){
+    <span class="keyword">if</span>(state[i] == HUNGRY && state[LEFT] != EATING && state[RIGHT] != EATING){
         state[i] = EATING;
-        up(&amp;s[i]);
+        up(&s[i]);
     }
 }
 </code></pre>
@@ -613,7 +613,7 @@ seamphore s[N];                         <span class="comment">/*每个哲学家�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -626,7 +626,7 @@ seamphore s[N];                         <span class="comment">/*每个哲学家�
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

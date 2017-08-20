@@ -75,7 +75,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="font-end," />
 
 
 
@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="上次写到了遍历网站的全部页面和向百度提交搜索，但是其中还存在着许多的问题。">
-<meta name="keywords" content="Python">
+<meta name="description" content="EJS（Embedded JavaScript）是一种客户端的模板语言，通过把数据和模板结合起来去生成 HTML，下面给出一个简单介绍 EJS 的实例。">
+<meta name="keywords" content="font-end">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python网络爬虫（二）">
-<meta property="og:url" content="http://thinknight.github.io/2014/Python/python-crawler-2/index.html">
+<meta property="og:title" content="EJS 入门简介">
+<meta property="og:url" content="http://thinknight.github.io/2017/Font-End/ejs/index.html">
 <meta property="og:site_name" content="Matrix Wall">
-<meta property="og:description" content="上次写到了遍历网站的全部页面和向百度提交搜索，但是其中还存在着许多的问题。">
-<meta property="og:updated_time" content="2017-07-02T11:22:18.000Z">
+<meta property="og:description" content="EJS（Embedded JavaScript）是一种客户端的模板语言，通过把数据和模板结合起来去生成 HTML，下面给出一个简单介绍 EJS 的实例。">
+<meta property="og:updated_time" content="2017-08-20T17:40:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python网络爬虫（二）">
-<meta name="twitter:description" content="上次写到了遍历网站的全部页面和向百度提交搜索，但是其中还存在着许多的问题。">
+<meta name="twitter:title" content="EJS 入门简介">
+<meta name="twitter:description" content="EJS（Embedded JavaScript）是一种客户端的模板语言，通过把数据和模板结合起来去生成 HTML，下面给出一个简单介绍 EJS 的实例。">
 
 
 
@@ -131,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://thinknight.github.io/2014/Python/python-crawler-2/"/>
+  <link rel="canonical" href="http://thinknight.github.io/2017/Font-End/ejs/"/>
 
 
 
 
 
-  <title>Python网络爬虫（二） | Matrix Wall</title>
+  <title>EJS 入门简介 | Matrix Wall</title>
   
 
 
@@ -290,7 +290,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://thinknight.github.io/2014/Python/python-crawler-2/">
+    <link itemprop="mainEntityOfPage" href="http://thinknight.github.io/2017/Font-End/ejs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="thinKnight">
@@ -307,7 +307,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Python网络爬虫（二）</h1>
+          <h1 class="post-title" itemprop="name headline">EJS 入门简介</h1>
         
 
         <div class="post-meta">
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-23T18:51:36+08:00">
-                2014-10-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-21T01:07:18+08:00">
+                2017-08-21
               </time>
             
 
@@ -338,9 +338,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2014/Python/python-crawler-2/#comments" itemprop="discussionUrl">
+                <a href="/2017/Font-End/ejs/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/Python/python-crawler-2/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/Font-End/ejs/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -365,18 +365,46 @@
       
 
       
-        <p>上次写到了<strong>遍历网站的全部页面</strong>和<strong>向百度提交搜索</strong>，但是其中还存在着许多的问题。<br><a id="more"></a></p>
-<h2 id="解析HTML"><a href="#解析HTML" class="headerlink" title="解析HTML"></a>解析HTML</h2><p>在上次的方法中，由于以前都是用简单的正则表达式来解析HTML，所以为了尝鲜我就使用了BeautifulSoup和SGMLParser两种方法。但是经过使用下来发现还是BeautifulSoup好那么一点，而且官方的<a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html#" target="_blank" rel="external">文档</a>也很详实，以后用起来也会更加方便。  </p>
-<p>当然了，这两者在解析的过程中都有自己的局限性，所以还得配合正则表达式使用。  </p>
-<h2 id="循环与递归"><a href="#循环与递归" class="headerlink" title="循环与递归"></a>循环与递归</h2><p>由于上次处理的只是遍历一个页面的URL，所以总的来说工作量比较小，然后我就用了<strong>递归</strong>这种最笨的方法。  </p>
-<p>但是显而易见，递归是一个非常耗内存的差方法，用递归写过输出斐波那契数列的人都知道，从第十几个数字后就开始慢的不行了，而且最近还听说某厂面试一个应届生的时候因为他用递归处理斐波那契就直接拒了他……所以还是不用的好。  </p>
-<p>由于Python中自带队列数据结构，所以通过队列实现迭代循环是目前较为理想的方案。  </p>
-<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><p>在爬虫程序中，当我提交了请求之后CPU需要等待网站相应后才能进一步计算，也就是需要等待<code>urllib2.urlopen()</code>得到相应之后才能read网页的内容，所以这就需要等待一段时间，所以为了提高爬虫的效率，就需要开启多线程进程抓取。</p>
-<h2 id="健壮"><a href="#健壮" class="headerlink" title="健壮"></a>健壮</h2><p>在爬虫运行的时候，如果因为被网站的防爬虫机制禁止了爬取行为，那就会导致整个爬虫程序的意外退出，所以就必须把<code>urllib2</code>的行为包起来。  </p>
-<p>另外，如果同一个IP在短时间内对一个网站进行大量访问，可能会被网站的防爬虫措施制裁，比如豆瓣…所以为了避免爬虫挂掉，就得设置一个时间间隔，也就是让线程暂时阻塞，等时间到了之后再加入线程队列中。  </p>
-<h2 id="Bloom-Filter"><a href="#Bloom-Filter" class="headerlink" title="Bloom Filter"></a>Bloom Filter</h2><p>在上次的遍历一个URL中的所有URL任务中，虽然一次能抓取到几千个URL，但是并不能保证这些URL都是不重复的，如果在这些URL中有环路的话，爬虫就会先入死循环中，所以对抓取到的URL进行去重就是一个要面临的问题。  </p>
-<p>当需要处理的数据很少的时候，可以用<code>set</code>集合来解决，但是当数据量变大的时候，就得靠<strong>Bloom Filter</strong>（布隆过滤器）了。BF的算法不算非常复杂，不过好歹有现成的<a href="https://github.com/jaybaird/python-bloomfilter/blob/master/pybloom/pybloom.py" target="_blank" rel="external">轮子</a>，用起来也方便了许多。  </p>
-<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> pybloom <span class="keyword">import</span> BloomFilter</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>f = BloomFilter(capacity=<span class="number">10000</span>, error_rate=<span class="number">0.001</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> range_fn(<span class="number">0</span>, f.capacity):</div><div class="line"><span class="meta">... </span>_ = f.add(i)</div><div class="line">...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">0</span> <span class="keyword">in</span> f</div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>f.capacity <span class="keyword">in</span> f</div><div class="line"><span class="keyword">False</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>len(f) &lt;= f.capacity</div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>(<span class="number">1.0</span> - (len(f) / float(f.capacity))) &lt;= f.error_rate + <span class="number">2e-18</span></div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> pybloom <span class="keyword">import</span> ScalableBloomFilter</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>sbf = ScalableBloomFilter(mode=ScalableBloomFilter.SMALL_SET_GROWTH)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>count = <span class="number">10000</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> range_fn(<span class="number">0</span>, count):</div><div class="line"><span class="meta">... </span>_ = sbf.add(i)</div><div class="line">...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>sbf.capacity &gt; count</div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>len(sbf) &lt;= count</div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>(<span class="number">1.0</span> - (len(sbf) / float(count))) &lt;= sbf.error_rate + <span class="number">2e-18</span></div><div class="line"><span class="keyword">True</span></div><div class="line">```  </div><div class="line"></div><div class="line">------------</div><div class="line"></div><div class="line"><span class="comment"># 新任务</span></div><div class="line">&gt;自动向百度提交搜索请求，搜索nuist.edu.cn中包含？的URL，从返回的结果页面中，提取每一个分页中的URL，并将结果写入一个文件中。**这次强调所有结果有多少页就爬取多少页**！</div><div class="line"></div><div class="line"><span class="comment">## 实现</span></div><div class="line">```Python</div><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> Queue</div><div class="line"><span class="keyword">import</span> urllib2</div><div class="line"><span class="keyword">import</span> threading </div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> urllib</div><div class="line"><span class="keyword">from</span> pybloom <span class="keyword">import</span> BloomFilter</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="comment"># use Bloom Filter</span></div><div class="line">bf = BloomFilter(<span class="number">1000000</span>, <span class="number">0.01</span>)</div><div class="line"></div><div class="line"><span class="comment"># translate the default code</span></div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(<span class="string">"utf-8"</span>)</div><div class="line"></div><div class="line"><span class="comment"># define a queue</span></div><div class="line">url_wait = Queue.Queue(<span class="number">0</span>)</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span><span class="params">(threading.Thread)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, url, num)</span>:</span></div><div class="line">        threading.Thread.__init__(self)</div><div class="line">        self.url = url</div><div class="line">        <span class="comment"># self.tnum = num</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="comment"># traverse the whole url</span></div><div class="line">        time.sleep(<span class="number">5</span>)</div><div class="line">        traverse(self.url)</div><div class="line">        <span class="comment"># print "This is thread-%d" % self.tnum</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_nextpage</span><span class="params">(new_url)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        tmp = urllib2.urlopen(new_url)</div><div class="line">        content = tmp.read()</div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        <span class="keyword">pass</span></div><div class="line"></div><div class="line">    soup = BeautifulSoup(content)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> link <span class="keyword">in</span> soup.find_all(href=re.compile(<span class="string">"rsv_page=1"</span>)):</div><div class="line">        tmp_link = link.get(<span class="string">'href'</span>)</div><div class="line">        real_url = <span class="string">"http://www.baidu.com"</span> + tmp_link</div><div class="line">        <span class="keyword">return</span> real_url  </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">traverse</span><span class="params">(url)</span>:</span></div><div class="line">    </div><div class="line">    fp = open(<span class="string">"all_url.txt"</span>, <span class="string">"a"</span>)</div><div class="line"></div><div class="line">    url_wait.put(url)</div><div class="line">     </div><div class="line">    <span class="keyword">while</span> <span class="keyword">not</span> url_wait.empty():</div><div class="line">        url = url_wait.get()</div><div class="line">        <span class="keyword">if</span> url <span class="keyword">not</span> <span class="keyword">in</span> bf:</div><div class="line">            <span class="keyword">try</span>:</div><div class="line">                content = urllib2.urlopen(url).read() </div><div class="line">                soup = BeautifulSoup(content)                                     </div><div class="line">                <span class="keyword">for</span> urls <span class="keyword">in</span> soup.find_all(href=re.compile(<span class="string">"http"</span>)):                     </div><div class="line">                    link = urls.get(<span class="string">'href'</span>)</div><div class="line">                    url_wait.put(link)</div><div class="line">            <span class="keyword">except</span>:</div><div class="line">                <span class="keyword">pass</span></div><div class="line"></div><div class="line">            bf.add(url)</div><div class="line">            fp.write( url + <span class="string">'\n\n'</span>)   </div><div class="line"></div><div class="line">    fp.close()  </div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    num = <span class="number">0</span></div><div class="line">    fp = open(<span class="string">"target.txt"</span>, <span class="string">"a"</span>)</div><div class="line">    url_pool = Queue.Queue(<span class="number">0</span>)</div><div class="line">    start_url = <span class="string">"http://www.baidu.com/s?wd=site:(nuist.edu.cn)%20?"</span></div><div class="line">    </div><div class="line">    url_pool.put(start_url)</div><div class="line"></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        <span class="keyword">while</span> <span class="keyword">not</span> url_pool.empty():</div><div class="line">            new_url = url_pool.get()</div><div class="line">            fp.write(new_url + <span class="string">"\n\n"</span>)</div><div class="line"></div><div class="line">            nextpage = find_nextpage(new_url)</div><div class="line">            url_pool.put(nextpage)</div><div class="line">        </div><div class="line">            Thread = MyThread(new_url, num)</div><div class="line">            num += <span class="number">1</span></div><div class="line">            Thread.start()</div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        <span class="keyword">pass</span></div><div class="line">    fp.close()  </div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:  </div><div class="line">    main()</div></pre></td></tr></table></figure>
+        <p>EJS（Embedded JavaScript）是一种客户端的模板语言，通过把数据和模板结合起来去生成 HTML，下面给出一个简单介绍 EJS 的实例。</p>
+<a id="more"></a>
+<h3 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a>DEMO</h3><h4 id="1-原始-JSON-数据"><a href="#1-原始-JSON-数据" class="headerlink" title="1. 原始 JSON 数据"></a>1. 原始 JSON 数据</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">title</span>:    <span class="string">'The Games List'</span>,</div><div class="line">  <span class="attr">game</span>:     [<span class="string">'GTA5'</span>, <span class="string">'Titan Fall'</span>, <span class="string">'Zelda'</span>]	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="2-模板"><a href="#2-模板" class="headerlink" title="2. 模板"></a>2. 模板</h4><p>对于 EJS ，在 &lt;%  %&gt;之间的 JavaScript 会被执行，而&lt;%= 和 %&gt;之间的 JavaScript 会把 HTML 添加到生成的结果中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;</div><div class="line">&lt;ul&gt;</div><div class="line">&lt;% for(var i = 0; i &lt; supplies.length; i++) &#123;%&gt;</div><div class="line">  &lt;li&gt;&lt;%= supplies[i] %&gt;&lt;/li&gt;</div><div class="line">&lt;% &#125; %&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+<h4 id="3-结果"><a href="#3-结果" class="headerlink" title="3. 结果"></a>3. 结果</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>The Games List<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>GTA5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>Titan Fall<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>Zelda<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>上面是 &lt; 模板 + 数据 &gt; 后生成的 HTML 代码，在浏览器中显示的结果就是：</p>
+<h4 id="The-Games-List"><a href="#The-Games-List" class="headerlink" title="The Games List"></a>The Games List</h4><ul>
+<li>GTA5</li>
+<li>Titan Fall</li>
+<li>Zelda</li>
+</ul>
+<p>以上是 EJS 的入门 DEMO， 下面阐述一下如何更深入地使用 EJS。</p>
+<hr>
+<h2 id="EJS-简单教程"><a href="#EJS-简单教程" class="headerlink" title="EJS 简单教程"></a>EJS 简单教程</h2><h3 id="1-引入-EJS"><a href="#1-引入-EJS" class="headerlink" title="1. 引入 EJS"></a>1. 引入 EJS</h3><p>我们的页面需要引入 EJS，这样 JavaScript 才能使用它，所以需要先下载 <a href="http://embeddedjavascript.googlecode.com/files/ejs_0.9_alpha_1_production.js" target="_blank" rel="external">ejs_production.js</a>，然后在 HTML 中插入 EJS：  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"ejs_production.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="2-创建一个模板"><a href="#2-创建一个模板" class="headerlink" title="2. 创建一个模板"></a>2. 创建一个模板</h3><p>要想将代码变得更简洁，第一步就是将 HTML 从 JavaScript 中分离开来。所以就需要把 HTML 抽离出来，放进单独的模板文件中。现在先创建个文件，命名为 cleaning.ejs，并插入以下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;h1&gt;<span class="xml"><span class="tag">&lt;<span class="name">%=</span> <span class="attr">title</span> %&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div><div class="line">&lt;ul&gt;</div><div class="line">  &lt;% for(var i=0; i &lt; supplies.length; i++) &#123; %&gt;</div><div class="line">    &lt;li&gt;</div><div class="line">      &lt;a href='supplies/&lt;%= supplies[i] %&gt;'&gt;</div><div class="line">        &lt;%= supplies[i] %&gt;</div><div class="line">      &lt;/a&gt;</div><div class="line">    &lt;li&gt;</div><div class="line">  &lt;% &#125; %&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+<p>你会注意到在&lt;% %&gt;两个标签里的代码都会被执行，并且&lt;%= %&gt;两标签之间的代码都将自己插入了被返回的 HTML 中。  </p>
+<p>我们需要添加 JavaScript 脚本来控制模板的加载和渲染，且将原始的涉及到字符串的代码用以下代码代替：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// load the template file, then render it with data</span></div><div class="line"><span class="keyword">var</span> html = <span class="keyword">new</span> EJS(&#123;<span class="attr">url</span>: <span class="string">'cleaning.js'</span>&#125;).render(data);</div></pre></td></tr></table></figure>
+<p>现在，模板代码将 HTML 存储在其准备好的结构中，使得 JavaScript 代码变得短小精悍。</p>
+<h3 id="3-视图助手-View-Helper"><a href="#3-视图助手-View-Helper" class="headerlink" title="3. 视图助手 - View Helper"></a>3. 视图助手 - View Helper</h3><p>EJS 是使用 view helpers 来打包。view helper 是常用的视图代码的快捷方式，像链接和表单，使试图代码保持简单短小。  </p>
+<p>我们模板里的链接由类似于字符串的形式来构建：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'supplies/&lt;%= supplies[i] %&gt;'</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">supplies</span>[<span class="attr">i</span>] %&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>上面的这段代码还是有点混乱，尤其是那么多嵌套的标签实在让人头昏眼花，所以接下来就可以用视图助手让代码变得轻量。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>(<span class="attr">supplies</span>[<span class="attr">i</span>], '<span class="attr">supplies</span>/'+<span class="attr">supplies</span>[<span class="attr">i</span>]) %&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>现在代码就更简单明了了，还记不记得构建的链接是什么样的？  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">html += <span class="string">"&lt;li&gt;&lt;a href='supplies/"</span>+data.supplies[i]+<span class="string">"&gt;"</span></div><div class="line">html += data.supplies[i]+<span class="string">"&lt;/a&gt;&lt;/li&gt;</span></div></pre></td></tr></table></figure>
+<p>于之前的 JavaScript 代码进行比对，不了解你所写代码的人也能很快地理解上面的 EJS 模板片段。</p>
+<h3 id="4-错误处理"><a href="#4-错误处理" class="headerlink" title="4. 错误处理"></a>4. 错误处理</h3><p>如果在你写的 EJS 模板中有错误，EJS 将指出错误发生的确切行号，只要将 ejs_jslint.js 引入项目中。当然，这些错误可以使用 Chrome 的调试器查看。</p>
+<h3 id="5-何时使用-EJS-来整理代码？"><a href="#5-何时使用-EJS-来整理代码？" class="headerlink" title="5. 何时使用 EJS 来整理代码？"></a>5. 何时使用 EJS 来整理代码？</h3><ol>
+<li>用 JavaScript 来构建 HTML</li>
+<li>使用 AJAX 的 web 服务</li>
+<li>可换肤的应用</li>
+</ol>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ol>
+<li><a href="http://www.embeddedjs.com/" target="_blank" rel="external">官方网站</a></li>
+<li><a href="http://code.google.com/p/embeddedjavascript/w/list" target="_blank" rel="external">EJS 文档</a></li>
+</ol>
 
       
     </div>
@@ -406,7 +434,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/font-end/" rel="tag"># font-end</a>
           
         </div>
       
@@ -419,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/Compiler/Lexical-analyzer/" rel="next" title="词法分析器">
-                <i class="fa fa-chevron-left"></i> 词法分析器
+              <a href="/2015/Tool/vim/" rel="next" title="Vim使用笔记">
+                <i class="fa fa-chevron-left"></i> Vim使用笔记
               </a>
             
           </div>
@@ -428,10 +456,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/Tool/vim/" rel="prev" title="Vim使用笔记">
-                Vim使用笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -585,7 +609,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解析HTML"><span class="nav-number">1.</span> <span class="nav-text">解析HTML</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环与递归"><span class="nav-number">2.</span> <span class="nav-text">循环与递归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">3.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#健壮"><span class="nav-number">4.</span> <span class="nav-text">健壮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bloom-Filter"><span class="nav-number">5.</span> <span class="nav-text">Bloom Filter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo"><span class="nav-number">6.</span> <span class="nav-text">Demo</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DEMO"><span class="nav-number">1.</span> <span class="nav-text">DEMO</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-原始-JSON-数据"><span class="nav-number">1.1.</span> <span class="nav-text">1. 原始 JSON 数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-模板"><span class="nav-number">1.2.</span> <span class="nav-text">2. 模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-结果"><span class="nav-number">1.3.</span> <span class="nav-text">3. 结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Games-List"><span class="nav-number">1.4.</span> <span class="nav-text">The Games List</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EJS-简单教程"><span class="nav-number"></span> <span class="nav-text">EJS 简单教程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-引入-EJS"><span class="nav-number">1.</span> <span class="nav-text">1. 引入 EJS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-创建一个模板"><span class="nav-number">2.</span> <span class="nav-text">2. 创建一个模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-视图助手-View-Helper"><span class="nav-number">3.</span> <span class="nav-text">3. 视图助手 - View Helper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-错误处理"><span class="nav-number">4.</span> <span class="nav-text">4. 错误处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-何时使用-EJS-来整理代码？"><span class="nav-number">5.</span> <span class="nav-text">5. 何时使用 EJS 来整理代码？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文档"><span class="nav-number"></span> <span class="nav-text">参考文档</span></a></div>
             
 
           </div>
@@ -735,9 +759,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://thinknight.github.io/2014/Python/python-crawler-2/';
-          this.page.identifier = '2014/Python/python-crawler-2/';
-          this.page.title = 'Python网络爬虫（二）';
+          this.page.url = 'http://thinknight.github.io/2017/Font-End/ejs/';
+          this.page.identifier = '2017/Font-End/ejs/';
+          this.page.title = 'EJS 入门简介';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://matrixwall.disqus.com/embed.js';

@@ -157,7 +157,7 @@
 
 
 
-</head>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"><script src="/js/prism.js"></script></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
@@ -462,9 +462,9 @@
 </blockquote>
 <h2 id="十一、线程的实现"><a href="#十一、线程的实现" class="headerlink" title="十一、线程的实现"></a>十一、线程的实现</h2><h4 id="在用户空间中实现线程"><a href="#在用户空间中实现线程" class="headerlink" title="在用户空间中实现线程"></a>在用户空间中实现线程</h4><p>把整个线程包放在用户空间中，这样用户级线程包可以在不支持线程的操作系统上实现，通过这一方法就可以用函数库实现线程。</p>
 <p><img src="/img/user-thread.png" alt="user-thread"></p>
-<pre><code class="C"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span>
-<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span>
-<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span>
+<pre class=" language-C"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><code class="language-C"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><pthread.h></span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><stdio.h></span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><stdlib.h></span></span>
 
 <span class="meta">#<span class="meta-keyword">define</span> NUMBER_OF_THREADS 10</span>
 
@@ -481,9 +481,9 @@
     <span class="keyword">pthread_t</span> threads[NUMBER_OF_THREADS];
     <span class="keyword">int</span> status, i;
 
-    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; NUMBER_OF_THREADS; i++){
+    <span class="keyword">for</span>(i = <span class="number">0</span>; i < NUMBER_OF_THREADS; i++){
         <span class="built_in">printf</span>(<span class="string">"Main here.Creating thread %d0\n"</span>, i);
-        status = pthread_creat(&amp;threads[i], <span class="literal">NULL</span>, print_hello_world, (<span class="keyword">void</span> *)i);
+        status = pthread_creat(&threads[i], <span class="literal">NULL</span>, print_hello_world, (<span class="keyword">void</span> *)i);
 
         <span class="keyword">if</span>(status != <span class="number">0</span>){
             <span class="built_in">printf</span>(<span class="string">"Oops.pthread_creat return error code %d0"</span>, status);
@@ -634,7 +634,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -647,7 +647,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://thinknight.github.io/"/>
-  <updated>2017-07-02T11:22:35.000Z</updated>
+  <updated>2017-08-20T17:40:50.000Z</updated>
   <id>http://thinknight.github.io/</id>
   
   <author>
@@ -14,6 +14,66 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>EJS 入门简介</title>
+    <link href="http://thinknight.github.io/2017/Font-End/ejs/"/>
+    <id>http://thinknight.github.io/2017/Font-End/ejs/</id>
+    <published>2017-08-20T17:07:18.000Z</published>
+    <updated>2017-08-20T17:40:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>EJS（Embedded JavaScript）是一种客户端的模板语言，通过把数据和模板结合起来去生成 HTML，下面给出一个简单介绍 EJS 的实例。</p>
+<a id="more"></a>
+<h3 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a>DEMO</h3><h4 id="1-原始-JSON-数据"><a href="#1-原始-JSON-数据" class="headerlink" title="1. 原始 JSON 数据"></a>1. 原始 JSON 数据</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">title</span>:    <span class="string">'The Games List'</span>,</div><div class="line">  <span class="attr">game</span>:     [<span class="string">'GTA5'</span>, <span class="string">'Titan Fall'</span>, <span class="string">'Zelda'</span>]	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="2-模板"><a href="#2-模板" class="headerlink" title="2. 模板"></a>2. 模板</h4><p>对于 EJS ，在 &lt;%  %&gt;之间的 JavaScript 会被执行，而&lt;%= 和 %&gt;之间的 JavaScript 会把 HTML 添加到生成的结果中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;</div><div class="line">&lt;ul&gt;</div><div class="line">&lt;% for(var i = 0; i &lt; supplies.length; i++) &#123;%&gt;</div><div class="line">  &lt;li&gt;&lt;%= supplies[i] %&gt;&lt;/li&gt;</div><div class="line">&lt;% &#125; %&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+<h4 id="3-结果"><a href="#3-结果" class="headerlink" title="3. 结果"></a>3. 结果</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>The Games List<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>GTA5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>Titan Fall<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>Zelda<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>上面是 &lt; 模板 + 数据 &gt; 后生成的 HTML 代码，在浏览器中显示的结果就是：</p>
+<h4 id="The-Games-List"><a href="#The-Games-List" class="headerlink" title="The Games List"></a>The Games List</h4><ul>
+<li>GTA5</li>
+<li>Titan Fall</li>
+<li>Zelda</li>
+</ul>
+<p>以上是 EJS 的入门 DEMO， 下面阐述一下如何更深入地使用 EJS。</p>
+<hr>
+<h2 id="EJS-简单教程"><a href="#EJS-简单教程" class="headerlink" title="EJS 简单教程"></a>EJS 简单教程</h2><h3 id="1-引入-EJS"><a href="#1-引入-EJS" class="headerlink" title="1. 引入 EJS"></a>1. 引入 EJS</h3><p>我们的页面需要引入 EJS，这样 JavaScript 才能使用它，所以需要先下载 <a href="http://embeddedjavascript.googlecode.com/files/ejs_0.9_alpha_1_production.js" target="_blank" rel="external">ejs_production.js</a>，然后在 HTML 中插入 EJS：  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"ejs_production.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="2-创建一个模板"><a href="#2-创建一个模板" class="headerlink" title="2. 创建一个模板"></a>2. 创建一个模板</h3><p>要想将代码变得更简洁，第一步就是将 HTML 从 JavaScript 中分离开来。所以就需要把 HTML 抽离出来，放进单独的模板文件中。现在先创建个文件，命名为 cleaning.ejs，并插入以下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;h1&gt;<span class="xml"><span class="tag">&lt;<span class="name">%=</span> <span class="attr">title</span> %&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div><div class="line">&lt;ul&gt;</div><div class="line">  &lt;% for(var i=0; i &lt; supplies.length; i++) &#123; %&gt;</div><div class="line">    &lt;li&gt;</div><div class="line">      &lt;a href='supplies/&lt;%= supplies[i] %&gt;'&gt;</div><div class="line">        &lt;%= supplies[i] %&gt;</div><div class="line">      &lt;/a&gt;</div><div class="line">    &lt;li&gt;</div><div class="line">  &lt;% &#125; %&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+<p>你会注意到在&lt;% %&gt;两个标签里的代码都会被执行，并且&lt;%= %&gt;两标签之间的代码都将自己插入了被返回的 HTML 中。  </p>
+<p>我们需要添加 JavaScript 脚本来控制模板的加载和渲染，且将原始的涉及到字符串的代码用以下代码代替：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// load the template file, then render it with data</span></div><div class="line"><span class="keyword">var</span> html = <span class="keyword">new</span> EJS(&#123;<span class="attr">url</span>: <span class="string">'cleaning.js'</span>&#125;).render(data);</div></pre></td></tr></table></figure>
+<p>现在，模板代码将 HTML 存储在其准备好的结构中，使得 JavaScript 代码变得短小精悍。</p>
+<h3 id="3-视图助手-View-Helper"><a href="#3-视图助手-View-Helper" class="headerlink" title="3. 视图助手 - View Helper"></a>3. 视图助手 - View Helper</h3><p>EJS 是使用 view helpers 来打包。view helper 是常用的视图代码的快捷方式，像链接和表单，使试图代码保持简单短小。  </p>
+<p>我们模板里的链接由类似于字符串的形式来构建：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'supplies/&lt;%= supplies[i] %&gt;'</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">supplies</span>[<span class="attr">i</span>] %&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>上面的这段代码还是有点混乱，尤其是那么多嵌套的标签实在让人头昏眼花，所以接下来就可以用视图助手让代码变得轻量。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>(<span class="attr">supplies</span>[<span class="attr">i</span>], '<span class="attr">supplies</span>/'+<span class="attr">supplies</span>[<span class="attr">i</span>]) %&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>现在代码就更简单明了了，还记不记得构建的链接是什么样的？  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">html += <span class="string">"&lt;li&gt;&lt;a href='supplies/"</span>+data.supplies[i]+<span class="string">"&gt;"</span></div><div class="line">html += data.supplies[i]+<span class="string">"&lt;/a&gt;&lt;/li&gt;</span></div></pre></td></tr></table></figure>
+<p>于之前的 JavaScript 代码进行比对，不了解你所写代码的人也能很快地理解上面的 EJS 模板片段。</p>
+<h3 id="4-错误处理"><a href="#4-错误处理" class="headerlink" title="4. 错误处理"></a>4. 错误处理</h3><p>如果在你写的 EJS 模板中有错误，EJS 将指出错误发生的确切行号，只要将 ejs_jslint.js 引入项目中。当然，这些错误可以使用 Chrome 的调试器查看。</p>
+<h3 id="5-何时使用-EJS-来整理代码？"><a href="#5-何时使用-EJS-来整理代码？" class="headerlink" title="5. 何时使用 EJS 来整理代码？"></a>5. 何时使用 EJS 来整理代码？</h3><ol>
+<li>用 JavaScript 来构建 HTML</li>
+<li>使用 AJAX 的 web 服务</li>
+<li>可换肤的应用</li>
+</ol>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ol>
+<li><a href="http://www.embeddedjs.com/" target="_blank" rel="external">官方网站</a></li>
+<li><a href="http://code.google.com/p/embeddedjavascript/w/list" target="_blank" rel="external">EJS 文档</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;EJS（Embedded JavaScript）是一种客户端的模板语言，通过把数据和模板结合起来去生成 HTML，下面给出一个简单介绍 EJS 的实例。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="font-end" scheme="http://thinknight.github.io/tags/font-end/"/>
+    
+  </entry>
   
   <entry>
     <title>Vim使用笔记</title>
@@ -175,7 +235,7 @@
     
     <content type="html"><![CDATA[<p>一个词法分析器的demo。<br><a id="more"></a></p>
 <h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">int</span> i, j;</div><div class="line"><span class="keyword">int</span> len;</div><div class="line"><span class="keyword">int</span> count;</div><div class="line"><span class="keyword">int</span> start_p;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">analyse</span><span class="params">(<span class="keyword">char</span> *tmp, <span class="keyword">int</span> start_p, FILE *fp_w)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">while</span>( <span class="built_in">isspace</span>(tmp[start_p]) )</div><div class="line">        start_p++;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>( <span class="built_in">isalpha</span>(tmp[start_p]) )</div><div class="line">    &#123;</div><div class="line">        count = <span class="number">0</span>;</div><div class="line">        <span class="keyword">char</span> tmp_str[<span class="number">1000</span>] = &#123;&#125;;</div><div class="line"></div><div class="line">        <span class="keyword">while</span>( <span class="built_in">isalpha</span>(tmp[start_p]) )</div><div class="line">        &#123;</div><div class="line">            tmp_str[count] = tmp[start_p]; </div><div class="line">            count++;</div><div class="line">            start_p++;</div><div class="line">        &#125;</div><div class="line">        start_p--;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( is_keyword(tmp_str, fp_w) )&#123;</div><div class="line">            ;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"&lt;0, %s&gt;\n"</span>, tmp_str);</div><div class="line">            <span class="built_in">fprintf</span>(fp_w, <span class="string">"&lt;0, %s&gt;\n"</span>, tmp_str);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>( <span class="built_in">isdigit</span>(tmp[start_p]) )</div><div class="line">        &#123;</div><div class="line">            count = <span class="number">0</span>;</div><div class="line">            <span class="keyword">char</span> tmp_str[<span class="number">1000</span>] = &#123;&#125;;</div><div class="line"></div><div class="line">            <span class="keyword">while</span>( <span class="built_in">isdigit</span>(tmp[start_p]) )</div><div class="line">            &#123;</div><div class="line">                tmp_str[count] = tmp[start_p]; </div><div class="line">                count++;</div><div class="line">                start_p++;</div><div class="line">            &#125;</div><div class="line">            start_p--;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"&lt;1, %s&gt;\n"</span>, tmp_str);</div><div class="line">            <span class="built_in">fprintf</span>(fp_w, <span class="string">"&lt;1, %s&gt;\n"</span>, tmp_str);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">            <span class="keyword">if</span>( !<span class="built_in">isalpha</span>(tmp[start_p]) &amp;&amp; !<span class="built_in">isdigit</span>(tmp[start_p]) )</div><div class="line">            &#123;</div><div class="line">                count = <span class="number">0</span>;</div><div class="line">                <span class="keyword">char</span> tmp_str[<span class="number">1000</span>] = &#123;&#125;;</div><div class="line"></div><div class="line">                <span class="keyword">if</span>( !<span class="built_in">isalpha</span>(tmp[start_p+<span class="number">1</span>]) &amp;&amp; !<span class="built_in">isdigit</span>(tmp[start_p+<span class="number">1</span>]) )</div><div class="line">                &#123;</div><div class="line">                    tmp_str[count] = tmp[start_p];</div><div class="line">                    count++;	start_p++;</div><div class="line">                    tmp_str[count] = tmp[start_p];</div><div class="line">                    <span class="keyword">if</span>( is_symbol(tmp_str, fp_w) )&#123;</div><div class="line">                        ;</div><div class="line">                    &#125;<span class="keyword">else</span>&#123;</div><div class="line">                        count--;    start_p--;</div><div class="line">                        tmp_str[<span class="number">1</span>] = <span class="string">'\0'</span>;</div><div class="line">                        tmp_str[count] = tmp[start_p];</div><div class="line">                        is_symbol(tmp_str, fp_w);</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    tmp_str[count] = tmp[start_p]; </div><div class="line">                    is_symbol(tmp_str, fp_w);</div><div class="line">                &#125;	</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    len = <span class="built_in">strlen</span>(tmp);</div><div class="line">    <span class="keyword">if</span>( start_p == len )</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    <span class="keyword">else</span></div><div class="line">        analyse(tmp, start_p+<span class="number">1</span>, fp_w);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_keyword</span><span class="params">(<span class="keyword">char</span> *tmp, FILE *fp_w)</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">char</span> *keyword[] = &#123;</div><div class="line">        <span class="string">"main"</span>,   <span class="string">"void"</span>,    <span class="string">"int"</span>,    <span class="string">"float"</span>,  <span class="string">"char"</span>,     <span class="string">"double"</span>,   <span class="string">"for"</span>, </div><div class="line">        <span class="string">"if"</span>,     <span class="string">"else"</span>,    <span class="string">"while"</span>,  <span class="string">"do"</span>,     <span class="string">"break"</span>,    <span class="string">"switch"</span>,   <span class="string">"case"</span>,</div><div class="line">        <span class="string">"struct"</span>, <span class="string">"typedef"</span>, <span class="string">"char"</span>,   <span class="string">"return"</span>, <span class="string">"continue"</span>, <span class="string">"sizeof"</span></div><div class="line">    &#125;;</div><div class="line">    <span class="comment">//total number:20</span></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">20</span>; ++i)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>( <span class="built_in">strcmp</span>( tmp, keyword[i]) == <span class="number">0</span> )</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"&lt;%d, %s&gt;\n"</span>, i+<span class="number">2</span>, tmp);</div><div class="line">            <span class="built_in">fprintf</span>(fp_w, <span class="string">"&lt;%d, %s&gt;\n"</span>, i+<span class="number">2</span>, tmp);</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_symbol</span><span class="params">(<span class="keyword">char</span> *tmp, FILE *fp_w)</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">char</span> *symbol[] = &#123;</div><div class="line"></div><div class="line">        <span class="string">"+"</span>,  <span class="string">"-"</span>,  <span class="string">"*"</span>,  <span class="string">"/"</span>,  <span class="string">"&lt;"</span>,  <span class="string">"&gt;"</span>,  <span class="string">"="</span>,  <span class="string">"!"</span>,  <span class="string">"&amp;"</span>,  <span class="string">"|"</span>, </div><div class="line">        <span class="string">"\\"</span>, <span class="string">"#"</span>,  <span class="string">"\""</span>, <span class="string">"%"</span>,  <span class="string">"^"</span>,</div><div class="line"></div><div class="line">        <span class="string">"++"</span>, <span class="string">"+="</span>, <span class="string">"--"</span>, <span class="string">"-="</span>, <span class="string">"*="</span>, <span class="string">"/="</span>, <span class="string">"%="</span>, <span class="string">"&amp;="</span>, <span class="string">"^="</span>, <span class="string">"|="</span>, </div><div class="line">        <span class="string">"&lt;="</span>, <span class="string">"&gt;="</span>, <span class="string">"=="</span>, <span class="string">"!="</span>, <span class="string">"&amp;&amp;"</span>, <span class="string">"||"</span>, <span class="string">"&gt;&gt;"</span>, <span class="string">"&lt;&lt;"</span>, <span class="string">"?:"</span>, <span class="string">"-&gt;"</span>,</div><div class="line"></div><div class="line">        <span class="string">"&#123;"</span>,  <span class="string">"&#125;"</span>,  <span class="string">"("</span>,  <span class="string">")"</span>,  <span class="string">"["</span>,  <span class="string">"]"</span>,  <span class="string">","</span>,  <span class="string">";"</span>,  <span class="string">":"</span>,  <span class="string">"."</span></div><div class="line">    &#125;;</div><div class="line">    <span class="comment">//total number:45</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">45</span>; ++i)</div><div class="line">        <span class="keyword">if</span>( <span class="built_in">strcmp</span>( tmp, symbol[i]) == <span class="number">0</span> )</div><div class="line">        <span class="comment">// printf("Yes! No.%d: %s\n", i, tmp);</span></div><div class="line">        &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"&lt;%d, %s&gt;\n"</span>, <span class="number">22</span> + i, tmp);</div><div class="line">            <span class="built_in">fprintf</span>(fp_w, <span class="string">"&lt;%d, %s&gt;\n"</span>, <span class="number">22</span> + i, tmp);</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_blankline</span><span class="params">(<span class="keyword">char</span> *tmp)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(tmp);</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; ++i)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>( !<span class="built_in">isspace</span>(tmp[i]) )</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;	</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">delete_comments</span><span class="params">(<span class="keyword">char</span> *tmp)</span></span></div><div class="line">&#123;</div><div class="line">    len = <span class="built_in">strlen</span>(tmp);</div><div class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; len; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>(tmp[i] == <span class="string">'/'</span> &amp;&amp; tmp[i+<span class="number">1</span>] == <span class="string">'/'</span>)</div><div class="line">        &#123;</div><div class="line">			</div><div class="line">            tmp[i] = <span class="string">'\0'</span>;</div><div class="line">			</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> tmp[<span class="number">100</span>] = <span class="string">""</span>;</div><div class="line">    <span class="keyword">char</span> str[<span class="number">100</span>] = <span class="string">""</span>;</div><div class="line">    <span class="keyword">int</span> flag = <span class="number">0</span>;</div><div class="line"></div><div class="line">    FILE *fp, *fp_tmp;</div><div class="line">    fp = fopen(<span class="string">"test.c"</span>, <span class="string">"r"</span>);</div><div class="line">    fp_tmp = fopen(<span class="string">"tmp.c"</span>, <span class="string">"w"</span>);</div><div class="line">    <span class="keyword">while</span>(fgets(str, <span class="number">100</span>, fp) != <span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span>(str[i] == <span class="string">'/'</span> &amp;&amp; str[i+<span class="number">1</span>] == <span class="string">'/'</span>)</div><div class="line">            &#123;</div><div class="line">                str[i] = <span class="string">'\n'</span>;</div><div class="line">                str[i+<span class="number">1</span>] = <span class="string">'\0'</span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">if</span>(str[i] == <span class="string">'/'</span> &amp;&amp; str[i+<span class="number">1</span>] == <span class="string">'*'</span>)</div><div class="line">            &#123;</div><div class="line">                str[i] = <span class="string">'\0'</span>;</div><div class="line">                flag = <span class="number">1</span>;</div><div class="line">                <span class="built_in">fputs</span>(str, fp_tmp);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(str[i] == <span class="string">'*'</span> &amp;&amp; str[i+<span class="number">1</span>] == <span class="string">'/'</span>)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; <span class="number">100</span>; ++j)</div><div class="line">                &#123;</div><div class="line">                    str[j] = str[j+i+<span class="number">2</span>];</div><div class="line">                &#125;</div><div class="line">                str[j] = <span class="string">'\0'</span>;</div><div class="line">                flag = <span class="number">0</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>( flag == <span class="number">0</span> )</div><div class="line">            <span class="built_in">fputs</span>(str, fp_tmp);</div><div class="line">    &#125;</div><div class="line">    fcloseall();</div><div class="line"></div><div class="line">    FILE *fp_new;</div><div class="line">    FILE *fp_w;</div><div class="line">    fp_new = fopen(<span class="string">"tmp.c"</span>, <span class="string">"r"</span>);</div><div class="line">    fp_w   = fopen(<span class="string">"Lex_Result.txt"</span>, <span class="string">"w"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">while</span>(!feof(fp_new))&#123;</div><div class="line">        <span class="keyword">if</span>(fgets(tmp, <span class="number">100</span>, fp_new))</div><div class="line">            <span class="keyword">if</span>( is_blankline(tmp) == <span class="number">0</span>)</div><div class="line">                analyse(tmp, <span class="number">0</span>, fp_w);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    fcloseall();</div><div class="line">    remove(<span class="string">"tmp.c"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><h2 id="目标程序"><a href="#目标程序" class="headerlink" title="目标程序"></a>目标程序</h2><pre><code class="C"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt; //This is a simple target code</span></span>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><h2 id="目标程序"><a href="#目标程序" class="headerlink" title="目标程序"></a>目标程序</h2><pre class=" language-C"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><code class="language-C"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><stdio.h> //This is a simple target code</span></span>
 <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
 </span>{
     <span class="built_in">printf</span>(<span class="string">"TEST BEGUN!"</span>);
@@ -184,61 +244,61 @@
     <span class="comment">/*
         You can not see me!
     */</span>
-    <span class="keyword">if</span>(a &lt;= b)
+    <span class="keyword">if</span>(a <= b)
         <span class="built_in">printf</span>(<span class="string">"Yes"</span>);
 
     <span class="keyword">return</span> <span class="number">0</span>;
     <span class="comment">//That's it!</span>
 }
 </code></pre>
-<h2 id="分析结果"><a href="#分析结果" class="headerlink" title="分析结果"></a>分析结果</h2><pre><code class="C">&lt;33, #&gt;
-&lt;0, include&gt;
-&lt;26, &lt;&gt;
-&lt;0, stdio&gt;
-&lt;66, .&gt;
-&lt;0, h&gt;
-&lt;27, &gt;&gt;
-&lt;4, int&gt;
-&lt;2, main&gt;
-&lt;59, (&gt;
-&lt;60, )&gt;
-&lt;57, {&gt;
-&lt;0, printf&gt;
-&lt;59, (&gt;
-&lt;34, "&gt;
-&lt;0, TEST&gt;
-&lt;0, BEGUN&gt;
-&lt;29, !&gt;
-&lt;34, "&gt;
-&lt;60, )&gt;
-&lt;64, ;&gt;
-&lt;4, int&gt;
-&lt;0, a&gt;
-&lt;28, =&gt;
-&lt;1, 0&gt;
-&lt;64, ;&gt;
-&lt;4, int&gt;
-&lt;0, b&gt;
-&lt;28, =&gt;
-&lt;1, 1&gt;
-&lt;64, ;&gt;
-&lt;9, if&gt;
-&lt;59, (&gt;
-&lt;0, a&gt;
-&lt;47, &lt;=&gt;
-&lt;0, b&gt;
-&lt;60, )&gt;
-&lt;0, printf&gt;
-&lt;59, (&gt;
-&lt;34, "&gt;
-&lt;0, Yes&gt;
-&lt;34, "&gt;
-&lt;60, )&gt;
-&lt;64, ;&gt;
-&lt;19, return&gt;
-&lt;1, 0&gt;
-&lt;64, ;&gt;
-&lt;58, }&gt;
+<h2 id="分析结果"><a href="#分析结果" class="headerlink" title="分析结果"></a>分析结果</h2><pre class=" language-C"><code class="language-C"><33, #>
+<0, include>
+<26, <>
+<0, stdio>
+<66, .>
+<0, h>
+<27, >>
+<4, int>
+<2, main>
+<59, (>
+<60, )>
+<57, {>
+<0, printf>
+<59, (>
+<34, ">
+<0, TEST>
+<0, BEGUN>
+<29, !>
+<34, ">
+<60, )>
+<64, ;>
+<4, int>
+<0, a>
+<28, =>
+<1, 0>
+<64, ;>
+<4, int>
+<0, b>
+<28, =>
+<1, 1>
+<64, ;>
+<9, if>
+<59, (>
+<0, a>
+<47, <=>
+<0, b>
+<60, )>
+<0, printf>
+<59, (>
+<34, ">
+<0, Yes>
+<34, ">
+<60, )>
+<64, ;>
+<19, return>
+<1, 0>
+<64, ;>
+<58, }>
 </code></pre>
 ]]></content>
     
@@ -306,7 +366,7 @@
 <hr>
 <p>使用一个数组state跟踪每一个哲学家是在进餐，思考还是饥饿状态（正在试图拿叉子），一个哲学家只有在两个邻居都没有进餐时才允许进入进餐状态。  </p>
 <p>第i个哲学家由宏LEFT和RIGHT定义。比如i为2，则LEFT为1，RIGHT为3。  </p>
-<pre><code class="C"><span class="meta">#<span class="meta-keyword">define</span> N           5                   <span class="comment">/*哲学家数目*/</span></span>
+<pre class=" language-C"><span class="meta">#<span class="meta-keyword">define</span> N           5                   <span class="comment"><code class="language-C"><span class="meta">#<span class="meta-keyword">define</span> N           5                   <span class="comment">/*哲学家数目*/</span></span>
 <span class="meta">#<span class="meta-keyword">define</span> LEFT        (i + N - 1) % N     <span class="comment">/*i的左邻居编号*/</span></span>
 <span class="meta">#<span class="meta-keyword">define</span> RIGHT       (i + 1) % N         <span class="comment">/*i的右邻居编号*/</span></span>
 <span class="meta">#<span class="meta-keyword">define</span> THINKING    0                   <span class="comment">/*哲学家在思考*/</span></span>
@@ -325,27 +385,27 @@ seamphore s[N];                         <span class="comment">/*每个哲学家�
 
 <span class="function"><span class="keyword">void</span> <span class="title">take_forks</span><span class="params">(<span class="keyword">int</span> i)</span>                  <span class="comment">/*i：哲学家编号，从0到N-1*/</span>
 </span>{    
-    down(&amp;mutex);                   <span class="comment">/*进入临界区*/</span>
+    down(&mutex);                   <span class="comment">/*进入临界区*/</span>
     state[i] = HUNGRY;              <span class="comment">/*记录哲学家i处于饥饿的状态*/</span>
     test(i);                        <span class="comment">/*尝试获取2把叉子*/</span>
-    up(&amp;mutex);                     <span class="comment">/*离开临界区*/</span>
-    down(&amp;s[i]);                    <span class="comment">/*如果得不到需要的叉子则阻塞*/</span>
+    up(&mutex);                     <span class="comment">/*离开临界区*/</span>
+    down(&s[i]);                    <span class="comment">/*如果得不到需要的叉子则阻塞*/</span>
 }    
 
 <span class="function"><span class="keyword">void</span> <span class="title">put_forks</span><span class="params">(i)</span>                       <span class="comment">/*i：哲学家编号，从0到N-1*/</span>
 </span>{
-    down(&amp;mutex);                   <span class="comment">/*进入临界区*/</span>
+    down(&mutex);                   <span class="comment">/*进入临界区*/</span>
     state[i] = THINKING;            <span class="comment">/*哲学家已就餐完毕*/</span>
     test(LEFT);                     <span class="comment">/*检查左边的邻居现在可以吃吗*/</span>
     test(RIGHT);                    <span class="comment">/*检查右边的邻居现在可以吃吗*/</span>
-    up(&amp;mutex);                     <span class="comment">/*离开临界区*/</span>
+    up(&mutex);                     <span class="comment">/*离开临界区*/</span>
 }
 
 <span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(i)</span>                            <span class="comment">/*i：哲学家编号，从0到N-1*/</span>
 </span>{
-    <span class="keyword">if</span>(state[i] == HUNGRY &amp;&amp; state[LEFT] != EATING &amp;&amp; state[RIGHT] != EATING){
+    <span class="keyword">if</span>(state[i] == HUNGRY && state[LEFT] != EATING && state[RIGHT] != EATING){
         state[i] = EATING;
-        up(&amp;s[i]);
+        up(&s[i]);
     }
 }
 </code></pre>
@@ -672,9 +732,9 @@ seamphore s[N];                         <span class="comment">/*每个哲学家�
 </blockquote>
 <h2 id="十一、线程的实现"><a href="#十一、线程的实现" class="headerlink" title="十一、线程的实现"></a>十一、线程的实现</h2><h4 id="在用户空间中实现线程"><a href="#在用户空间中实现线程" class="headerlink" title="在用户空间中实现线程"></a>在用户空间中实现线程</h4><p>把整个线程包放在用户空间中，这样用户级线程包可以在不支持线程的操作系统上实现，通过这一方法就可以用函数库实现线程。</p>
 <p><img src="/img/user-thread.png" alt="user-thread"></p>
-<pre><code class="C"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span>
-<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span>
-<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span>
+<pre class=" language-C"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><code class="language-C"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><pthread.h></span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><stdio.h></span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><stdlib.h></span></span>
 
 <span class="meta">#<span class="meta-keyword">define</span> NUMBER_OF_THREADS 10</span>
 
@@ -691,9 +751,9 @@ seamphore s[N];                         <span class="comment">/*每个哲学家�
     <span class="keyword">pthread_t</span> threads[NUMBER_OF_THREADS];
     <span class="keyword">int</span> status, i;
 
-    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; NUMBER_OF_THREADS; i++){
+    <span class="keyword">for</span>(i = <span class="number">0</span>; i < NUMBER_OF_THREADS; i++){
         <span class="built_in">printf</span>(<span class="string">"Main here.Creating thread %d0\n"</span>, i);
-        status = pthread_creat(&amp;threads[i], <span class="literal">NULL</span>, print_hello_world, (<span class="keyword">void</span> *)i);
+        status = pthread_creat(&threads[i], <span class="literal">NULL</span>, print_hello_world, (<span class="keyword">void</span> *)i);
 
         <span class="keyword">if</span>(status != <span class="number">0</span>){
             <span class="built_in">printf</span>(<span class="string">"Oops.pthread_creat return error code %d0"</span>, status);
@@ -930,7 +990,7 @@ return 0;
 </li>
 </ul>
 <h2 id="算法稳定性"><a href="#算法稳定性" class="headerlink" title="算法稳定性"></a>算法稳定性</h2><p>归并排序是一种稳定的排序方法  </p>
-<h2 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h2><pre><code class="C"><span class="comment">//归并排序</span>
+<h2 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h2><pre class=" language-C"><span class="comment"><code class="language-C"><span class="comment">//归并排序</span>
 <span class="keyword">typedef</span> <span class="keyword">int</span> ElemType;
 
 <span class="function"><span class="keyword">void</span> <span class="title">Merge</span><span class="params">( ElemType A[], ElemType TmpArray[], <span class="keyword">int</span> Lpos, <span class="keyword">int</span> Rpos, <span class="keyword">int</span> RightEnd )</span></span>;
@@ -944,18 +1004,18 @@ return 0;
     TmpPos = Lpos;
     NumElements = RightEnd - Lpos + <span class="number">1</span>;
 
-    <span class="keyword">while</span>( Lpos &lt;= LeftEnd &amp;&amp; Rpos &lt;= RightEnd )
-        <span class="keyword">if</span>( A[ Lpos ] &lt;= A[ Rpos ] )
+    <span class="keyword">while</span>( Lpos <= LeftEnd && Rpos <= RightEnd )
+        <span class="keyword">if</span>( A[ Lpos ] <= A[ Rpos ] )
             TmpArray[ TmpPos++ ] = A[ Lpos++ ];
         <span class="keyword">else</span>
             TmpArray[ TmpPos++ ] = A[ Rpos++ ];
 
-    <span class="keyword">while</span>( Lpos &lt;= LeftEnd )
+    <span class="keyword">while</span>( Lpos <= LeftEnd )
         TmpArray[ TmpPos++ ] = A[ Lpos++ ];
-    <span class="keyword">while</span>( Rpos &lt;= RightEnd )
+    <span class="keyword">while</span>( Rpos <= RightEnd )
         TmpArray[ TmpPos++ ] = A[ Rpos++ ];
 
-    <span class="keyword">for</span>( i = <span class="number">0</span>; i &lt; NumElements; i++, RightEnd-- )
+    <span class="keyword">for</span>( i = <span class="number">0</span>; i < NumElements; i++, RightEnd-- )
         A[ RightEnd ] = TmpArray[ RightEnd ];
 }
 
@@ -963,7 +1023,7 @@ return 0;
 </span>{
     <span class="keyword">int</span> Center;
 
-    <span class="keyword">if</span>( Left &lt; Right )
+    <span class="keyword">if</span>( Left < Right )
     {
         Center = ( Left + Right ) / <span class="number">2</span>;
         MSort( A, TmpArray, Left, Center );
@@ -1011,7 +1071,7 @@ return 0;
 <li>平均时间复杂度：O(nlogn)  </li>
 </ul>
 <h2 id="算法稳定性-1"><a href="#算法稳定性-1" class="headerlink" title="算法稳定性"></a>算法稳定性</h2><p>快速排序是一种稳定的排序方法  </p>
-<h2 id="算法实现-1"><a href="#算法实现-1" class="headerlink" title="算法实现"></a>算法实现</h2><pre><code class="C"><span class="keyword">typedef</span> <span class="keyword">int</span> ElemType;
+<h2 id="算法实现-1"><a href="#算法实现-1" class="headerlink" title="算法实现"></a>算法实现</h2><pre class=" language-C"><span class="keyword">typedef</span> <span class="keyword"><code class="language-C"><span class="keyword">typedef</span> <span class="keyword">int</span> ElemType;
 
 <span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> a, <span class="keyword">int</span> b )</span></span>;
 <span class="function"><span class="keyword">void</span> <span class="title">Quicksort</span><span class="params">( ElemType A[], <span class="keyword">int</span> N )</span></span>;
@@ -1035,7 +1095,7 @@ return 0;
 </span>{
     <span class="keyword">int</span> pivot;
 
-    <span class="keyword">if</span>( low &lt; high )
+    <span class="keyword">if</span>( low < high )
     {
         pivot = Partition( A, low, high );
         QSort( A, low, pivot<span class="number">-1</span> );
@@ -1047,12 +1107,12 @@ return 0;
 </span>{
     <span class="keyword">int</span> pivotkey;
     pivotkey = A[ low ];
-    <span class="keyword">while</span>( low &lt; high )
+    <span class="keyword">while</span>( low < high )
     {
-        <span class="keyword">while</span>( low &lt; high &amp;&amp; A[ high ] &gt;= pivotkey )
+        <span class="keyword">while</span>( low < high && A[ high ] >= pivotkey )
             high--;
         swap(A, low, high);
-        <span class="keyword">while</span>( low &lt; high &amp;&amp; A[ low ] &lt;= pivotkey)
+        <span class="keyword">while</span>( low < high && A[ low ] <= pivotkey)
             low++;
         swap(A, low, high);
     }
