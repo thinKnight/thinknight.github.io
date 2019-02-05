@@ -4,10 +4,10 @@
 
 
 <html class="theme-next pisces" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
@@ -17,8 +17,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -36,7 +36,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -70,23 +70,23 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="OS," />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Matrix Wall" type="application/atom+xml" />
+  <meta name="keywords" content="OS,">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.1.1" />
+
+  <link rel="alternate" href="/atom.xml" title="Matrix Wall" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.1.1">
 
 
 
@@ -100,6 +100,7 @@
 <meta property="og:url" content="http://thinknight.github.io/2014/OS/process-and-thread/index.html">
 <meta property="og:site_name" content="Matrix Wall">
 <meta property="og:description" content="操作系统中最核心的概念就是进程：这是对正在运行程序的一个抽象。">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="http://thinknight.github.io/img/process.png">
 <meta property="og:image" content="http://thinknight.github.io/img/user-thread.png">
 <meta property="og:image" content="http://thinknight.github.io/img/kernel-thread.png">
@@ -135,7 +136,7 @@
 
 
 
-  <link rel="canonical" href="http://thinknight.github.io/2014/OS/process-and-thread/"/>
+  <link rel="canonical" href="http://thinknight.github.io/2014/OS/process-and-thread/">
 
 
 
@@ -159,7 +160,7 @@
 
 <link rel="stylesheet" href="/css/prism.css" type="text/css"><script src="/js/prism.js"></script></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -169,13 +170,13 @@
   <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Matrix Wall</span>
         <span class="logo-line-after"><i></i></span>
@@ -205,7 +206,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             Home
           </a>
@@ -215,7 +216,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             Archives
           </a>
@@ -225,7 +226,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             Tags
           </a>
@@ -238,7 +239,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             Search
           </a>
@@ -259,9 +260,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="Searching..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -293,16 +292,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://thinknight.github.io/2014/OS/process-and-thread/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="thinKnight">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4667380?v=3&s=140">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Matrix Wall">
     </span>
 
@@ -343,8 +342,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2014/OS/process-and-thread/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/OS/process-and-thread/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/OS/process-and-thread/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -462,21 +460,21 @@
 </blockquote>
 <h2 id="十一、线程的实现"><a href="#十一、线程的实现" class="headerlink" title="十一、线程的实现"></a>十一、线程的实现</h2><h4 id="在用户空间中实现线程"><a href="#在用户空间中实现线程" class="headerlink" title="在用户空间中实现线程"></a>在用户空间中实现线程</h4><p>把整个线程包放在用户空间中，这样用户级线程包可以在不支持线程的操作系统上实现，通过这一方法就可以用函数库实现线程。</p>
 <p><img src="/img/user-thread.png" alt="user-thread"></p>
-<pre class=" language-C"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><code class="language-C"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><pthread.h></span></span>
-<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><stdio.h></span></span>
-<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><stdlib.h></span></span>
+<pre class=" language-C"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><code class="language-C"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><pthread.h></pthread.h></span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><stdio.h></stdio.h></span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><stdlib.h></stdlib.h></span></span>
 
 <span class="meta">#<span class="meta-keyword">define</span> NUMBER_OF_THREADS 10</span>
 
-<span class="function"><span class="keyword">void</span> *<span class="title">print_hello_world</span><span class="params">(<span class="keyword">void</span> *tid)</span>
-</span>{
+<span class="function"><span class="keyword">void</span> *<span class="title">print_hello_world</span><span class="params">(<span class="keyword">void</span> *tid)</span></span>
+<span class="function"></span>{
     <span class="comment">/*本函数输出线程的标识符，然后退出。*/</span>
     <span class="built_in">printf</span>(<span class="string">"Hello World.Greetings from thread %d0"</span>, tid);
     pthread_exit(<span class="literal">NULL</span>);
 }
 
-<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span>
-</span>{
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span>
+<span class="function"></span>{
     <span class="comment">/*主程序创建10个进程，然后退出。*/</span>
     <span class="keyword">pthread_t</span> threads[NUMBER_OF_THREADS];
     <span class="keyword">int</span> status, i;
@@ -492,7 +490,7 @@
     }
     <span class="built_in">exit</span>(<span class="literal">NULL</span>);
 }
-</code></pre>
+</code></span></span></pre>
 <h4 id="在内核中实现线程"><a href="#在内核中实现线程" class="headerlink" title="在内核中实现线程"></a>在内核中实现线程</h4><p>内核级线程就是内核有好几个分身，一个分身可以处理一件事的意思。这用来处理非同步事件很有用, 内核可以对每个非同步事件生个分身来处理。  </p>
 <p>内核级线程的操作非常轻便,几乎没有负担,而且对内核的结构有帮助。支持内核级线程的内核称作多线程内核。  </p>
 <p><img src="/img/kernel-thread.png" alt="kernel-thread"></p>
@@ -610,7 +608,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -620,10 +618,8 @@
       
 
       <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars1.githubusercontent.com/u/4667380?v=3&s=140"
-               alt="thinKnight" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/4667380?v=3&s=140" alt="thinKnight">
           <p class="site-author-name" itemprop="name">thinKnight</p>
            
               <p class="site-description motion-element" itemprop="description">I will survive</p>
@@ -634,7 +630,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -647,7 +643,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -709,7 +705,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、进程的定义"><span class="nav-number">1.</span> <span class="nav-text">一、进程的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、进程的结构"><span class="nav-number">2.</span> <span class="nav-text">二、进程的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、进程的创建：4个因素"><span class="nav-number">3.</span> <span class="nav-text">三、进程的创建：4个因素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、进程的终止：4种原因"><span class="nav-number">4.</span> <span class="nav-text">四、进程的终止：4种原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、进程的状态"><span class="nav-number">5.</span> <span class="nav-text">五、进程的状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、进程的实现"><span class="nav-number">6.</span> <span class="nav-text">六、进程的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、线程"><span class="nav-number">7.</span> <span class="nav-text">七、线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、引入线程的目的"><span class="nav-number">8.</span> <span class="nav-text">八、引入线程的目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九、多线程的原因："><span class="nav-number">9.</span> <span class="nav-text">九、多线程的原因：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十、线程中包括："><span class="nav-number">10.</span> <span class="nav-text">十、线程中包括：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十一、线程的实现"><span class="nav-number">11.</span> <span class="nav-text">十一、线程的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在用户空间中实现线程"><span class="nav-number">11.0.1.</span> <span class="nav-text">在用户空间中实现线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在内核中实现线程"><span class="nav-number">11.0.2.</span> <span class="nav-text">在内核中实现线程</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、进程的定义"><span class="nav-number">1.</span> <span class="nav-text">一、进程的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、进程的结构"><span class="nav-number">2.</span> <span class="nav-text">二、进程的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、进程的创建：4个因素"><span class="nav-number">3.</span> <span class="nav-text">三、进程的创建：4个因素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、进程的终止：4种原因"><span class="nav-number">4.</span> <span class="nav-text">四、进程的终止：4种原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、进程的状态"><span class="nav-number">5.</span> <span class="nav-text">五、进程的状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、进程的实现"><span class="nav-number">6.</span> <span class="nav-text">六、进程的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、线程"><span class="nav-number">7.</span> <span class="nav-text">七、线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、引入线程的目的"><span class="nav-number">8.</span> <span class="nav-text">八、引入线程的目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九、多线程的原因："><span class="nav-number">9.</span> <span class="nav-text">九、多线程的原因：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十、线程中包括："><span class="nav-number">10.</span> <span class="nav-text">十、线程中包括：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十一、线程的实现"><span class="nav-number">11.</span> <span class="nav-text">十一、线程的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在用户空间中实现线程"><span class="nav-number">11.0.1.</span> <span class="nav-text">在用户空间中实现线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在内核中实现线程"><span class="nav-number">11.0.2.</span> <span class="nav-text">在内核中实现线程</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -729,10 +725,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2014 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

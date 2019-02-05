@@ -4,10 +4,10 @@
 
 
 <html class="theme-next pisces" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
@@ -17,8 +17,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -36,7 +36,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -70,23 +70,23 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="OS," />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Matrix Wall" type="application/atom+xml" />
+  <meta name="keywords" content="OS,">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.1.1" />
+
+  <link rel="alternate" href="/atom.xml" title="Matrix Wall" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.1.1">
 
 
 
@@ -100,6 +100,7 @@
 <meta property="og:url" content="http://thinknight.github.io/2014/OS/communication/index.html">
 <meta property="og:site_name" content="Matrix Wall">
 <meta property="og:description" content="进程经常需要与其他进程通信，所以我们就来讨论一些关于进程间通信(Inter Process Communication, IPC)的问题。">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2017-06-27T07:16:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="进程间通信">
@@ -131,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="http://thinknight.github.io/2014/OS/communication/"/>
+  <link rel="canonical" href="http://thinknight.github.io/2014/OS/communication/">
 
 
 
@@ -155,7 +156,7 @@
 
 <link rel="stylesheet" href="/css/prism.css" type="text/css"><script src="/js/prism.js"></script></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -165,13 +166,13 @@
   <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Matrix Wall</span>
         <span class="logo-line-after"><i></i></span>
@@ -201,7 +202,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             Home
           </a>
@@ -211,7 +212,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             Archives
           </a>
@@ -221,7 +222,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             Tags
           </a>
@@ -234,7 +235,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             Search
           </a>
@@ -255,9 +256,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="Searching..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -289,16 +288,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://thinknight.github.io/2014/OS/communication/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="thinKnight">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4667380?v=3&s=140">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Matrix Wall">
     </span>
 
@@ -339,8 +338,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2014/OS/communication/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/OS/communication/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/OS/communication/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -397,13 +395,13 @@
 </ul>
 <h2 id="四、实现互斥的方案"><a href="#四、实现互斥的方案" class="headerlink" title="四、实现互斥的方案"></a>四、实现互斥的方案</h2><h3 id="1-屏蔽中断"><a href="#1-屏蔽中断" class="headerlink" title="1.屏蔽中断"></a>1.屏蔽中断</h3><p>在单处理器系统中，最简单的方法是使每个进程在刚刚进入临界区后立即屏蔽所有中断，并在就要离开之前打开中断。<br>屏蔽中断后，<strong>时钟中断</strong>也会被屏蔽。<br>CPU只有在发生时钟中断或其他中断时才会进行进程切换，这样，在屏蔽中断后CPU就不会被切换到其他进程。  </p>
 <h3 id="2-锁变量"><a href="#2-锁变量" class="headerlink" title="2.锁变量"></a>2.锁变量</h3><p>假设有一个共享变量，初始值为0。当一个进程想进入临界区时，它就会首先测试这把锁。<br>如果锁的值为0，则该进程就将其设置为1并进入临界区。<br>如果锁的值已经为1，那么进程就一直等待直到锁的值为0.<br>所以0就表示临界区内没有进程，1表示已经有某个进程进入临界区。  </p>
-<h3 id="3-严格轮换法"><a href="#3-严格轮换法" class="headerlink" title="3.严格轮换法"></a>3.严格轮换法</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>(TRUE)&#123;</div><div class="line">	<span class="keyword">while</span>(turn != <span class="number">0</span>)</div><div class="line">			critical_region();	<span class="comment">/*循环*/</span></div><div class="line">	turn = <span class="number">1</span>;</div><div class="line">	noncritical_region();</div><div class="line">&#125;</div><div class="line">```  </div><div class="line"></div><div class="line">&gt;a)  </div><div class="line"></div><div class="line">```<span class="function">C</span></div><div class="line"><span class="title">while</span><span class="params">(TRUE)</span>&#123;</div><div class="line">	<span class="keyword">while</span>(turn != <span class="number">1</span>)</div><div class="line">			critical_region();	<span class="comment">/*循环*/</span></div><div class="line">	turn = <span class="number">0</span>;</div><div class="line">	noncritical_region();</div><div class="line">&#125;</div><div class="line"></div><div class="line">```  </div><div class="line"></div><div class="line">&gt;b)  </div><div class="line"></div><div class="line">### <span class="number">4.</span>Peterson解法</div><div class="line">在进入临界区前，各个进程使用其进程号<span class="number">0</span>或<span class="number">1</span>作为参数来调用enter_region。该调用在需要时将使进程等待，直到能安全地进入临界区。在完成对共享变量的操作后，进程将调用leave_region，表示操作已完成，若其他进程希望进入临界区，则现在就可以进入。  </div><div class="line"></div><div class="line">```C</div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> FALSE 0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> TRUE  1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> N     2                                                  <span class="comment">/*进程数量*/</span></span></div><div class="line">                                                                   </div><div class="line"><span class="keyword">int</span> turn;                                                        <span class="comment">/*现在轮到谁？*/</span></div><div class="line"><span class="keyword">int</span> interested[N];                                               <span class="comment">/*所有值初始化为0(FALSE)*/</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">enter_region</span><span class="params">(<span class="keyword">int</span> process)</span>                                   <span class="comment">/*进程是0或1*/</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> other;                                                   <span class="comment">/*其他进程号*/</span></div><div class="line">    </div><div class="line">    other = <span class="number">1</span> - process;                                         <span class="comment">/*另一方进程*/</span></div><div class="line">    interested[process] = TRUE;                                  <span class="comment">/*表明所感兴趣的*/</span></div><div class="line">    turn = process;                                              <span class="comment">/*设置标志*/</span></div><div class="line">    <span class="keyword">while</span>(turn == process &amp;&amp; interested[other] == TRUE);         <span class="comment">/*空语句*/</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">leave_region</span><span class="params">(<span class="keyword">int</span> process)</span>                                   <span class="comment">/*进程：谁离开？*/</span></span></div><div class="line">&#123;</div><div class="line">    interested[process] = FALSE;                                 <span class="comment">/*表示离开临界区*/</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-严格轮换法"><a href="#3-严格轮换法" class="headerlink" title="3.严格轮换法"></a>3.严格轮换法</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(TRUE)&#123;</span><br><span class="line">	<span class="keyword">while</span>(turn != <span class="number">0</span>)</span><br><span class="line">			critical_region();	<span class="comment">/*循环*/</span></span><br><span class="line">	turn = <span class="number">1</span>;</span><br><span class="line">	noncritical_region();</span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">&gt;a)  </span><br><span class="line"></span><br><span class="line">```C</span><br><span class="line"><span class="keyword">while</span>(TRUE)&#123;</span><br><span class="line">	<span class="keyword">while</span>(turn != <span class="number">1</span>)</span><br><span class="line">			critical_region();	<span class="comment">/*循环*/</span></span><br><span class="line">	turn = <span class="number">0</span>;</span><br><span class="line">	noncritical_region();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">&gt;b)  </span><br><span class="line"></span><br><span class="line">### <span class="number">4.</span>Peterson解法</span><br><span class="line">在进入临界区前，各个进程使用其进程号<span class="number">0</span>或<span class="number">1</span>作为参数来调用enter_region。该调用在需要时将使进程等待，直到能安全地进入临界区。在完成对共享变量的操作后，进程将调用leave_region，表示操作已完成，若其他进程希望进入临界区，则现在就可以进入。  </span><br><span class="line"></span><br><span class="line">```C</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FALSE 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRUE  1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N     2                                                  <span class="comment">/*进程数量*/</span></span></span><br><span class="line">                                                                   </span><br><span class="line"><span class="keyword">int</span> turn;                                                        <span class="comment">/*现在轮到谁？*/</span></span><br><span class="line"><span class="keyword">int</span> interested[N];                                               <span class="comment">/*所有值初始化为0(FALSE)*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">enter_region</span><span class="params">(<span class="keyword">int</span> process)</span>                                   <span class="comment">/*进程是0或1*/</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> other;                                                   <span class="comment">/*其他进程号*/</span></span><br><span class="line">    </span><br><span class="line">    other = <span class="number">1</span> - process;                                         <span class="comment">/*另一方进程*/</span></span><br><span class="line">    interested[process] = TRUE;                                  <span class="comment">/*表明所感兴趣的*/</span></span><br><span class="line">    turn = process;                                              <span class="comment">/*设置标志*/</span></span><br><span class="line">    <span class="keyword">while</span>(turn == process &amp;&amp; interested[other] == TRUE);         <span class="comment">/*空语句*/</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">leave_region</span><span class="params">(<span class="keyword">int</span> process)</span>                                   <span class="comment">/*进程：谁离开？*/</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    interested[process] = FALSE;                                 <span class="comment">/*表示离开临界区*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="五、生产者-消费者问题"><a href="#五、生产者-消费者问题" class="headerlink" title="五、生产者-消费者问题"></a>五、生产者-消费者问题</h2><p>生产者-消费者问题又称为<strong>有界缓冲区问题</strong>。两个进程共享一个公共的固定大小的缓冲区。  </p>
 <p>其中一个是生产者，将消息放入缓冲区；另一个是消费者，从缓冲区中取出消息。  </p>
 <p>而问题在于<strong>当缓冲区已满，而此时生产者还想向其中放入一个新的数据项的情况</strong>。其解决方法是让生产者睡眠，待消费者从缓存区中取出一个或多个数据项时再唤醒它。</p>
 <p>当消费者试图从缓冲区中取数据而发现缓冲区为空时，消费者就睡眠，直到生产者向其中放入一些数据时再将其唤醒。  </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100                                      <span class="comment">/*缓冲区中的槽数目*/</span></span></div><div class="line"><span class="keyword">int</span> count = <span class="number">0</span>;                                     <span class="comment">/*缓冲区中的数据项数目*/</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">producer</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> item;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(TRUE)&#123;                                   <span class="comment">/*无限循环*/</span></div><div class="line">        item = produce_item();                     <span class="comment">/*产生下一新数据项*/</span></div><div class="line">        <span class="keyword">if</span>(count == N)  sleep();                   <span class="comment">/*如果缓冲区满了，就进入休眠状态*/</span></div><div class="line">        insert_item(item);                         <span class="comment">/*将新数据项放入缓冲区中*/</span></div><div class="line">        count = count + <span class="number">1</span>;                         <span class="comment">/*将缓冲区的数据项计数器增1*/</span></div><div class="line">        <span class="keyword">if</span>(count == <span class="number">1</span>）  wakeup(consumer);        </div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> consumer(<span class="keyword">void</span>)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> item;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(TRUE)&#123;                                   <span class="comment">/*无限循环*/</span></div><div class="line">        <span class="keyword">if</span>(count == <span class="number">0</span>)  sleep();                   <span class="comment">/*如果缓冲区空，则进入休眠状态*/</span></div><div class="line">        item = remove_item();                      <span class="comment">/*从缓冲区中取出一个数据项*/</span></div><div class="line">        count = count - <span class="number">1</span>;                         <span class="comment">/*将缓冲区的数据项计数器减1*/</span></div><div class="line">        <span class="keyword">if</span>(count == N - <span class="number">1</span>)  wakeup(producer);      <span class="comment">/*缓冲区满吗？*/</span></div><div class="line">        consume_item(item);                        <span class="comment">/*打印数据项*/</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">```  </div><div class="line">这里还是有可能会出现竞争状态，其原因是对count的访问未加限制。  </div><div class="line"></div><div class="line">我们来看这样一个情况：缓冲区为空，消费者刚刚读取count的值发现它为<span class="number">0</span>，此时调度程序决定暂停消费者而唤醒生产者。生产者向缓冲区中加入一个数据项，count加<span class="number">1</span>。现在count的值变成<span class="number">1</span>了，它推断由于count刚刚为<span class="number">0</span>，所以消费者一定在睡眠，于是生产者调用**wakeup**来唤醒消费者。  </div><div class="line"></div><div class="line">但此时消费者并没有睡眠，所以这个**wakeup**信号就会丢失，当消费者下次运行时，它将测试先前读到的count值，发现它为<span class="number">0</span>，于是睡眠。而生产者迟早会填满整个缓冲区，然后睡眠，这样一来，两个进程将永远睡眠下去。  </div><div class="line"></div><div class="line">所以现在问题的实质在于一个wakeup信号的丢失。虽然在这里我们可以加上一个**唤醒等待位**，但当问题中有三个或者更多进程时一个唤醒等待位就不够了，所以这并没有从本质上解决问题。  </div><div class="line"></div><div class="line">## 六、信号量</div><div class="line">E.W.Dijkstra提出一种方法，它使用一个整型变量来累计唤醒次数，供以后使用。  </div><div class="line"></div><div class="line">这个引入的新变量类型就叫做**信号量(semaphore)**。  </div><div class="line"></div><div class="line">一个信号量的取值可以为<span class="number">0</span>（表示没有保存下来的唤醒操作）或正值（表示有一个或多个唤醒操作）。  </div><div class="line"></div><div class="line">Dijkstra建议设立两种操作：down(P)和up(V)。  </div><div class="line">    </div><div class="line">    </div><div class="line">- down</div><div class="line">    如果信号量的值大于<span class="number">0</span>，则将其值减<span class="number">1</span>并继续；  </div><div class="line">    若该值为<span class="number">0</span>，则进程将睡眠。并将继续down操作。  </div><div class="line"></div><div class="line">- up</div><div class="line">    对信号量的值增<span class="number">1</span>。  </div><div class="line">    </div><div class="line">    </div><div class="line">### 用信号量解决生产者-消费者问题</div><div class="line">#### 该方案使用了三个信号量：</div><div class="line">- **full**   用来记录充满的缓冲槽数目；</div><div class="line">- **empty**  记录空的缓冲槽总数；</div><div class="line">- **mutex**  确保生产者和消费者不会同时访问缓冲区。  </div><div class="line"></div><div class="line">full的初值为<span class="number">0</span>，empty的初值为缓冲区中槽的数目，mutex初值为<span class="number">1</span>。供两个或多个进程使用的信号量，其初值为<span class="number">1</span>，保证同时只有一个进程可以进入临界区，称为二元信号量。如果每个进程在进入临界区前都执行一个down操作，并在刚刚退出时执行一个up操作，就能够实现互斥。  </div><div class="line"></div><div class="line">```C</div><div class="line">#define N <span class="number">100</span>                       <span class="comment">/*缓冲区中的槽数目*/</span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> semaphore;              <span class="comment">/*信号量是一种特殊的整型数据*/</span></div><div class="line">semaphore mutex = <span class="number">1</span>;                <span class="comment">/*控制对临界区的访问*/</span></div><div class="line">semaphore empty = N;                <span class="comment">/*计数缓冲区的空槽数目*/</span></div><div class="line">semaphore full  = <span class="number">0</span>;                <span class="comment">/*计数缓冲区的满槽数目*/</span></div><div class="line"></div><div class="line"><span class="keyword">void</span> producer(<span class="keyword">void</span>)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> item;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(TRUE)&#123;                    <span class="comment">/*TRUE是常量1*/</span></div><div class="line">        item = produce_item();      <span class="comment">/*产生放在缓冲区中的一些数据*/</span></div><div class="line">        down(&amp;empty);               <span class="comment">/*将空槽数目减1*/</span></div><div class="line">        down(&amp;mutex);               <span class="comment">/*进入临界区*/</span></div><div class="line">        insert_item(item);          <span class="comment">/*将新数据项放到缓冲区中*/</span></div><div class="line">        up(&amp;mutex);                 <span class="comment">/*离开临界区*/</span></div><div class="line">        up(&amp;full);                  <span class="comment">/*将满槽的数目加1*/</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> consumer(<span class="keyword">void</span>)</div><div class="line">&#123; </div><div class="line">    <span class="keyword">int</span> item;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(TRUE)&#123;                    <span class="comment">/*无限循环*/</span></div><div class="line">        down(&amp;full);                <span class="comment">/*将满槽数目减1*/</span></div><div class="line">        down(&amp;mutex);               <span class="comment">/*进入临界区*/</span></div><div class="line">        item = remove();            <span class="comment">/*从缓冲区中取出数据项*/</span></div><div class="line">        up(&amp;mutex);                 <span class="comment">/*离开临界区*/</span></div><div class="line">        up(&amp;empty);                 <span class="comment">/*将空槽数加1*/</span></div><div class="line">        consumer_item(item);        <span class="comment">/*处理数据项*/</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100                                      <span class="comment">/*缓冲区中的槽数目*/</span></span></span><br><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;                                     <span class="comment">/*缓冲区中的数据项数目*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">producer</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> item;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(TRUE)&#123;                                   <span class="comment">/*无限循环*/</span></span><br><span class="line">        item = produce_item();                     <span class="comment">/*产生下一新数据项*/</span></span><br><span class="line">        <span class="keyword">if</span>(count == N)  sleep();                   <span class="comment">/*如果缓冲区满了，就进入休眠状态*/</span></span><br><span class="line">        insert_item(item);                         <span class="comment">/*将新数据项放入缓冲区中*/</span></span><br><span class="line">        count = count + <span class="number">1</span>;                         <span class="comment">/*将缓冲区的数据项计数器增1*/</span></span><br><span class="line">        <span class="keyword">if</span>(count == <span class="number">1</span>）  wakeup(consumer);        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> consumer(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> item;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(TRUE)&#123;                                   <span class="comment">/*无限循环*/</span></span><br><span class="line">        <span class="keyword">if</span>(count == <span class="number">0</span>)  sleep();                   <span class="comment">/*如果缓冲区空，则进入休眠状态*/</span></span><br><span class="line">        item = remove_item();                      <span class="comment">/*从缓冲区中取出一个数据项*/</span></span><br><span class="line">        count = count - <span class="number">1</span>;                         <span class="comment">/*将缓冲区的数据项计数器减1*/</span></span><br><span class="line">        <span class="keyword">if</span>(count == N - <span class="number">1</span>)  wakeup(producer);      <span class="comment">/*缓冲区满吗？*/</span></span><br><span class="line">        consume_item(item);                        <span class="comment">/*打印数据项*/</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line">这里还是有可能会出现竞争状态，其原因是对count的访问未加限制。  </span><br><span class="line"></span><br><span class="line">我们来看这样一个情况：缓冲区为空，消费者刚刚读取count的值发现它为<span class="number">0</span>，此时调度程序决定暂停消费者而唤醒生产者。生产者向缓冲区中加入一个数据项，count加<span class="number">1</span>。现在count的值变成<span class="number">1</span>了，它推断由于count刚刚为<span class="number">0</span>，所以消费者一定在睡眠，于是生产者调用**wakeup**来唤醒消费者。  </span><br><span class="line"></span><br><span class="line">但此时消费者并没有睡眠，所以这个**wakeup**信号就会丢失，当消费者下次运行时，它将测试先前读到的count值，发现它为<span class="number">0</span>，于是睡眠。而生产者迟早会填满整个缓冲区，然后睡眠，这样一来，两个进程将永远睡眠下去。  </span><br><span class="line"></span><br><span class="line">所以现在问题的实质在于一个wakeup信号的丢失。虽然在这里我们可以加上一个**唤醒等待位**，但当问题中有三个或者更多进程时一个唤醒等待位就不够了，所以这并没有从本质上解决问题。  </span><br><span class="line"></span><br><span class="line">## 六、信号量</span><br><span class="line">E.W.Dijkstra提出一种方法，它使用一个整型变量来累计唤醒次数，供以后使用。  </span><br><span class="line"></span><br><span class="line">这个引入的新变量类型就叫做**信号量(semaphore)**。  </span><br><span class="line"></span><br><span class="line">一个信号量的取值可以为<span class="number">0</span>（表示没有保存下来的唤醒操作）或正值（表示有一个或多个唤醒操作）。  </span><br><span class="line"></span><br><span class="line">Dijkstra建议设立两种操作：down(P)和up(V)。  </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">- down</span><br><span class="line">    如果信号量的值大于<span class="number">0</span>，则将其值减<span class="number">1</span>并继续；  </span><br><span class="line">    若该值为<span class="number">0</span>，则进程将睡眠。并将继续down操作。  </span><br><span class="line"></span><br><span class="line">- up</span><br><span class="line">    对信号量的值增<span class="number">1</span>。  </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">### 用信号量解决生产者-消费者问题</span><br><span class="line">#### 该方案使用了三个信号量：</span><br><span class="line">- **full**   用来记录充满的缓冲槽数目；</span><br><span class="line">- **empty**  记录空的缓冲槽总数；</span><br><span class="line">- **mutex**  确保生产者和消费者不会同时访问缓冲区。  </span><br><span class="line"></span><br><span class="line">full的初值为<span class="number">0</span>，empty的初值为缓冲区中槽的数目，mutex初值为<span class="number">1</span>。供两个或多个进程使用的信号量，其初值为<span class="number">1</span>，保证同时只有一个进程可以进入临界区，称为二元信号量。如果每个进程在进入临界区前都执行一个down操作，并在刚刚退出时执行一个up操作，就能够实现互斥。  </span><br><span class="line"></span><br><span class="line">```C</span><br><span class="line">#define N <span class="number">100</span>                       <span class="comment">/*缓冲区中的槽数目*/</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> semaphore;              <span class="comment">/*信号量是一种特殊的整型数据*/</span></span><br><span class="line">semaphore mutex = <span class="number">1</span>;                <span class="comment">/*控制对临界区的访问*/</span></span><br><span class="line">semaphore empty = N;                <span class="comment">/*计数缓冲区的空槽数目*/</span></span><br><span class="line">semaphore full  = <span class="number">0</span>;                <span class="comment">/*计数缓冲区的满槽数目*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> producer(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> item;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(TRUE)&#123;                    <span class="comment">/*TRUE是常量1*/</span></span><br><span class="line">        item = produce_item();      <span class="comment">/*产生放在缓冲区中的一些数据*/</span></span><br><span class="line">        down(&amp;empty);               <span class="comment">/*将空槽数目减1*/</span></span><br><span class="line">        down(&amp;mutex);               <span class="comment">/*进入临界区*/</span></span><br><span class="line">        insert_item(item);          <span class="comment">/*将新数据项放到缓冲区中*/</span></span><br><span class="line">        up(&amp;mutex);                 <span class="comment">/*离开临界区*/</span></span><br><span class="line">        up(&amp;full);                  <span class="comment">/*将满槽的数目加1*/</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> consumer(<span class="keyword">void</span>)</span><br><span class="line">&#123; </span><br><span class="line">    <span class="keyword">int</span> item;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(TRUE)&#123;                    <span class="comment">/*无限循环*/</span></span><br><span class="line">        down(&amp;full);                <span class="comment">/*将满槽数目减1*/</span></span><br><span class="line">        down(&amp;mutex);               <span class="comment">/*进入临界区*/</span></span><br><span class="line">        item = remove();            <span class="comment">/*从缓冲区中取出数据项*/</span></span><br><span class="line">        up(&amp;mutex);                 <span class="comment">/*离开临界区*/</span></span><br><span class="line">        up(&amp;empty);                 <span class="comment">/*将空槽数加1*/</span></span><br><span class="line">        consumer_item(item);        <span class="comment">/*处理数据项*/</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -513,7 +511,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -523,10 +521,8 @@
       
 
       <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars1.githubusercontent.com/u/4667380?v=3&s=140"
-               alt="thinKnight" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/4667380?v=3&s=140" alt="thinKnight">
           <p class="site-author-name" itemprop="name">thinKnight</p>
            
               <p class="site-description motion-element" itemprop="description">I will survive</p>
@@ -537,7 +533,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -550,7 +546,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -632,10 +628,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2014 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
