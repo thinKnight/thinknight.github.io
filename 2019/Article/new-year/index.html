@@ -75,7 +75,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="font-end,">
+  <meta name="keywords" content="Article,">
 
 
 
@@ -93,18 +93,18 @@
 
 
 
-<meta name="description" content="EJS（Embedded JavaScript）是一种客户端的模板语言，通过把数据和模板结合起来去生成 HTML，下面给出一个简单介绍 EJS 的实例。">
-<meta name="keywords" content="font-end">
+<meta name="description" content="今天是大年初一，新的一年已在眼前，我欲重拾过往，继续迈步向前。">
+<meta name="keywords" content="Article">
 <meta property="og:type" content="article">
-<meta property="og:title" content="EJS 入门简介">
-<meta property="og:url" content="http://thinknight.github.io/2017/Font-End/ejs/index.html">
+<meta property="og:title" content="New Year">
+<meta property="og:url" content="http://thinknight.github.io/2019/Article/new-year/index.html">
 <meta property="og:site_name" content="Matrix Wall">
-<meta property="og:description" content="EJS（Embedded JavaScript）是一种客户端的模板语言，通过把数据和模板结合起来去生成 HTML，下面给出一个简单介绍 EJS 的实例。">
+<meta property="og:description" content="今天是大年初一，新的一年已在眼前，我欲重拾过往，继续迈步向前。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-08-21T08:04:11.000Z">
+<meta property="og:updated_time" content="2019-02-05T15:08:04.511Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="EJS 入门简介">
-<meta name="twitter:description" content="EJS（Embedded JavaScript）是一种客户端的模板语言，通过把数据和模板结合起来去生成 HTML，下面给出一个简单介绍 EJS 的实例。">
+<meta name="twitter:title" content="New Year">
+<meta name="twitter:description" content="今天是大年初一，新的一年已在眼前，我欲重拾过往，继续迈步向前。">
 
 
 
@@ -132,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://thinknight.github.io/2017/Font-End/ejs/">
+  <link rel="canonical" href="http://thinknight.github.io/2019/Article/new-year/">
 
 
 
 
 
-  <title>EJS 入门简介 | Matrix Wall</title>
+  <title>New Year | Matrix Wall</title>
   
 
 
@@ -289,7 +289,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://thinknight.github.io/2017/Font-End/ejs/">
+    <link itemprop="mainEntityOfPage" href="http://thinknight.github.io/2019/Article/new-year/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="thinKnight">
@@ -306,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">EJS 入门简介</h1>
+          <h1 class="post-title" itemprop="name headline">New Year</h1>
         
 
         <div class="post-meta">
@@ -318,8 +318,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-21T01:07:18+08:00">
-                2017-08-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-05T23:02:57+08:00">
+                2019-02-05
               </time>
             
 
@@ -337,8 +337,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/Font-End/ejs/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/Font-End/ejs/" itemprop="commentCount"></span>
+                <a href="/2019/Article/new-year/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/Article/new-year/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -363,46 +363,7 @@
       
 
       
-        <p>EJS（Embedded JavaScript）是一种客户端的模板语言，通过把数据和模板结合起来去生成 HTML，下面给出一个简单介绍 EJS 的实例。</p>
-<a id="more"></a>
-<h3 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a>DEMO</h3><h4 id="1-原始-JSON-数据"><a href="#1-原始-JSON-数据" class="headerlink" title="1. 原始 JSON 数据"></a>1. 原始 JSON 数据</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  title:    <span class="string">'The Games List'</span>,</span><br><span class="line">  game:     [<span class="string">'GTA5'</span>, <span class="string">'Titan Fall'</span>, <span class="string">'Zelda'</span>]	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="2-模板"><a href="#2-模板" class="headerlink" title="2. 模板"></a>2. 模板</h4><p>对于 EJS ，在 <code>&lt;%</code> 与 <code>%&gt;</code>之间的 JavaScript 会被执行，而<code>&lt;%=</code> 和 <code>%&gt;</code>之间的 JavaScript 会把 HTML 添加到生成的结果中。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;<span class="xml"><span class="tag">&lt;<span class="name">%=</span> <span class="attr">title</span> %&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">&lt;ul&gt;</span><br><span class="line">&lt;% <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; supplies.length; i++) &#123;%&gt;</span><br><span class="line">  &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">%=</span> <span class="attr">supplies</span>[<span class="attr">i</span>] %&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">&lt;% &#125; %&gt;</span><br><span class="line">&lt;<span class="regexp">/ul&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="3-结果"><a href="#3-结果" class="headerlink" title="3. 结果"></a>3. 结果</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>The Games List<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>GTA5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>Titan Fall<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>Zelda<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>上面是 &lt; 模板 + 数据 &gt; 后生成的 HTML 代码，在浏览器中显示的结果就是：</p>
-<h4 id="The-Games-List"><a href="#The-Games-List" class="headerlink" title="The Games List"></a>The Games List</h4><ul>
-<li>GTA5</li>
-<li>Titan Fall</li>
-<li>Zelda</li>
-</ul>
-<p>以上是 EJS 的入门 DEMO， 下面阐述一下如何更深入地使用 EJS。</p>
-<hr>
-<h2 id="EJS-简单教程"><a href="#EJS-简单教程" class="headerlink" title="EJS 简单教程"></a>EJS 简单教程</h2><h3 id="1-引入-EJS"><a href="#1-引入-EJS" class="headerlink" title="1. 引入 EJS"></a>1. 引入 EJS</h3><p>我们的页面需要引入 EJS，这样 JavaScript 才能使用它，所以需要先下载 <a href="http://embeddedjavascript.googlecode.com/files/ejs_0.9_alpha_1_production.js" target="_blank" rel="noopener">ejs_production.js</a>，然后在 HTML 中插入 EJS：  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"ejs_production.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-创建一个模板"><a href="#2-创建一个模板" class="headerlink" title="2. 创建一个模板"></a>2. 创建一个模板</h3><p>要想将代码变得更简洁，第一步就是将 HTML 从 JavaScript 中分离开来。所以就需要把 HTML 抽离出来，放进单独的模板文件中。现在先创建个文件，命名为 <code>cleaning.ejs</code>，并插入以下代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;<span class="xml"><span class="tag">&lt;<span class="name">%=</span> <span class="attr">title</span> %&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;% <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; supplies.length; i++) &#123; %&gt;</span><br><span class="line">    &lt;li&gt;</span><br><span class="line">      &lt;a href=<span class="string">'supplies/&lt;%= supplies[i] %&gt;'</span>&gt;</span><br><span class="line">        &lt;%= supplies[i] %&gt;</span><br><span class="line">      &lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">    &lt;li&gt;</span></span><br><span class="line"><span class="regexp">  &lt;% &#125; %&gt;</span></span><br><span class="line"><span class="regexp">&lt;/u</span>l&gt;</span><br></pre></td></tr></table></figure>
-<p>你会注意到在<code>&lt;%</code> <code>%&gt;</code>两个标签里的代码都会被执行，并且<code>&lt;%=</code> <code>%&gt;</code>两标签之间的代码都将自己插入了被返回的 HTML 中。  </p>
-<p>我们需要添加 JavaScript 脚本来控制模板的加载和渲染，且将原始的涉及到字符串的代码用以下代码代替：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// load the template file, then render it with data</span></span><br><span class="line"><span class="keyword">var</span> html = <span class="keyword">new</span> EJS(&#123;<span class="attr">url</span>: <span class="string">'cleaning.js'</span>&#125;).render(data);</span><br></pre></td></tr></table></figure>
-<p>现在，模板代码将 HTML 存储在其准备好的结构中，使得 JavaScript 代码变得短小精悍。</p>
-<h3 id="3-视图助手-View-Helper"><a href="#3-视图助手-View-Helper" class="headerlink" title="3. 视图助手 - View Helper"></a>3. 视图助手 - View Helper</h3><p>EJS 是使用 view helpers 来打包。view helper 是常用的视图代码的快捷方式，像链接和表单，使试图代码保持简单短小。  </p>
-<p>我们模板里的链接由类似于字符串的形式来构建：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'supplies/&lt;%= supplies[i] %&gt;'</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">supplies</span>[<span class="attr">i</span>] %&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>上面的这段代码还是有点混乱，尤其是那么多嵌套的标签实在让人头昏眼花，所以接下来就可以用视图助手让代码变得轻量。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>(<span class="attr">supplies</span>[<span class="attr">i</span>], '<span class="attr">supplies</span>/'+<span class="attr">supplies</span>[<span class="attr">i</span>]) %&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>现在代码就更简单明了了，还记不记得构建的链接是什么样的？  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">html += <span class="string">"&lt;li&gt;&lt;a href='supplies/"</span>+data.supplies[i]+<span class="string">"&gt;"</span></span><br><span class="line">html += data.supplies[i]+<span class="string">"&lt;/a&gt;&lt;/li&gt;</span></span><br></pre></td></tr></table></figure>
-<p>于之前的 JavaScript 代码进行比对，不了解你所写代码的人也能很快地理解上面的 EJS 模板片段。</p>
-<h3 id="4-错误处理"><a href="#4-错误处理" class="headerlink" title="4. 错误处理"></a>4. 错误处理</h3><p>如果在你写的 EJS 模板中有错误，EJS 将指出错误发生的确切行号，只要将 <code>ejs_jslint.js</code> 引入项目中。当然，这些错误可以使用 Chrome 的调试器查看。</p>
-<h3 id="5-何时使用-EJS-来整理代码？"><a href="#5-何时使用-EJS-来整理代码？" class="headerlink" title="5. 何时使用 EJS 来整理代码？"></a>5. 何时使用 EJS 来整理代码？</h3><ol>
-<li>用 JavaScript 来构建 HTML</li>
-<li>使用 AJAX 的 web 服务</li>
-<li>可换肤的应用</li>
-</ol>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ol>
-<li><a href="http://www.embeddedjs.com/" target="_blank" rel="noopener">官方网站</a></li>
-<li><a href="http://code.google.com/p/embeddedjavascript/w/list" target="_blank" rel="noopener">EJS 文档</a></li>
-</ol>
+        <p>今天是大年初一，新的一年已在眼前，我欲重拾过往，继续迈步向前。</p>
 
       
     </div>
@@ -432,7 +393,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/font-end/" rel="tag"># font-end</a>
+            <a href="/tags/Article/" rel="tag"># Article</a>
           
         </div>
       
@@ -445,8 +406,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/Tool/vim/" rel="next" title="Vim使用笔记">
-                <i class="fa fa-chevron-left"></i> Vim使用笔记
+              <a href="/2017/Front-End/ejs/" rel="next" title="EJS 入门简介">
+                <i class="fa fa-chevron-left"></i> EJS 入门简介
               </a>
             
           </div>
@@ -454,10 +415,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/NewYear/" rel="prev" title="NewYear">
-                NewYear <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -511,17 +468,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/4667380?v=3&s=140" alt="thinKnight">
           <p class="site-author-name" itemprop="name">thinKnight</p>
@@ -547,7 +495,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -599,22 +547,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DEMO"><span class="nav-number">1.</span> <span class="nav-text">DEMO</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-原始-JSON-数据"><span class="nav-number">1.1.</span> <span class="nav-text">1. 原始 JSON 数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-模板"><span class="nav-number">1.2.</span> <span class="nav-text">2. 模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-结果"><span class="nav-number">1.3.</span> <span class="nav-text">3. 结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Games-List"><span class="nav-number">1.4.</span> <span class="nav-text">The Games List</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#EJS-简单教程"><span class="nav-number"></span> <span class="nav-text">EJS 简单教程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-引入-EJS"><span class="nav-number">1.</span> <span class="nav-text">1. 引入 EJS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-创建一个模板"><span class="nav-number">2.</span> <span class="nav-text">2. 创建一个模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-视图助手-View-Helper"><span class="nav-number">3.</span> <span class="nav-text">3. 视图助手 - View Helper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-错误处理"><span class="nav-number">4.</span> <span class="nav-text">4. 错误处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-何时使用-EJS-来整理代码？"><span class="nav-number">5.</span> <span class="nav-text">5. 何时使用 EJS 来整理代码？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文档"><span class="nav-number"></span> <span class="nav-text">参考文档</span></a></li></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -759,9 +691,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://thinknight.github.io/2017/Font-End/ejs/';
-          this.page.identifier = '2017/Font-End/ejs/';
-          this.page.title = 'EJS 入门简介';
+          this.page.url = 'http://thinknight.github.io/2019/Article/new-year/';
+          this.page.identifier = '2019/Article/new-year/';
+          this.page.title = 'New Year';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://matrixwall.disqus.com/embed.js';
