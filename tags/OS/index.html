@@ -1,1018 +1,403 @@
-<!doctype html>
-
-
-
-
-<html class="theme-next pisces" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="Hexo, NexT">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Matrix Wall" type="application/atom+xml">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.1.1">
-
-
-
-
-
-
-<meta name="description" content="I will survive">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Matrix Wall">
-<meta property="og:url" content="http://thinknight.github.io/tags/OS/index.html">
-<meta property="og:site_name" content="Matrix Wall">
-<meta property="og:description" content="I will survive">
-<meta property="og:locale" content="en">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Matrix Wall">
-<meta name="twitter:description" content="I will survive">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
-    fancybox: true,
-    motion: false,
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="description" content="I will survive"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="alternative" href="/atom.xml" title="Matrix Wall" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>OS - Matrix Wall</title><link rel="stylesheet" href="/css/main.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><link rel="stylesheet" href="/css/prism.css" type="text/css"><script src="/js/prism.js"></script></head><body><header class="head"><h1 class="head-title u-fl"><a href="/">Matrix Wall</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a href="/" class="head-nav__link">Home</a></li><li class="head-nav__item"><a href="/archives" class="head-nav__link">Archives</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"><time datetime="2014-10-10T10:04:58.000Z" class="post__time">October 10, 2014</time><h1 class="post__title"><a href="/2014/OS/process-qa/">关于进程的问题</a></h1></header><div class="post__main echo"><p>哲学家就餐问题等<br><a id="more"></a></p>
+<h1 id="一、经典的IPC问题"><a href="#一、经典的IPC问题" class="headerlink" title="一、经典的IPC问题"></a>一、经典的IPC问题</h1><h2 id="哲学家就餐问题"><a href="#哲学家就餐问题" class="headerlink" title="哲学家就餐问题"></a>哲学家就餐问题</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述:"></a>问题描述:</h3><p>5个哲学家围绕一张圆桌而坐，每个哲学家面前都有一盘通心粉，由于通心粉很滑，所以需要两把叉子才能夹住。相邻两个盘子之间有一把叉子。哲学家的动作包括思考和进餐，进餐时需要同时拿起他左边和右边的两把叉子,思考时则同时将两把叉子放回原处。  </p>
+<p><img src="/img/philo-dinner.png" alt="dinner"></p>
+<p>如何保证哲学家们的动作有序进行?如:  </p>
+<ul>
+<li>不出现相邻者同时要求进餐;</li>
+<li>不出现有人永远拿不到叉子。</li>
+</ul>
+<p>为了避免死锁，和只能让一个哲学家进餐的状态，我们可以使用下面的方法。  </p>
+<hr>
+<p>使用一个数组state跟踪每一个哲学家是在进餐，思考还是饥饿状态（正在试图拿叉子），一个哲学家只有在两个邻居都没有进餐时才允许进入进餐状态。  </p>
+<p>第i个哲学家由宏LEFT和RIGHT定义。比如i为2，则LEFT为1，RIGHT为3。  </p>
+<pre class=" language-C"><span class="meta">#<span class="meta-keyword">define</span> N           5                   <span class="comment"><code class="language-C"><span class="meta">#<span class="meta-keyword">define</span> N           5                   <span class="comment">/*哲学家数目*/</span></span>
+<span class="meta">#<span class="meta-keyword">define</span> LEFT        (i + N - 1) % N     <span class="comment">/*i的左邻居编号*/</span></span>
+<span class="meta">#<span class="meta-keyword">define</span> RIGHT       (i + 1) % N         <span class="comment">/*i的右邻居编号*/</span></span>
+<span class="meta">#<span class="meta-keyword">define</span> THINKING    0                   <span class="comment">/*哲学家在思考*/</span></span>
+<span class="meta">#<span class="meta-keyword">define</span> HUNGRY      1                   <span class="comment">/*哲学家试图拿起叉子*/</span></span>
+<span class="meta">#<span class="meta-keyword">define</span> EATING      2                   <span class="comment">/*哲学家进餐*/</span></span>
+<span class="keyword">typedef</span> <span class="keyword">int</span> seamphore;                  <span class="comment">/*信号量是一种特殊的整型数据*/</span>
+<span class="keyword">int</span> state[N];                           <span class="comment">/*数组用来跟踪记录每位哲学家的状态*/</span>
+seamphore mutex = <span class="number">1</span>;                    <span class="comment">/*临界区的互斥*/</span>
+seamphore s[N];                         <span class="comment">/*每个哲学家一个信号量*/</span>
+
+<span class="function"><span class="keyword">void</span> <span class="title">philosopher</span><span class="params">(<span class="keyword">int</span> i)</span>                 <span class="comment">/*i：哲学家编号，从0到N-1*/</span></span>
+<span class="function"></span>{
+    <span class="keyword">while</span>(TRUE){                    <span class="comment">/*无限循环*/</span>
     }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://thinknight.github.io/tags/OS/">
-
-
-
-
-
-  <title>Tag: OS | Matrix Wall</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/css/prism.css" type="text/css"><script src="/js/prism.js"></script></head>
-
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left  ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Matrix Wall</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle">I will survive.</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Tags
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            Search
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h1>OS<small>Tag</small>
-      </h1>
-    </div>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2014/OS/process-qa/" itemprop="url">
-              
-                <span itemprop="name">关于进程的问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2014-10-10T18:04:58+08:00" content="2014-10-10">
-          10-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2014/OS/schedule/" itemprop="url">
-              
-                <span itemprop="name">进程间调度</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2014-10-10T16:48:52+08:00" content="2014-10-10">
-          10-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2014/OS/communication/" itemprop="url">
-              
-                <span itemprop="name">进程间通信</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2014-10-09T19:02:38+08:00" content="2014-10-09">
-          10-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2014/OS/process-and-thread/" itemprop="url">
-              
-                <span itemprop="name">进程与线程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2014-10-08T21:17:31+08:00" content="2014-10-08">
-          10-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2014/OS/os-1/" itemprop="url">
-              
-                <span itemprop="name">操作系统名词概念解释</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2014-06-21T22:07:20+08:00" content="2014-06-21">
-          06-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
-
-  
-
-
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/4667380?v=3&s=140" alt="thinKnight">
-          <p class="site-author-name" itemprop="name">thinKnight</p>
-           
-              <p class="site-description motion-element" itemprop="description">I will survive</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">posts</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
-                <span class="site-state-item-name">tags</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/thinKnight" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/thinKnight" target="_blank" title="Zhihu">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  Zhihu
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy;  2014 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">thinKnight</span>
-</div>
-
-
-<div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
-</div>
-
-<div class="theme-info">
-  Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
-
-
-
-  
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://matrixwall.disqus.com/count.js" async></script>
-    
-
-    
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
+}
+
+<span class="function"><span class="keyword">void</span> <span class="title">take_forks</span><span class="params">(<span class="keyword">int</span> i)</span>                  <span class="comment">/*i：哲学家编号，从0到N-1*/</span></span>
+<span class="function"></span>{    
+    down(&mutex);                   <span class="comment">/*进入临界区*/</span>
+    state[i] = HUNGRY;              <span class="comment">/*记录哲学家i处于饥饿的状态*/</span>
+    test(i);                        <span class="comment">/*尝试获取2把叉子*/</span>
+    up(&mutex);                     <span class="comment">/*离开临界区*/</span>
+    down(&s[i]);                    <span class="comment">/*如果得不到需要的叉子则阻塞*/</span>
+}    
+
+<span class="function"><span class="keyword">void</span> <span class="title">put_forks</span><span class="params">(i)</span>                       <span class="comment">/*i：哲学家编号，从0到N-1*/</span></span>
+<span class="function"></span>{
+    down(&mutex);                   <span class="comment">/*进入临界区*/</span>
+    state[i] = THINKING;            <span class="comment">/*哲学家已就餐完毕*/</span>
+    test(LEFT);                     <span class="comment">/*检查左边的邻居现在可以吃吗*/</span>
+    test(RIGHT);                    <span class="comment">/*检查右边的邻居现在可以吃吗*/</span>
+    up(&mutex);                     <span class="comment">/*离开临界区*/</span>
+}
+
+<span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(i)</span>                            <span class="comment">/*i：哲学家编号，从0到N-1*/</span></span>
+<span class="function"></span>{
+    <span class="keyword">if</span>(state[i] == HUNGRY && state[LEFT] != EATING && state[RIGHT] != EATING){
+        state[i] = EATING;
+        up(&s[i]);
     }
-    var path = "/" + search_path;
-    // monitor main search box;
+}
+</code></span></span></pre>
+<p>该程序使用了一个信号量数组，每个信号量对应一个哲学家，这样在所需的叉子被占用时，想进餐的哲学家就被阻塞。  </p>
+<hr>
+<h1 id="二、进程与线程书后习题"><a href="#二、进程与线程书后习题" class="headerlink" title="二、进程与线程书后习题"></a>二、进程与线程书后习题</h1><hr>
+<p><strong>1.有没有可能发生阻塞到运行，就绪到阻塞的转换？</strong>  </p>
+<ol>
+<li>从阻塞到运行的状态是可以的，假设某个进程在I/O上阻塞，而且I/O就此结束，如果此时CPU是空闲的话，这个进程就可以从阻塞状态直接转换到运行态。  </li>
+<li>而从就绪态转换到阻塞态是不可能的，因为一个就绪的进程是不会做诸如I/O这些会产生阻塞的事，只有运行的进程才能被阻塞。  </li>
+</ol>
+<hr>
+<p><strong>4.内核使用单独堆栈的原因</strong></p>
+<ol>
+<li>你不会希望由于一些写的不好的用户程序没有被分配到足够多的堆栈空间而导致系统崩溃。  </li>
+<li>如果内核把数据保留在用户空间，然后从系统调用返回，那么一个恶意用户就有可能使用这些数据查找关于其他进程的信息。  </li>
+</ol>
+<hr>
+<p><strong>5. 多个程序能够并行运行，比它们顺序执行完成的要快。假设有两个作业同时开始执行，每个需要10分钟的CPU时间。如果顺序执行，那么最后一个作业需要多长时间可以完成？如果并行执行又需要多长时间？假设I/0等待占50%。</strong></p>
+<ol>
+<li><p>顺序执行的时候，因为I/O频率为50%，CPU时间为10分钟，所以每个作业需要20分钟，则最后一个作业需要40分钟来完成。  </p>
+</li>
+<li><p>并行执行时，CPU的利用率为1-0.5²，这意味着每分钟每个作业在并行时实际获得用于处理的CPU时间是0.75/2 = 0.375分钟，所以为了执行完需要10分钟的CPU时间的工作，每个作业必须运行10/0.375≈26.67分钟。又因为是并行的，相当于两个作业同时完成，因此是26.67分钟。  </p>
+</li>
+</ol>
+<hr>
+<p><strong>7.如果创建一个多线程进程，若子进程得到全部父进程线程的副本，会出现问题。假如原有线程之一正在等待键盘输入，现在则成为两个线程在等待键盘输入，每个进程有一个。在单线程进程中也会发生这种问题吗？</strong><br>不会。如果单线程进程在键盘上阻塞，就不能创建子进程。</p>
+<hr>
+<p><strong>8.在多线程Web服务器中，如果读取文件的唯一途径是正常的阻塞read系统调用，那么Web服务器应该使用用户级线程还是内核级线程，为什么？</strong><br>用内核级线程。<br>当一个工作线程从磁盘读取一个网页时，它就会被阻塞。如果使用了用户级线程，那这个动作就会阻塞整个进程，那么多线程就没有意义了。所以就应该使用内核级线程，这样在一些线程阻塞时就不会影响其他线程。</p>
+<hr>
+<p><strong>11.为什么线程要通过调用thread_yield自愿放弃CPU？毕竟，由于没有周期性的时钟中断，线程可以不交回CPU。</strong><br>进程中的线程通常是相互协作而不是相互独立的，如果放弃是对应用程序的有利需要的话，那么线程将放弃CPU。毕竟通常都是一个程序员写所有的代码。</p>
+<hr>
+<p><strong>12.线程可以被时钟中断抢占吗？如果可以，什么情形下可以？如果不可以，为什么不可以？</strong><br>用户级线程不可以被时钟剥夺，除非整个进程的时间片被用完。内核级的线程可以单独地被剥夺。在后一种情况中，如果一个线程运行太久，那么时钟会终端当前的进程，因此当前的线程也被中断。内核可以自由地从同一个进程中选取其他线程运行。</p>
+<hr>
+<p><strong>13.对使用单线程文件服务器和多线程服务器读取文件进行比较。假设所需要的数据都在高速缓存中，花费15ms获得工作请求，分派工作，并处理其余必要工。如果在三分之一时间时，需要一个磁盘操作，要另外花费75ms，此时该线程进入睡眠。在单线程情形下服务器每秒可以处理多少个请求？如果是多线程呢？</strong></p>
+<ul>
+<li>在单线程的情况下，cache命中需要15ms，没命中需要90ms。那加权平均时间为2/3x15 + 1/3x90，因此平均请求时间为40ms，所以服务器一秒可以处理25个请求。</li>
+<li>对于一个多线程服务器，所有的磁盘等待都是重叠的，所以每个请求花费15ms，所以服务器可以每秒处理200/3个请求。</li>
+</ul>
+<hr>
+<p><strong>14.在用户空间实现线程，其最大的优点是什么？最大的缺点是什么？</strong></p>
+<ul>
+<li>用户级线程包可以在不支持线程的操作系统上实现</li>
+<li><p>允许每个进程有自己定制的调度算法</p>
+</li>
+<li><p>如何实现阻塞系统调用</p>
+</li>
+<li><p>如果一个线程开始运行，那么在该线程中的其他线程就不能运行，除非第一个线程自动放弃CPU。</p>
+</li>
+<li><p>最大的优点是效率。No traps to the kernel are needed to switch threads.</p>
+</li>
+<li>最大的缺点是如果一个线程发生阻塞，那整个进程就阻塞了。</li>
+</ul>
+<hr>
+<p><strong>38.运行在CTSS上的一个进程需要30个时间片完成。该进程必须被调入多少次，包括第一次（在该进程运行之前）？</strong><br>第一次得到1个时间片。随后获得2,4,8,15个时间片，因此必须经过5次交换。</p>
+<hr>
+<p><strong>41.一个软实时系统有4个周期时间，其周期分别为50ms，100ms，200ms和250ms。假设这4个事件分别需要35ms，20ms，10ms和x ms的CPU时间。保持系统可调度的最大x值是多少？</strong><br>所使用的CPU的片断为35/50 + 20/100 + 10/200 + x/250。为了使得进程可调度，必须是总和小于1。因此，x必须小于12.5ms。</p>
+<hr>
+<p><strong>42.请解释为什么两级调度比较常用？</strong><br>当内存太小不能载入所有就绪进程时，就需要使用两级调度。某些进程被载入内存，并且从中选择一个运行。内存中进程会随着时间调整。这种算法容易实现也非常有效，另外，时间片轮转调度并不管进程是否在内存中。</p>
+<hr>
+<p><strong>43.一个实时系统需要处理两个语音通信，每个运行5ms，然后每次突发消耗1ms CPU时间，加上25帧/秒的一个视频，每一帧需要20ms的CPU时间。这个系统是可调度的吗？</strong><br>每个语音通信每秒运行200次并且每次突发消耗1ms，所以每个语音通信需要200ms每秒或者两个需要400ms每秒。视频每秒运行25次并且每次消耗20ms，一共是500ms每秒。它们每秒一共消耗900ms，所以有时间剩余，系统可调用。</p>
+</div><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/OS/" class="post__tag__link">OS</a></li></ul><a href="/2014/OS/process-qa/#disqus_thread" class="post__foot-link u-fr">0 COMMENTS</a></footer></article><article class="post"><header class="post__head"><time datetime="2014-10-10T08:48:52.000Z" class="post__time">October 10, 2014</time><h1 class="post__title"><a href="/2014/OS/schedule/">进程间调度</a></h1></header><div class="post__main echo"><p>当计算机系统是多道程序设计系统时，通常就会有多个进程或者线程同时竞争CPU。只要有两个或者多个进程处于就绪状态，这种情况就会发生。如果此时只有一个CPU可用，那么就必须选择下一个要运行的进程。<br><a id="more"></a></p>
+<p>在操作系统中完成选择工作的这一部分称为<strong>调度程序</strong>，该程序使用的算法称为调度算法。</p>
+<h2 id="一、何时调度"><a href="#一、何时调度" class="headerlink" title="一、何时调度"></a>一、何时调度</h2><ul>
+<li>在创建一个新进程后，需要决定是运行父进程还是运行子进程。  </li>
+<li>在一个进程退出时必须做出调度决策。  </li>
+<li>当一个进程阻塞在I/O和信号量上或由于其他原因阻塞时，必须选择另一个进程运行。  </li>
+<li>在一个I/O中断发生时，必须做出调度决策。  </li>
+<li>在分时系统中，当一个时钟中断发生时。  </li>
+</ul>
+<h2 id="二、调度算法"><a href="#二、调度算法" class="headerlink" title="二、调度算法"></a>二、调度算法</h2><h3 id="1-先来先服务FCFS-first-come-first-served"><a href="#1-先来先服务FCFS-first-come-first-served" class="headerlink" title="1.先来先服务FCFS(first-come first-served)"></a>1.先来先服务FCFS(first-come first-served)</h3><h4 id="这是最简单的调度算法-按先后顺序调度。"><a href="#这是最简单的调度算法-按先后顺序调度。" class="headerlink" title="这是最简单的调度算法,按先后顺序调度。"></a>这是最简单的调度算法,按先后顺序调度。</h4><ul>
+<li>按照作业提交或进程变为就绪状态的先后次序,分派CPU;</li>
+<li>当前作业或进程占用CPU,直到执行完或阻塞,才出让CPU(非抢占方式)。</li>
+<li>在作业或进程唤醒后(如I/O完成),并不立即恢复执行,通常等到当前作业或进程出让CPU。最简单的算法。  </li>
+</ul>
+<h4 id="FCFS的特点"><a href="#FCFS的特点" class="headerlink" title="FCFS的特点"></a>FCFS的特点</h4><ul>
+<li>比较有利于长作业,而不利于短作业。</li>
+<li>有利于CPU繁忙的作业,不利于I/O繁忙的作业。</li>
+</ul>
+<h3 id="2-最短作业优先SJF-shortest-job-first"><a href="#2-最短作业优先SJF-shortest-job-first" class="headerlink" title="2.最短作业优先SJF(shortest job first)"></a>2.最短作业优先SJF(shortest job first)</h3><p>这是对FCFS算法的改进，目的是为了缩短平均周转时间。  </p>
+<p>对预计执行时间短的作业(进程)优先分派处理机。通常后来的短作业不抢先正在执行的作业。  </p>
+<h4 id="SJF的特点"><a href="#SJF的特点" class="headerlink" title="SJF的特点"></a>SJF的特点</h4><h5 id="优点"><a href="#优点" class="headerlink" title="优点:"></a>优点:</h5><ul>
+<li>比FCFS改善平均周转时间和平均带权周转时间,缩短作业的等待时间;</li>
+<li>提高系统的吞吐量;<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点:"></a>缺点:</h5></li>
+<li>对长作业非常不利,可能长时间得不到执行;</li>
+<li>未能依据作业的紧迫程度来划分执行的优先级;</li>
+<li>难以准确估计作业(进程)的执行时间,从而影响调度性能。</li>
+</ul>
+<h3 id="3-轮转调度"><a href="#3-轮转调度" class="headerlink" title="3.轮转调度"></a>3.轮转调度</h3><p>一种最古老、最简单、最公平且使用最广的算法是轮转调度。每个进程被分配一个时间段，称为<strong>时间片</strong>，即允许该进程在该时间段内运行。  </p>
+<ol>
+<li>如果在时间片结束时该进程还在运行，则将剥夺CPU并分配给另一个进程。  </li>
+<li>如果该进程在时间片结束前阻塞或结束，则CPU立即进行切换。  </li>
+</ol>
+<h4 id="时间片长度变化的影响"><a href="#时间片长度变化的影响" class="headerlink" title="时间片长度变化的影响"></a>时间片长度变化的影响</h4><ul>
+<li>过长-&gt;退化为FCFS算法,进程在一个时间片内都执行完,响应时间长。  </li>
+<li>过短-&gt;用户的一次请求需要多个时间片才能处理完,上下文切换次数增加,响应时间长。  </li>
+</ul>
+<h4 id="时间片长度的确定"><a href="#时间片长度的确定" class="headerlink" title="时间片长度的确定"></a>时间片长度的确定</h4><ol>
+<li>系统的响应时间: T(响应时间) = N(进程数目) * q(时间片)</li>
+<li>就绪进程的数目: 数目越多,时间片越小</li>
+<li>系统的处理能力: 应当使用户输入通常在一个时间片内能处理完,否则使响应时间,平均周转时间和平均带权周转时间延长。</li>
+</ol>
+<h3 id="4-优先级调度"><a href="#4-优先级调度" class="headerlink" title="4.优先级调度"></a>4.优先级调度</h3><p>基本思想：每个进程被赋予一个优先级，允许优先级最高的可运行进程先运行。  </p>
+<p>优先级又被分为<strong>静态优先级</strong>和<strong>动态优先级</strong>。  </p>
+<h4 id="静态优先级"><a href="#静态优先级" class="headerlink" title="静态优先级"></a>静态优先级</h4><p>创建进程时就确定,直到进程终止前都不改变。通常是一个整数。依据:  </p>
+<ul>
+<li>进程类型(系统进程优先级较高)</li>
+<li>对资源的需求(对CPU和内存需求较少的进程,优先级较高)</li>
+<li>用户要求(紧迫程度和付费多少)</li>
+</ul>
+<h4 id="动态优先级"><a href="#动态优先级" class="headerlink" title="动态优先级"></a>动态优先级</h4><p>在创建进程时赋予的优先级,在进程运行过程中可以自动改变,以便获得更好的调度性能。如:  </p>
+<ul>
+<li>在就绪队列中,等待时间延长则优先级提高,从而使优先级较低的进程在等待足够的时间后,其优先级提高到可被调度执行;</li>
+<li>进程每执行一个时间片 就降低其优先级 从而一个进程持续执行时,其优先级降低到出让CPU。</li>
+</ul>
+<h2 id="三、线程调度"><a href="#三、线程调度" class="headerlink" title="三、线程调度"></a>三、线程调度</h2><p>当若干进程都有多个线程时，就存在两个层次的并行：线程和进程。  </p>
+<p>在这样的系统中调度处理有本质差别，这取决于所支持的是用户级线程还是内核级线程（或者两者都支持）。  </p>
+<h3 id="用户级线程"><a href="#用户级线程" class="headerlink" title="用户级线程"></a>用户级线程</h3><p>因为内核不知道有线程的存在，所以内核还是像以前一样操作，选取一个进程，假设为A，并给予A以时间片控制。A中的线程调度程序决定哪个线程运行，假设为A1。  </p>
+<p>由于多道线程并不存在时钟中断，所以这个线程可以随意运行多长时间，如果该线程用完了进程的所有时间片，内核就会选择另外一个进程运行。  </p>
+<p>在进程A终于又一次运行时，线程A1会接着运行。该线程会继续耗费A进程的所有时间，直到它完成工作。并且这种行为不会影响到其他的进程。  </p>
+<p>现在考虑A线程每次CPU计算的工作比较少的情况，例如在50ms的时间片里有5ms的计算工作。于是，每个线程运行一会儿，然后把CPU交回给线程调度程序。  </p>
+<p>这样在内核切换到进程B之前，就会有序列A1,A2,A3,A1,A2,A3,A1,A2,A3,A1。如下图所示。  </p>
+<p><img src="/img/user-thread-schedule.png" alt="user"></p>
+<h3 id="内核级线程"><a href="#内核级线程" class="headerlink" title="内核级线程"></a>内核级线程</h3><p>内核选取一个特定的线程运行，它不用考虑该线程属于哪个进程（如果有必要它也可以这样做）。内核对被选择的线程赋予一个时间片，如果超出了时间片就会强行挂起这个线程。  </p>
+<p>一个线程在50ms的时间片内，5ms之后被阻塞，在30ms的时间段中，线程的顺序会是A1,B1,A2,B2,A3,B3。如下图所示。  </p>
+<p><img src="/img/kernel-thread-schedule.png" alt="kernel"></p>
+<p><strong>用户级线程和内核级线程之间的差别在于性能。</strong></p>
+<ul>
+<li><p>用户级线程的线程切换需要少量的机器指令；</p>
+</li>
+<li><p>内核级线程需要完整的上下文切换，修改内存印象，使高速缓存失效，这导致了若干数量级的延迟。</p>
+</li>
+</ul>
+<p>另一方面，在使用内核级线程时，一旦线程阻塞在I/O上就不需要像在用户级线程中那样将整个进程挂起。  </p>
+</div><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/OS/" class="post__tag__link">OS</a></li></ul><a href="/2014/OS/schedule/#disqus_thread" class="post__foot-link u-fr">0 COMMENTS</a></footer></article><article class="post"><header class="post__head"><time datetime="2014-10-09T11:02:38.000Z" class="post__time">October 9, 2014</time><h1 class="post__title"><a href="/2014/OS/communication/">进程间通信</a></h1></header><div class="post__main echo"><p>进程经常需要与其他进程通信，所以我们就来讨论一些关于<strong>进程间通信</strong>(Inter Process Communication, IPC)的问题。<br><a id="more"></a></p>
+<h2 id="一、竞争状态-race-condition"><a href="#一、竞争状态-race-condition" class="headerlink" title="一、竞争状态(race condition)"></a>一、竞争状态(race condition)</h2><ul>
+<li>两个或多个进程对同一共享数据同时进行读写操作，而最后的结果是不可预测的，它取决于各个进程具体运行情况。</li>
+<li>在同一时刻，只允许一个进程访问该共享数据，即如果当前已有一个进程正在使用该数据，那么其他进程暂时不能访问。这就是<strong>互斥</strong>的概念。</li>
+</ul>
+<p>那么为了避免竞争状态，我们就需要<strong>互斥</strong>，也就是当一个进程在使用一个共享变量或文件时，其他进程不能做同样的操作。这样就引入了临界区的概念。</p>
+<h2 id="二、临界区"><a href="#二、临界区" class="headerlink" title="二、临界区"></a>二、临界区</h2><h3 id="临界区的定义："><a href="#临界区的定义：" class="headerlink" title="临界区的定义："></a>临界区的定义：</h3><blockquote>
+<p>每个进程中访问临界资源的那段代码称为临界区。<br>临界资源指的是一次只允许一个进程使用的资源称为临界资源，例如打印机、变量。  </p>
+</blockquote>
+<p>所以如果我们能通过适当的安排，使得两个进程不可能同时处于临界区中，就能避免竞争状态。  </p>
+<p>尽管这样的要求避免了竞争状态，但它还不能保证使用共享数据的并发进程能够正确和高效地进行协作。所以对于一个好的解决方案，需要满足一下4个：  </p>
+<ol>
+<li>任何两个进程都不能同时进入临界区;</li>
+<li>不应对CPU的速度和数量做任何假设;</li>
+<li>临界区外运行的进程不得阻塞其他进程;</li>
+<li>不得使进程无限期等待进入临界区。</li>
+</ol>
+<h2 id="三、同步机制应遵循的准则"><a href="#三、同步机制应遵循的准则" class="headerlink" title="三、同步机制应遵循的准则"></a>三、同步机制应遵循的准则</h2><h3 id="1-空闲让进"><a href="#1-空闲让进" class="headerlink" title="1.空闲让进"></a>1.空闲让进</h3><ul>
+<li>临界自愿处于空闲状态,允许进程进入临界区  </li>
+<li>临界区内仅有一个进程执行  </li>
+</ul>
+<h3 id="2-忙则等待"><a href="#2-忙则等待" class="headerlink" title="2.忙则等待"></a>2.忙则等待</h3><ul>
+<li>临界区有进程正在执行其中的代码,所有其他进程则不可以进入临界区  </li>
+</ul>
+<h3 id="3-有限等待"><a href="#3-有限等待" class="headerlink" title="3.有限等待"></a>3.有限等待</h3><ul>
+<li>对要求访问临界区的进程 应在保证在有限时间内进入自己的临界区,避免死等。  </li>
+</ul>
+<h3 id="4-让权等待"><a href="#4-让权等待" class="headerlink" title="4.让权等待"></a>4.让权等待</h3><ul>
+<li>当进程不能进入自己的临界区时,应立即释放处理机,避免忙等。  </li>
+</ul>
+<h2 id="四、实现互斥的方案"><a href="#四、实现互斥的方案" class="headerlink" title="四、实现互斥的方案"></a>四、实现互斥的方案</h2><h3 id="1-屏蔽中断"><a href="#1-屏蔽中断" class="headerlink" title="1.屏蔽中断"></a>1.屏蔽中断</h3><p>在单处理器系统中，最简单的方法是使每个进程在刚刚进入临界区后立即屏蔽所有中断，并在就要离开之前打开中断。<br>屏蔽中断后，<strong>时钟中断</strong>也会被屏蔽。<br>CPU只有在发生时钟中断或其他中断时才会进行进程切换，这样，在屏蔽中断后CPU就不会被切换到其他进程。  </p>
+<h3 id="2-锁变量"><a href="#2-锁变量" class="headerlink" title="2.锁变量"></a>2.锁变量</h3><p>假设有一个共享变量，初始值为0。当一个进程想进入临界区时，它就会首先测试这把锁。<br>如果锁的值为0，则该进程就将其设置为1并进入临界区。<br>如果锁的值已经为1，那么进程就一直等待直到锁的值为0.<br>所以0就表示临界区内没有进程，1表示已经有某个进程进入临界区。  </p>
+<h3 id="3-严格轮换法"><a href="#3-严格轮换法" class="headerlink" title="3.严格轮换法"></a>3.严格轮换法</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(TRUE)&#123;</span><br><span class="line">	<span class="keyword">while</span>(turn != <span class="number">0</span>)</span><br><span class="line">			critical_region();	<span class="comment">/*循环*/</span></span><br><span class="line">	turn = <span class="number">1</span>;</span><br><span class="line">	noncritical_region();</span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">&gt;a)  </span><br><span class="line"></span><br><span class="line">```C</span><br><span class="line"><span class="keyword">while</span>(TRUE)&#123;</span><br><span class="line">	<span class="keyword">while</span>(turn != <span class="number">1</span>)</span><br><span class="line">			critical_region();	<span class="comment">/*循环*/</span></span><br><span class="line">	turn = <span class="number">0</span>;</span><br><span class="line">	noncritical_region();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">&gt;b)  </span><br><span class="line"></span><br><span class="line">### <span class="number">4.</span>Peterson解法</span><br><span class="line">在进入临界区前，各个进程使用其进程号<span class="number">0</span>或<span class="number">1</span>作为参数来调用enter_region。该调用在需要时将使进程等待，直到能安全地进入临界区。在完成对共享变量的操作后，进程将调用leave_region，表示操作已完成，若其他进程希望进入临界区，则现在就可以进入。  </span><br><span class="line"></span><br><span class="line">```C</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FALSE 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRUE  1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N     2                                                  <span class="comment">/*进程数量*/</span></span></span><br><span class="line">                                                                   </span><br><span class="line"><span class="keyword">int</span> turn;                                                        <span class="comment">/*现在轮到谁？*/</span></span><br><span class="line"><span class="keyword">int</span> interested[N];                                               <span class="comment">/*所有值初始化为0(FALSE)*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">enter_region</span><span class="params">(<span class="keyword">int</span> process)</span>                                   <span class="comment">/*进程是0或1*/</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> other;                                                   <span class="comment">/*其他进程号*/</span></span><br><span class="line">    </span><br><span class="line">    other = <span class="number">1</span> - process;                                         <span class="comment">/*另一方进程*/</span></span><br><span class="line">    interested[process] = TRUE;                                  <span class="comment">/*表明所感兴趣的*/</span></span><br><span class="line">    turn = process;                                              <span class="comment">/*设置标志*/</span></span><br><span class="line">    <span class="keyword">while</span>(turn == process &amp;&amp; interested[other] == TRUE);         <span class="comment">/*空语句*/</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">leave_region</span><span class="params">(<span class="keyword">int</span> process)</span>                                   <span class="comment">/*进程：谁离开？*/</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    interested[process] = FALSE;                                 <span class="comment">/*表示离开临界区*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="五、生产者-消费者问题"><a href="#五、生产者-消费者问题" class="headerlink" title="五、生产者-消费者问题"></a>五、生产者-消费者问题</h2><p>生产者-消费者问题又称为<strong>有界缓冲区问题</strong>。两个进程共享一个公共的固定大小的缓冲区。  </p>
+<p>其中一个是生产者，将消息放入缓冲区；另一个是消费者，从缓冲区中取出消息。  </p>
+<p>而问题在于<strong>当缓冲区已满，而此时生产者还想向其中放入一个新的数据项的情况</strong>。其解决方法是让生产者睡眠，待消费者从缓存区中取出一个或多个数据项时再唤醒它。</p>
+<p>当消费者试图从缓冲区中取数据而发现缓冲区为空时，消费者就睡眠，直到生产者向其中放入一些数据时再将其唤醒。  </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100                                      <span class="comment">/*缓冲区中的槽数目*/</span></span></span><br><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;                                     <span class="comment">/*缓冲区中的数据项数目*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">producer</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> item;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(TRUE)&#123;                                   <span class="comment">/*无限循环*/</span></span><br><span class="line">        item = produce_item();                     <span class="comment">/*产生下一新数据项*/</span></span><br><span class="line">        <span class="keyword">if</span>(count == N)  sleep();                   <span class="comment">/*如果缓冲区满了，就进入休眠状态*/</span></span><br><span class="line">        insert_item(item);                         <span class="comment">/*将新数据项放入缓冲区中*/</span></span><br><span class="line">        count = count + <span class="number">1</span>;                         <span class="comment">/*将缓冲区的数据项计数器增1*/</span></span><br><span class="line">        <span class="keyword">if</span>(count == <span class="number">1</span>）  wakeup(consumer);        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> consumer(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> item;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(TRUE)&#123;                                   <span class="comment">/*无限循环*/</span></span><br><span class="line">        <span class="keyword">if</span>(count == <span class="number">0</span>)  sleep();                   <span class="comment">/*如果缓冲区空，则进入休眠状态*/</span></span><br><span class="line">        item = remove_item();                      <span class="comment">/*从缓冲区中取出一个数据项*/</span></span><br><span class="line">        count = count - <span class="number">1</span>;                         <span class="comment">/*将缓冲区的数据项计数器减1*/</span></span><br><span class="line">        <span class="keyword">if</span>(count == N - <span class="number">1</span>)  wakeup(producer);      <span class="comment">/*缓冲区满吗？*/</span></span><br><span class="line">        consume_item(item);                        <span class="comment">/*打印数据项*/</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line">这里还是有可能会出现竞争状态，其原因是对count的访问未加限制。  </span><br><span class="line"></span><br><span class="line">我们来看这样一个情况：缓冲区为空，消费者刚刚读取count的值发现它为<span class="number">0</span>，此时调度程序决定暂停消费者而唤醒生产者。生产者向缓冲区中加入一个数据项，count加<span class="number">1</span>。现在count的值变成<span class="number">1</span>了，它推断由于count刚刚为<span class="number">0</span>，所以消费者一定在睡眠，于是生产者调用**wakeup**来唤醒消费者。  </span><br><span class="line"></span><br><span class="line">但此时消费者并没有睡眠，所以这个**wakeup**信号就会丢失，当消费者下次运行时，它将测试先前读到的count值，发现它为<span class="number">0</span>，于是睡眠。而生产者迟早会填满整个缓冲区，然后睡眠，这样一来，两个进程将永远睡眠下去。  </span><br><span class="line"></span><br><span class="line">所以现在问题的实质在于一个wakeup信号的丢失。虽然在这里我们可以加上一个**唤醒等待位**，但当问题中有三个或者更多进程时一个唤醒等待位就不够了，所以这并没有从本质上解决问题。  </span><br><span class="line"></span><br><span class="line">## 六、信号量</span><br><span class="line">E.W.Dijkstra提出一种方法，它使用一个整型变量来累计唤醒次数，供以后使用。  </span><br><span class="line"></span><br><span class="line">这个引入的新变量类型就叫做**信号量(semaphore)**。  </span><br><span class="line"></span><br><span class="line">一个信号量的取值可以为<span class="number">0</span>（表示没有保存下来的唤醒操作）或正值（表示有一个或多个唤醒操作）。  </span><br><span class="line"></span><br><span class="line">Dijkstra建议设立两种操作：down(P)和up(V)。  </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">- down</span><br><span class="line">    如果信号量的值大于<span class="number">0</span>，则将其值减<span class="number">1</span>并继续；  </span><br><span class="line">    若该值为<span class="number">0</span>，则进程将睡眠。并将继续down操作。  </span><br><span class="line"></span><br><span class="line">- up</span><br><span class="line">    对信号量的值增<span class="number">1</span>。  </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">### 用信号量解决生产者-消费者问题</span><br><span class="line">#### 该方案使用了三个信号量：</span><br><span class="line">- **full**   用来记录充满的缓冲槽数目；</span><br><span class="line">- **empty**  记录空的缓冲槽总数；</span><br><span class="line">- **mutex**  确保生产者和消费者不会同时访问缓冲区。  </span><br><span class="line"></span><br><span class="line">full的初值为<span class="number">0</span>，empty的初值为缓冲区中槽的数目，mutex初值为<span class="number">1</span>。供两个或多个进程使用的信号量，其初值为<span class="number">1</span>，保证同时只有一个进程可以进入临界区，称为二元信号量。如果每个进程在进入临界区前都执行一个down操作，并在刚刚退出时执行一个up操作，就能够实现互斥。  </span><br><span class="line"></span><br><span class="line">```C</span><br><span class="line">#define N <span class="number">100</span>                       <span class="comment">/*缓冲区中的槽数目*/</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> semaphore;              <span class="comment">/*信号量是一种特殊的整型数据*/</span></span><br><span class="line">semaphore mutex = <span class="number">1</span>;                <span class="comment">/*控制对临界区的访问*/</span></span><br><span class="line">semaphore empty = N;                <span class="comment">/*计数缓冲区的空槽数目*/</span></span><br><span class="line">semaphore full  = <span class="number">0</span>;                <span class="comment">/*计数缓冲区的满槽数目*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> producer(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> item;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(TRUE)&#123;                    <span class="comment">/*TRUE是常量1*/</span></span><br><span class="line">        item = produce_item();      <span class="comment">/*产生放在缓冲区中的一些数据*/</span></span><br><span class="line">        down(&amp;empty);               <span class="comment">/*将空槽数目减1*/</span></span><br><span class="line">        down(&amp;mutex);               <span class="comment">/*进入临界区*/</span></span><br><span class="line">        insert_item(item);          <span class="comment">/*将新数据项放到缓冲区中*/</span></span><br><span class="line">        up(&amp;mutex);                 <span class="comment">/*离开临界区*/</span></span><br><span class="line">        up(&amp;full);                  <span class="comment">/*将满槽的数目加1*/</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> consumer(<span class="keyword">void</span>)</span><br><span class="line">&#123; </span><br><span class="line">    <span class="keyword">int</span> item;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(TRUE)&#123;                    <span class="comment">/*无限循环*/</span></span><br><span class="line">        down(&amp;full);                <span class="comment">/*将满槽数目减1*/</span></span><br><span class="line">        down(&amp;mutex);               <span class="comment">/*进入临界区*/</span></span><br><span class="line">        item = remove();            <span class="comment">/*从缓冲区中取出数据项*/</span></span><br><span class="line">        up(&amp;mutex);                 <span class="comment">/*离开临界区*/</span></span><br><span class="line">        up(&amp;empty);                 <span class="comment">/*将空槽数加1*/</span></span><br><span class="line">        consumer_item(item);        <span class="comment">/*处理数据项*/</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/OS/" class="post__tag__link">OS</a></li></ul><a href="/2014/OS/communication/#disqus_thread" class="post__foot-link u-fr">0 COMMENTS</a></footer></article><article class="post"><header class="post__head"><time datetime="2014-10-08T13:17:31.000Z" class="post__time">October 8, 2014</time><h1 class="post__title"><a href="/2014/OS/process-and-thread/">进程与线程</a></h1></header><div class="post__main echo"><p>操作系统中最核心的概念就是<strong>进程</strong>：这是对正在运行程序的一个抽象。<br><a id="more"></a></p>
+<h2 id="一、进程的定义"><a href="#一、进程的定义" class="headerlink" title="一、进程的定义"></a>一、进程的定义</h2><ul>
+<li>进程是程序的一次执行。  </li>
+<li>进程 = 进程控制块 + 程序 + 数据。  </li>
+<li>进程是程序在一个数据集合上运行的过程，它是系统进行资源分配和调度的一个独立单位。  </li>
+</ul>
+<h2 id="二、进程的结构"><a href="#二、进程的结构" class="headerlink" title="二、进程的结构"></a>二、进程的结构</h2><p>一个进程中应该包括：  </p>
+<ul>
+<li>程序的代码；</li>
+<li>程序的数据；</li>
+<li>程序计数器中的值，用来指示下一条将运行的指令；</li>
+<li>一组通用的寄存器的当前值、堆、栈；</li>
+<li>一组系统资源（如打开的文件）；</li>
+</ul>
+<h2 id="三、进程的创建：4个因素"><a href="#三、进程的创建：4个因素" class="headerlink" title="三、进程的创建：4个因素"></a>三、进程的创建：4个因素</h2><p>1.系统初始化。<br>2.执行了正在运行的进程所调用的进程创建系统调用。<br>3.用户请求创建一个新进程。<br>4.一个批处理作业的初始化。</p>
+<blockquote>
+<p>在UNIX系统中，只有一个系统调用可以用来创建新进程：<strong>fork</strong>。</p>
+</blockquote>
+<h2 id="四、进程的终止：4种原因"><a href="#四、进程的终止：4种原因" class="headerlink" title="四、进程的终止：4种原因"></a>四、进程的终止：4种原因</h2><ol>
+<li>正常退出（自愿的）。</li>
+<li>出错退出（自愿的）。</li>
+<li>严重错误（非自愿）。</li>
+<li>被其他进程杀死（非自愿）。</li>
+</ol>
+<h2 id="五、进程的状态"><a href="#五、进程的状态" class="headerlink" title="五、进程的状态"></a>五、进程的状态</h2><p>进程有三种基本状态：  </p>
+<ul>
+<li>运行态<br>该时刻进程实际占用CPU。</li>
+<li>就绪态<br>可运行，但因为其他进程正在运行而暂时停止。<br>进程已获得除处理机外的所需资源，等待分配处理机资源，只要分配CPU就可执行。</li>
+<li>阻塞态<br>正在执行的进程，由于发生某种事件而暂时无法执行，便放弃处理机处于暂停状态。  </li>
+</ul>
+<p>1.运行→阻塞：进程为等待输入而阻塞<br>2.运行→就绪：调度进程选择另一个程序<br>3.就绪→运行：调度进程选择这个进程<br>4.阻塞→就绪：出现有效输入</p>
+<ul>
+<li>在操作系统发现进程不能继续运行下去时，发生转换1。  </li>
+<li>系统认为一个运行进程占用处理器的时间已经过长，决定让其他进程使用CPU时间时，会发生转换2。  </li>
+<li>在系统已经让所有其他进程享有了它们应有的公平待遇而重新轮到第一个进程再次占用CPU运行时，会发生转换3。  </li>
+<li>当进程等待的一个外部事件发生时（如一些输入达到），则发生转换4。  </li>
+</ul>
+<p>转换2、3都是由<strong>进程调度程序</strong>引起的。</p>
+<p><strong>调度程序</strong>的主要工作就是决定<strong>应当运行哪个进程</strong>、<strong>何时运行</strong>以及<strong>它应该运行多长时间</strong>。</p>
+<p><img src="/img/process.png" alt="process"></p>
+<h2 id="六、进程的实现"><a href="#六、进程的实现" class="headerlink" title="六、进程的实现"></a>六、进程的实现</h2><p>操作系统为了实现进程模型，维护着一张叫做<strong>进程表</strong>(process table)的表格，每个进程占用一个<strong>进程表项</strong>。（在学校的教材上这个进程表项叫做<strong>进程控制块</strong>PCB）。  </p>
+<blockquote>
+<p><strong>进程控制块PCB</strong>是进程的唯一标志。</p>
+</blockquote>
+<p>进程控制块中包含了进程状态的重要信息，包括：  </p>
+<ul>
+<li>程序计数器（PC）</li>
+<li>堆栈指针</li>
+<li>内存分配状态</li>
+<li>所打开文件状态</li>
+<li>账号和调度信息</li>
+<li>优先级</li>
+<li>互斥和同步机制</li>
+<li>…</li>
+</ul>
+<p>正是这些信息保证了进程在经历了各种转换后能再次启动，就像从未被中断过一样。</p>
+<hr>
+<h2 id="七、线程"><a href="#七、线程" class="headerlink" title="七、线程"></a>七、线程</h2><p>上面的内容中，我们讨论了关于进程的话题，但是在实际运用当中并不是每次都只运行一个进程的，所以我们就需要提出一个新的实体，来满足一下特性：  </p>
+<ul>
+<li>实体之间可以并发地执行；</li>
+<li>实体之间共享相同的地址空间；</li>
+</ul>
+<p>而进程包含了两个概念：<strong>资源拥有者</strong>和<strong>可执行单元</strong>，这个可执行单元就称为<strong>线程</strong>。</p>
+<p>尽管线程必须在某个进程中执行，但是线程和它的进程是不同的概念，并且可以分别处理。  </p>
+<blockquote>
+<p>进程用于把资源集中到一起，而线程则是在CPU上被调度执行的实体。  </p>
+</blockquote>
+<p><strong>在同一个进程中并行运行多个线程，是对在同一台计算机上并行运行多个进程的模拟。</strong>  </p>
+<ol>
+<li>在前一种情形中，多个线程共享同一个地址空间和其他资源。  </li>
+<li>在后一种情形下，多个进程共享物理内存、磁盘、打印机个和其他资源。  </li>
+</ol>
+<h2 id="八、引入线程的目的"><a href="#八、引入线程的目的" class="headerlink" title="八、引入线程的目的"></a>八、引入线程的目的</h2><ul>
+<li>减小进程切换的开销</li>
+<li>提高进程内的并发程度</li>
+<li>共享资源</li>
+</ul>
+<p>那么问题来了，引入进程和线程的好处分别是什么？  </p>
+<ul>
+<li>引入进程的好处<br>  多个程序可以并发执行，改善资源使用率，提高系统效率。  </li>
+<li>引入线程的好处<br>  减少并发程序执行时所付出的时空开销，使得并发粒度更细，并发性更好。  </li>
+</ul>
+<h2 id="九、多线程的原因："><a href="#九、多线程的原因：" class="headerlink" title="九、多线程的原因："></a>九、多线程的原因：</h2><p>1.主要原因是，在许多应用中同时发生着多种活动，其中某些活动随着时间的推移会被阻塞，通过将这些应用程序分解成可以准并行运行的多个顺序线程，程序设计模型会变得更简单。<br>2.线程比进程更加轻量级，所以线程比进程更加容易（更快）创建和撤销。<br>3.如果存在大量的计算和大量的I/O处理，拥有多个线程允许这些活动重叠进行，从而加快应用程序的执行速度。<br>4.在多CPU系统中，多线程是有益的，并且真正的并行有了实现的可能。  </p>
+<h2 id="十、线程中包括："><a href="#十、线程中包括：" class="headerlink" title="十、线程中包括："></a>十、线程中包括：</h2><ul>
+<li>程序计数器：记录接着要执行哪一条指令。</li>
+<li>寄存器：保存线程当前的工作变量。</li>
+<li>堆栈：记录执行历史。</li>
+</ul>
+<blockquote>
+<p>线程概念试图实现的是，共享一组资源的多个线程的执行能力，以便这些线程可以为完成某一任务而共同工作。  </p>
+</blockquote>
+<h2 id="十一、线程的实现"><a href="#十一、线程的实现" class="headerlink" title="十一、线程的实现"></a>十一、线程的实现</h2><h4 id="在用户空间中实现线程"><a href="#在用户空间中实现线程" class="headerlink" title="在用户空间中实现线程"></a>在用户空间中实现线程</h4><p>把整个线程包放在用户空间中，这样用户级线程包可以在不支持线程的操作系统上实现，通过这一方法就可以用函数库实现线程。</p>
+<p><img src="/img/user-thread.png" alt="user-thread"></p>
+<pre class=" language-C"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><code class="language-C"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><pthread.h></pthread.h></span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><stdio.h></stdio.h></span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string"><stdlib.h></stdlib.h></span></span>
 
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
+<span class="meta">#<span class="meta-keyword">define</span> NUMBER_OF_THREADS 10</span>
 
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
+<span class="function"><span class="keyword">void</span> *<span class="title">print_hello_world</span><span class="params">(<span class="keyword">void</span> *tid)</span></span>
+<span class="function"></span>{
+    <span class="comment">/*本函数输出线程的标识符，然后退出。*/</span>
+    <span class="built_in">printf</span>(<span class="string">"Hello World.Greetings from thread %d0"</span>, tid);
+    pthread_exit(<span class="literal">NULL</span>);
+}
 
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span>
+<span class="function"></span>{
+    <span class="comment">/*主程序创建10个进程，然后退出。*/</span>
+    <span class="keyword">pthread_t</span> threads[NUMBER_OF_THREADS];
+    <span class="keyword">int</span> status, i;
 
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+    <span class="keyword">for</span>(i = <span class="number">0</span>; i < NUMBER_OF_THREADS; i++){
+        <span class="built_in">printf</span>(<span class="string">"Main here.Creating thread %d0\n"</span>, i);
+        status = pthread_creat(&threads[i], <span class="literal">NULL</span>, print_hello_world, (<span class="keyword">void</span> *)i);
 
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
+        <span class="keyword">if</span>(status != <span class="number">0</span>){
+            <span class="built_in">printf</span>(<span class="string">"Oops.pthread_creat return error code %d0"</span>, status);
+            <span class="built_in">exit</span>(<span class="number">-1</span>);
         }
-      });
     }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-</body>
-</html>
+    <span class="built_in">exit</span>(<span class="literal">NULL</span>);
+}
+</code></span></span></pre>
+<h4 id="在内核中实现线程"><a href="#在内核中实现线程" class="headerlink" title="在内核中实现线程"></a>在内核中实现线程</h4><p>内核级线程就是内核有好几个分身，一个分身可以处理一件事的意思。这用来处理非同步事件很有用, 内核可以对每个非同步事件生个分身来处理。  </p>
+<p>内核级线程的操作非常轻便,几乎没有负担,而且对内核的结构有帮助。支持内核级线程的内核称作多线程内核。  </p>
+<p><img src="/img/kernel-thread.png" alt="kernel-thread"></p>
+<blockquote>
+<p>例子：Windows 95/98/NT/2000, Solaris,Tru64 UNIX,Linux</p>
+</blockquote>
+<hr>
+<p>以上的内容只是对进程与线程的概念以及一些其他的基础问题做了简单的阐述，在操作系统中关于进程内容的核心知识还得是<strong>进程的调度与通信</strong>，这两个问题留到下一篇讨论。</p>
+</div><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/OS/" class="post__tag__link">OS</a></li></ul><a href="/2014/OS/process-and-thread/#disqus_thread" class="post__foot-link u-fr">0 COMMENTS</a></footer></article><article class="post"><header class="post__head"><time datetime="2014-06-21T14:07:20.000Z" class="post__time">June 21, 2014</time><h1 class="post__title"><a href="/2014/OS/os-1/">操作系统名词概念解释</a></h1></header><div class="post__main echo"><p>简单解释一些容易混淆的学术性名词。<br><a id="more"></a></p>
+<h2 id="系统吞吐量"><a href="#系统吞吐量" class="headerlink" title="系统吞吐量"></a>系统吞吐量</h2><ul>
+<li>指系统在单位时间内所完成的总工作量    </li>
+</ul>
+<h2 id="作业的周转时间"><a href="#作业的周转时间" class="headerlink" title="作业的周转时间"></a>作业的周转时间</h2><ul>
+<li>指从作业进入系统开始，直至其完成并退出系统为止所经历的时间  </li>
+</ul>
+<h2 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h2><ul>
+<li>批处理(batch processing )就是将作业按照它们的性质分组（或分批），然后再成组（或成批）地提交给计算机系统，由计算机自动完成后再输出结果，从而减少作业建立和结束过程中的时间浪费。  </li>
+</ul>
+<h2 id="批处理系统"><a href="#批处理系统" class="headerlink" title="批处理系统"></a>批处理系统</h2><ul>
+<li>单道批处理系统<br>内存中永远仅有一道作业的批处理操作系统称为单道批处理系统</li>
+<li>多道批处理系统<br>内存中可同时存在若干道作业的批处理操作系统称为多道批处理系统<br>用户所提交的作业都先存放在外存上并排成一个队列，称为”后备队列”，然后作业调度程序按一定的算法从后备队列中选择若干个作业调入内存，使他们共享CPU和系统中的各种资源。</li>
+</ul>
+<h2 id="分时系统"><a href="#分时系统" class="headerlink" title="分时系统"></a>分时系统</h2><ul>
+<li>利用分时技术的一种联机的多用户交互式操作系统，每个用户可以通过自己的终端向系统发出各种操作控制命令，完成作业的运行。分时是指把处理机的运行时间分成很短的时间片，按时间片轮流把处理机分配给各联机作业使用。</li>
+</ul>
+<h2 id="实时系统"><a href="#实时系统" class="headerlink" title="实时系统"></a>实时系统</h2><ul>
+<li><p>系统特征是将时间作为关键参数。<br>能够在”指定”或者”确定”的时间内完成系统功能以及对外部或内部事件在同步或异步时间内做出响应的系统,实时意思就是对响应时间有严格要求,要以足够快的速度进行处理.分为硬实时和软实时两种。  </p>
+</li>
+<li><p>硬实时：某个动作必须绝对地在规定的时刻（或规定的时间范围）发生。</p>
+</li>
+<li>软实时：虽然也联系着一个截止时间，但是超过了也可以接受，并且不会引起任何永久性的损害。</li>
+</ul>
+<h2 id="处理机与处理器"><a href="#处理机与处理器" class="headerlink" title="处理机与处理器"></a>处理机与处理器</h2><ul>
+<li><p>处理机：计算机系统中存储程序和数据，并按照程序规定的步骤执行指令的部件。程序是描述处理机完成某项任务的指令序列。指令则是处理机能直接解释、执行的信息单位。处理机包括中央处理器，主存储器,I/O接口。  </p>
+</li>
+<li><p>处理器：即中央处理器（CPU），其功能主要是解释计算机指令以及处理计算机软件中的数据。  </p>
+</li>
+</ul>
+<h2 id="并行和并发"><a href="#并行和并发" class="headerlink" title="并行和并发"></a>并行和并发</h2><ul>
+<li>并行指两个或多个事件在同一时刻发生</li>
+<li>并发指两个或多个事件在同一时间间隔内发生</li>
+</ul>
+<h2 id="地址空间"><a href="#地址空间" class="headerlink" title="地址空间"></a>地址空间</h2><ul>
+<li>是指从某个最小值的存储位置（通常是零）到某个最大值存储位置的列表。  </li>
+<li>地址空间里存放可执行程序、程序的数据、程序的堆栈。  </li>
+</ul>
+<h2 id="从概率的角度来看CPU的利用率"><a href="#从概率的角度来看CPU的利用率" class="headerlink" title="从概率的角度来看CPU的利用率"></a>从概率的角度来看CPU的利用率</h2><p>假设一个进程等待I/O操作的时间与其停留在内存中时间的比为P。当内存中同时有n个进程时，则所有n个进程都在等待I/O（此时CPU空转）的概率是p^n。CPU的利用率为：  </p>
+<blockquote>
+<p>CPU利用率 = 1 - p^n</p>
+</blockquote>
+</div><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a href="/tags/OS/" class="post__tag__link">OS</a></li></ul><a href="/2014/OS/os-1/#disqus_thread" class="post__foot-link u-fr">0 COMMENTS</a></footer></article></main><footer class="foot"><div class="foot-copy u-fl">&copy; 2019 thinKnight</div><menu class="page-menu u-fr"><li class="page-menu__item"><span title="Previous" class="page-menu__link icon-arrow-left page-menu__link--disabled"></span></li><li class="page-menu__item"><span title="Next" class="page-menu__link icon-arrow-right page-menu__link--disabled"></span></li></menu></footer><script>(function(h,g,l,k,j,i){j=h.createElement(g),i=h.getElementsByTagName(g)[0],
+j.src="//"+l+".disqus.com/"+k+".js",i.parentNode.insertBefore(j,i)})
+(document,"script","matrixwall","count");
+</script></body></html>
